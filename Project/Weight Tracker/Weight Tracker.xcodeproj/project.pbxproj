@@ -1,0 +1,496 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA49EC3D1B8F1FF10097AE8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49EC3C1B8F1FF10097AE8B /* AppDelegate.swift */; };
+		FA49EC3F1B8F1FF10097AE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA49EC3E1B8F1FF10097AE8B /* Assets.xcassets */; };
+		FA49EC421B8F1FF10097AE8B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA49EC401B8F1FF10097AE8B /* MainMenu.xib */; };
+		FA49EC4D1B8F1FF10097AE8B /* Weight_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49EC4C1B8F1FF10097AE8B /* Weight_TrackerTests.swift */; };
+		FA49EC581B8F1FF10097AE8B /* Weight_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49EC571B8F1FF10097AE8B /* Weight_TrackerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA49EC491B8F1FF10097AE8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA49EC311B8F1FF10097AE8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA49EC381B8F1FF10097AE8B;
+			remoteInfo = "Weight Tracker";
+		};
+		FA49EC541B8F1FF10097AE8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA49EC311B8F1FF10097AE8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA49EC381B8F1FF10097AE8B;
+			remoteInfo = "Weight Tracker";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FA49EC391B8F1FF10097AE8B /* Weight Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weight Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA49EC3C1B8F1FF10097AE8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FA49EC3E1B8F1FF10097AE8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA49EC411B8F1FF10097AE8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		FA49EC431B8F1FF10097AE8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA49EC481B8F1FF10097AE8B /* Weight TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Weight TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA49EC4C1B8F1FF10097AE8B /* Weight_TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight_TrackerTests.swift; sourceTree = "<group>"; };
+		FA49EC4E1B8F1FF10097AE8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA49EC531B8F1FF10097AE8B /* Weight TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Weight TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA49EC571B8F1FF10097AE8B /* Weight_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight_TrackerUITests.swift; sourceTree = "<group>"; };
+		FA49EC591B8F1FF10097AE8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA49EC361B8F1FF10097AE8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA49EC451B8F1FF10097AE8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA49EC501B8F1FF10097AE8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA49EC301B8F1FF10097AE8B = {
+			isa = PBXGroup;
+			children = (
+				FA49EC3B1B8F1FF10097AE8B /* Weight Tracker */,
+				FA49EC4B1B8F1FF10097AE8B /* Weight TrackerTests */,
+				FA49EC561B8F1FF10097AE8B /* Weight TrackerUITests */,
+				FA49EC3A1B8F1FF10097AE8B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FA49EC3A1B8F1FF10097AE8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA49EC391B8F1FF10097AE8B /* Weight Tracker.app */,
+				FA49EC481B8F1FF10097AE8B /* Weight TrackerTests.xctest */,
+				FA49EC531B8F1FF10097AE8B /* Weight TrackerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA49EC3B1B8F1FF10097AE8B /* Weight Tracker */ = {
+			isa = PBXGroup;
+			children = (
+				FA49EC3C1B8F1FF10097AE8B /* AppDelegate.swift */,
+				FA49EC3E1B8F1FF10097AE8B /* Assets.xcassets */,
+				FA49EC401B8F1FF10097AE8B /* MainMenu.xib */,
+				FA49EC431B8F1FF10097AE8B /* Info.plist */,
+			);
+			path = "Weight Tracker";
+			sourceTree = "<group>";
+		};
+		FA49EC4B1B8F1FF10097AE8B /* Weight TrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA49EC4C1B8F1FF10097AE8B /* Weight_TrackerTests.swift */,
+				FA49EC4E1B8F1FF10097AE8B /* Info.plist */,
+			);
+			path = "Weight TrackerTests";
+			sourceTree = "<group>";
+		};
+		FA49EC561B8F1FF10097AE8B /* Weight TrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FA49EC571B8F1FF10097AE8B /* Weight_TrackerUITests.swift */,
+				FA49EC591B8F1FF10097AE8B /* Info.plist */,
+			);
+			path = "Weight TrackerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA49EC381B8F1FF10097AE8B /* Weight Tracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA49EC5C1B8F1FF10097AE8B /* Build configuration list for PBXNativeTarget "Weight Tracker" */;
+			buildPhases = (
+				FA49EC351B8F1FF10097AE8B /* Sources */,
+				FA49EC361B8F1FF10097AE8B /* Frameworks */,
+				FA49EC371B8F1FF10097AE8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Weight Tracker";
+			productName = "Weight Tracker";
+			productReference = FA49EC391B8F1FF10097AE8B /* Weight Tracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FA49EC471B8F1FF10097AE8B /* Weight TrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA49EC5F1B8F1FF10097AE8B /* Build configuration list for PBXNativeTarget "Weight TrackerTests" */;
+			buildPhases = (
+				FA49EC441B8F1FF10097AE8B /* Sources */,
+				FA49EC451B8F1FF10097AE8B /* Frameworks */,
+				FA49EC461B8F1FF10097AE8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA49EC4A1B8F1FF10097AE8B /* PBXTargetDependency */,
+			);
+			name = "Weight TrackerTests";
+			productName = "Weight TrackerTests";
+			productReference = FA49EC481B8F1FF10097AE8B /* Weight TrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FA49EC521B8F1FF10097AE8B /* Weight TrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA49EC621B8F1FF10097AE8B /* Build configuration list for PBXNativeTarget "Weight TrackerUITests" */;
+			buildPhases = (
+				FA49EC4F1B8F1FF10097AE8B /* Sources */,
+				FA49EC501B8F1FF10097AE8B /* Frameworks */,
+				FA49EC511B8F1FF10097AE8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA49EC551B8F1FF10097AE8B /* PBXTargetDependency */,
+			);
+			name = "Weight TrackerUITests";
+			productName = "Weight TrackerUITests";
+			productReference = FA49EC531B8F1FF10097AE8B /* Weight TrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA49EC311B8F1FF10097AE8B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Alex Potter";
+				TargetAttributes = {
+					FA49EC381B8F1FF10097AE8B = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					FA49EC471B8F1FF10097AE8B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = FA49EC381B8F1FF10097AE8B;
+					};
+					FA49EC521B8F1FF10097AE8B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = FA49EC381B8F1FF10097AE8B;
+					};
+				};
+			};
+			buildConfigurationList = FA49EC341B8F1FF10097AE8B /* Build configuration list for PBXProject "Weight Tracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FA49EC301B8F1FF10097AE8B;
+			productRefGroup = FA49EC3A1B8F1FF10097AE8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA49EC381B8F1FF10097AE8B /* Weight Tracker */,
+				FA49EC471B8F1FF10097AE8B /* Weight TrackerTests */,
+				FA49EC521B8F1FF10097AE8B /* Weight TrackerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FA49EC371B8F1FF10097AE8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA49EC3F1B8F1FF10097AE8B /* Assets.xcassets in Resources */,
+				FA49EC421B8F1FF10097AE8B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA49EC461B8F1FF10097AE8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA49EC511B8F1FF10097AE8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA49EC351B8F1FF10097AE8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA49EC3D1B8F1FF10097AE8B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA49EC441B8F1FF10097AE8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA49EC4D1B8F1FF10097AE8B /* Weight_TrackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA49EC4F1B8F1FF10097AE8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA49EC581B8F1FF10097AE8B /* Weight_TrackerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA49EC4A1B8F1FF10097AE8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA49EC381B8F1FF10097AE8B /* Weight Tracker */;
+			targetProxy = FA49EC491B8F1FF10097AE8B /* PBXContainerItemProxy */;
+		};
+		FA49EC551B8F1FF10097AE8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA49EC381B8F1FF10097AE8B /* Weight Tracker */;
+			targetProxy = FA49EC541B8F1FF10097AE8B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FA49EC401B8F1FF10097AE8B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA49EC411B8F1FF10097AE8B /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FA49EC5A1B8F1FF10097AE8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FA49EC5B1B8F1FF10097AE8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FA49EC5D1B8F1FF10097AE8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Weight Tracker/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-Tracker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FA49EC5E1B8F1FF10097AE8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Weight Tracker/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-Tracker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		FA49EC601B8F1FF10097AE8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Weight TrackerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-TrackerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weight Tracker.app/Contents/MacOS/Weight Tracker";
+			};
+			name = Debug;
+		};
+		FA49EC611B8F1FF10097AE8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Weight TrackerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-TrackerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weight Tracker.app/Contents/MacOS/Weight Tracker";
+			};
+			name = Release;
+		};
+		FA49EC631B8F1FF10097AE8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Weight TrackerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-TrackerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Weight Tracker";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		FA49EC641B8F1FF10097AE8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Weight TrackerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-TrackerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Weight Tracker";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA49EC341B8F1FF10097AE8B /* Build configuration list for PBXProject "Weight Tracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA49EC5A1B8F1FF10097AE8B /* Debug */,
+				FA49EC5B1B8F1FF10097AE8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA49EC5C1B8F1FF10097AE8B /* Build configuration list for PBXNativeTarget "Weight Tracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA49EC5D1B8F1FF10097AE8B /* Debug */,
+				FA49EC5E1B8F1FF10097AE8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FA49EC5F1B8F1FF10097AE8B /* Build configuration list for PBXNativeTarget "Weight TrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA49EC601B8F1FF10097AE8B /* Debug */,
+				FA49EC611B8F1FF10097AE8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FA49EC621B8F1FF10097AE8B /* Build configuration list for PBXNativeTarget "Weight TrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA49EC631B8F1FF10097AE8B /* Debug */,
+				FA49EC641B8F1FF10097AE8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA49EC311B8F1FF10097AE8B /* Project object */;
+}
