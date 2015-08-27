@@ -31,12 +31,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func ContinueButtonClicked(sender: NSButton) {
     }
+    
+    
+    // Function that will fill the NSComboBox with users from persistent storage (NSUserDefaults)
+    // This will run when a NSNotification is received from the function that saves the data
+    func populateNSComboBox(notification: NSNotification) {
+        print("Populating combo box")
+        
+        /* as! forces downcast to array of Strings from array of AnyObject, for type safety
+        The app will crash though if this doesn't exist, but this function should only be called
+        if this array exists in NSUserDefaults */
+        let names = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
+        
+        // Adding last element in the array, avoids duplicates
+        UserComboBox.addItemWithObjectValue(names.last!)
+    }
+    
+    // Function that runs when the user selects something in the NSComboBox
+    func comboBoxSelectionDidChange(notification: NSNotification) {
+        // Enable Continue Button
+        ContinueButton.enabled = true
+        // Get selected name
+        let savedString: String = UserComboBox.objectValueOfSelectedItem as! String
+        
+        // Save to NSUserDefaults under a key of currentUser
+        // This will be the identity of the current user that the program will use
+        NSUserDefaults.standardUserDefaults().setObject(savedString, forKey: "currentUser")
+        
+        // for debugging
+        print("\(savedString) saved to NSUserDefaults")
+        
+    }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         
         // Disabling the continue button initially as no user would be selected
         ContinueButton.enabled = false
+        
+        // Setting up notification listeners to populate the dropdown box of users and to check if the user selected something in the NSComboBox
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "populateNSComboBox:", name: "NameDataSavedNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "comboBoxSelectionDidChange:", name: "NSComboBoxSelectionDidChangeNotification", object: nil)
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
