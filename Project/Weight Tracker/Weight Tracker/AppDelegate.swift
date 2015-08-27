@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /* Keeps a reference to the window controller that we're gonna switch to when
     we click the New User button, so that it doesn't get deallocated (otherwise, errors) */
+    // In Cocoa, windows/views are loaded lazily instead of all at once (better performance)
     let newUserVC = NewUserWindowController(windowNibName: "NewUserWindow")
 
     @IBAction func NewUserButtonClicked(sender: NSButton) {
