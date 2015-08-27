@@ -18,14 +18,14 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xG1-KL-CBE">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="570" height="190"/>
+            <rect key="contentRect" x="196" y="240" width="580" height="137"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="NRE-mE-Xme">
-                <rect key="frame" x="0.0" y="0.0" width="570" height="190"/>
+                <rect key="frame" x="0.0" y="0.0" width="580" height="137"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3j-tw-Vu5">
-                        <rect key="frame" x="168" y="13" width="82" height="32"/>
+                        <rect key="frame" x="170" y="13" width="82" height="32"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xSa-DZ-3HL">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -39,7 +39,7 @@ Gw
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ZI-Sg-t69">
-                        <rect key="frame" x="195" y="143" width="181" height="27"/>
+                        <rect key="frame" x="200" y="96" width="181" height="27"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Create a new user" id="NC5-QK-TeI">
                             <font key="font" metaFont="system" size="22"/>
@@ -48,7 +48,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcx-o3-gWP">
-                        <rect key="frame" x="341" y="13" width="72" height="32"/>
+                        <rect key="frame" x="324" y="13" width="72" height="32"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5jW-xw-zC8">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -59,7 +59,7 @@ Gw
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p9n-8S-BBo">
-                        <rect key="frame" x="125" y="87" width="106" height="17"/>
+                        <rect key="frame" x="125" y="60" width="106" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="New User Name:" id="02n-Oa-9Fa">
                             <font key="font" metaFont="system"/>
@@ -68,7 +68,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGw-nK-2za">
-                        <rect key="frame" x="237" y="84" width="228" height="22"/>
+                        <rect key="frame" x="237" y="57" width="228" height="22"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Type the new user's name here..." drawsBackground="YES" id="FC9-vM-8WC">
                             <font key="font" metaFont="system"/>
@@ -79,6 +79,7 @@ Gw
                 </subviews>
                 <animations/>
             </view>
+            <point key="canvasLocation" x="567" y="417.5"/>
         </window>
         <customObject id="Xhf-Yh-tSn" customClass="AppDelegate" customModule="Weight_Tracker" customModuleProvider="target"/>
     </objects>
