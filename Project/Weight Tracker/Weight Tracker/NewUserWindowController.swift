@@ -21,29 +21,47 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
             var textArray: [String] = []
             textArray.append(NewUserTextField.stringValue)
             
+            let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", [], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
+            NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(NewUserTextField.stringValue)")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            // debugging
+            //print(textArray)
+            
             // Save to persistent storage
             NSUserDefaults.standardUserDefaults().setObject(textArray, forKey: "NewUserNames")
             NSUserDefaults.standardUserDefaults().synchronize()
+            
+            /* Sending a notification to the other view controller that
+            the data has been saved to NSUserDefaults. As a result, it can be
+            used to populate the NSComboBox so that the user can choose a user */
+            NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
+            
+            // Prevents modal sheet from blocking the app from exiting
+            self.window?.close()
+        } else {
+            
+            // Appending text input to the end of the user array stored in NSUserDefaults
+            var textArrayDefaults = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
+            textArrayDefaults.append(NewUserTextField.stringValue)
+            // debugging
+            //print(textArrayDefaults)
+            
+            // For debugging purposes
+            print("\(NewUserTextField.stringValue) saved to NSUserDefaults")
+            
+            // Saving back to NSUserDefaults
+            NSUserDefaults.standardUserDefaults().setObject(textArrayDefaults, forKey: "NewUserNames")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            /* Sending a notification to the other view controller that
+            the data has been saved to NSUserDefaults. As a result, it can be
+            used to populate the NSComboBox so that the user can choose a user */
+            NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
+            
+            // Prevents modal sheet from blocking the app from exiting
+            NSApp.endSheet(self.window!)
+            self.window!.orderOut(self.window)
         }
-        
-        // Appending text input to the end of the user array stored in NSUserDefaults
-        var textArrayDefaults = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
-        textArrayDefaults.append(NewUserTextField.stringValue)
-        
-        // For debugging purposes
-        print("\(NewUserTextField.stringValue) saved to NSUserDefaults")
-        
-        // Saving back to NSUserDefaults
-        NSUserDefaults.standardUserDefaults().setObject(textArrayDefaults, forKey: "NewUserNames")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-        /* Sending a notification to the other view controller that
-        the data has been saved to NSUserDefaults. As a result, it can be
-        used to populate the NSComboBox so that the user can choose a user */
-        NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
-        
-        // Prevents modal sheet from blocking the app from exiting
-        self.window?.close()
     }
     
     override func controlTextDidChange(notification: NSNotification) {
@@ -59,7 +77,8 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
     
     @IBAction func CancelButtonClicked(sender: NSButton) {
         // Tells everyone we want to return to the previous window, exits smoothly
-        self.window?.close()
+        NSApp.endSheet(self.window!)
+        self.window!.orderOut(self.window)
     }
 
     override func windowDidLoad() {
