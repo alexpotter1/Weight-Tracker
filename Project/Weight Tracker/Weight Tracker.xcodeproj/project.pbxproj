@@ -12,7 +12,8 @@
 		FA49EC421B8F1FF10097AE8B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA49EC401B8F1FF10097AE8B /* MainMenu.xib */; };
 		FA49EC4D1B8F1FF10097AE8B /* Weight_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49EC4C1B8F1FF10097AE8B /* Weight_TrackerTests.swift */; };
 		FA49EC581B8F1FF10097AE8B /* Weight_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49EC571B8F1FF10097AE8B /* Weight_TrackerUITests.swift */; };
-		FA49EC661B8F21B60097AE8B /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49EC651B8F21B60097AE8B /* AppController.swift */; settings = {ASSET_TAGS = (); }; };
+		FA49ECBA1B8F62020097AE8B /* NewUserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49ECB81B8F62020097AE8B /* NewUserWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		FA49ECBB1B8F62020097AE8B /* NewUserWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA49ECB91B8F62020097AE8B /* NewUserWindow.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +45,8 @@
 		FA49EC531B8F1FF10097AE8B /* Weight TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Weight TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA49EC571B8F1FF10097AE8B /* Weight_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight_TrackerUITests.swift; sourceTree = "<group>"; };
 		FA49EC591B8F1FF10097AE8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA49EC651B8F21B60097AE8B /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		FA49ECB81B8F62020097AE8B /* NewUserWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserWindowController.swift; sourceTree = "<group>"; };
+		FA49ECB91B8F62020097AE8B /* NewUserWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				FA49EC3C1B8F1FF10097AE8B /* AppDelegate.swift */,
-				FA49EC651B8F21B60097AE8B /* AppController.swift */,
 				FA49EC3E1B8F1FF10097AE8B /* Assets.xcassets */,
 				FA49EC401B8F1FF10097AE8B /* MainMenu.xib */,
 				FA49EC431B8F1FF10097AE8B /* Info.plist */,
+				FA49ECB81B8F62020097AE8B /* NewUserWindowController.swift */,
+				FA49ECB91B8F62020097AE8B /* NewUserWindow.xib */,
 			);
 			path = "Weight Tracker";
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA49EC3F1B8F1FF10097AE8B /* Assets.xcassets in Resources */,
+				FA49ECBB1B8F62020097AE8B /* NewUserWindow.xib in Resources */,
 				FA49EC421B8F1FF10097AE8B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,8 +255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA49ECBA1B8F62020097AE8B /* NewUserWindowController.swift in Sources */,
 				FA49EC3D1B8F1FF10097AE8B /* AppDelegate.swift in Sources */,
-				FA49EC661B8F21B60097AE8B /* AppController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +481,7 @@
 				FA49EC5E1B8F1FF10097AE8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA49EC5F1B8F1FF10097AE8B /* Build configuration list for PBXNativeTarget "Weight TrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +490,7 @@
 				FA49EC611B8F1FF10097AE8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA49EC621B8F1FF10097AE8B /* Build configuration list for PBXNativeTarget "Weight TrackerUITests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +499,7 @@
 				FA49EC641B8F1FF10097AE8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

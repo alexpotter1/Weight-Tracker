@@ -15,6 +15,8 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Weight_Tracker" customModuleProvider="target">
             <connections>
                 <outlet property="ContinueButton" destination="HD0-45-MFB" id="0Q5-FU-Mqs"/>
+                <outlet property="UserComboBox" destination="8ix-eR-qWh" id="oN6-Ev-QHb"/>
+                <outlet property="window" destination="BN5-yd-Rld" id="BpO-wP-hjS"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -702,7 +704,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="ContinueButtonClicked:" target="3Io-Qd-0KB" id="Yj3-fO-tbB"/>
+                            <action selector="ContinueButtonClicked:" target="Voe-Tx-rLC" id="LfD-0B-oIv"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pZe-oJ-g1s">
@@ -713,7 +715,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="NewUserButtonClicked:" target="3Io-Qd-0KB" id="HPR-wg-Btb"/>
+                            <action selector="NewUserButtonClicked:" target="Voe-Tx-rLC" id="E2B-x8-xhf"/>
                         </connections>
                     </button>
                 </subviews>
@@ -721,10 +723,5 @@
             </view>
             <point key="canvasLocation" x="631" y="488.5"/>
         </window>
-        <customObject id="3Io-Qd-0KB" customClass="AppController" customModule="Weight_Tracker" customModuleProvider="target">
-            <connections>
-                <outlet property="UserComboBox" destination="8ix-eR-qWh" id="Awg-kM-iDd"/>
-            </connections>
-        </customObject>
     </objects>
 </document>
