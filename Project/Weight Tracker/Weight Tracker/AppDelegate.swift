@@ -12,10 +12,14 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var ContinueButton: NSButton!
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        
+        // Disabling the continue button initially as no user would be selected
+        ContinueButton.enabled = false
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
