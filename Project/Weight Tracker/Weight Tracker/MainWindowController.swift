@@ -26,10 +26,10 @@ class MainWindowController: NSWindowController {
         if profileInfo == nil { // shouldn't be nil
             LatestWeightLabel.stringValue = "No weight goal set yet..."
         } else {
-            // Get values from dictionary
+            // Get values from user's dictionary
             let profileInfoDictionary = profileInfo as! NSMutableDictionary
             let weightUnitValue = profileInfoDictionary.valueForKey("weightUnit") as! String
-            let weightValueArray = profileInfoDictionary.valueForKey("latestPredictedWeightLoss") as! NSArray
+            let weightValueArray = profileInfoDictionary.valueForKey("latestPredictedWeightLoss")
             let weightGainOrLoss = profileInfoDictionary.valueForKey("latestPredictedGain/Loss") as! Int
             var LatestWeightLabelValueSet: Bool = false
             var LatestWeightLabelString: String = ""

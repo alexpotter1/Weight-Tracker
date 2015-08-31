@@ -15,15 +15,18 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
     @IBOutlet weak var DoneButton: NSButton!
     
     @IBAction func DoneButtonClicked(sender: NSButton) {
+        
+        // Setup the dictionary to hold all the user's information, save to NSUserDefaults
+        let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", ["0.0"], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
+        NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(NewUserTextField.stringValue)")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
         // Check if array exists in NSUserDefaults (persistent storage)
         if NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") == nil {
             // Create new array of users and add the user to the list
             var textArray: [String] = []
             textArray.append(NewUserTextField.stringValue)
             
-            let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", [], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
-            NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(NewUserTextField.stringValue)")
-            NSUserDefaults.standardUserDefaults().synchronize()
             // debugging
             //print(textArray)
             
