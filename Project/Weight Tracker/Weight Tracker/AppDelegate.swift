@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Save to NSUserDefaults under a key of currentUser
         // This will be the identity of the current user that the program will use
-        //NSUserDefaults.standardUserDefaults().setObject(savedString, forKey: "currentUser")
+        NSUserDefaults.standardUserDefaults().setObject(savedString, forKey: "currentUser")
         
         // for debugging
         print("\(savedString) saved to NSUserDefaults")

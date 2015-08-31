@@ -678,7 +678,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yes-ur-SW3">
-                        <rect key="frame" x="50" y="99" width="270" height="35"/>
+                        <rect key="frame" x="50" y="99" width="297" height="35"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Hi! Welcome back...." id="54Q-Kj-L5L">
                             <font key="font" metaFont="system" size="29"/>
