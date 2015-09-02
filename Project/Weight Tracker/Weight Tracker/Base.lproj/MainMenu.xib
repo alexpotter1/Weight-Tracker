@@ -12,13 +12,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Weight_Tracker" customModuleProvider="target">
-            <connections>
-                <outlet property="ContinueButton" destination="HD0-45-MFB" id="0Q5-FU-Mqs"/>
-                <outlet property="UserComboBox" destination="8ix-eR-qWh" id="oN6-Ev-QHb"/>
-                <outlet property="window" destination="BN5-yd-Rld" id="BpO-wP-hjS"/>
-            </connections>
-        </customObject>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Weight_Tracker" customModuleProvider="target"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -669,58 +663,6 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Weight Tracker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="BN5-yd-Rld">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="643" y="400" width="593" height="221"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-            <view key="contentView" id="3QF-dK-Pkc">
-                <rect key="frame" x="0.0" y="0.0" width="593" height="221"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yes-ur-SW3">
-                        <rect key="frame" x="50" y="99" width="297" height="35"/>
-                        <animations/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Hi! Welcome back...." id="54Q-Kj-L5L">
-                            <font key="font" metaFont="system" size="29"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ix-eR-qWh">
-                        <rect key="frame" x="365" y="102" width="188" height="26"/>
-                        <animations/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Select a user..." drawsBackground="YES" completes="NO" numberOfVisibleItems="100" id="f9d-Od-i7X">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </comboBoxCell>
-                    </comboBox>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pZe-oJ-g1s">
-                        <rect key="frame" x="256" y="13" width="150" height="32"/>
-                        <animations/>
-                        <buttonCell key="cell" type="push" title="Create a new user" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KtJ-57-r4j">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="NewUserButtonClicked:" target="Voe-Tx-rLC" id="E2B-x8-xhf"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HD0-45-MFB">
-                        <rect key="frame" x="455" y="13" width="101" height="32"/>
-                        <animations/>
-                        <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hQ6-rX-xjE">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="ContinueButtonClicked:" target="Voe-Tx-rLC" id="LfD-0B-oIv"/>
-                        </connections>
-                    </button>
-                </subviews>
-                <animations/>
-            </view>
-            <point key="canvasLocation" x="630.5" y="488.5"/>
-        </window>
+        <customObject id="PUs-PY-D3K" customClass="InitialWindowController" customModule="Weight_Tracker" customModuleProvider="target"/>
     </objects>
 </document>
