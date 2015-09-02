@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="DoneButton" destination="rcx-o3-gWP" id="VPD-tE-pdj"/>
                 <outlet property="NewUserTextField" destination="GGw-nK-2za" id="w4V-iq-PYK"/>
-                <outlet property="view" destination="NRE-mE-Xme" id="uoG-JS-uxO"/>
                 <outlet property="window" destination="xG1-KL-CBE" id="7Sf-Qs-lW7"/>
             </connections>
         </customObject>
