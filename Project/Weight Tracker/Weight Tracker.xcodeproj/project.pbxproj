@@ -16,6 +16,8 @@
 		FA49ECBB1B8F62020097AE8B /* NewUserWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA49ECB91B8F62020097AE8B /* NewUserWindow.xib */; settings = {ASSET_TAGS = (); }; };
 		FA49ECBE1B8F73E80097AE8B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49ECBC1B8F73E80097AE8B /* MainWindowController.swift */; settings = {ASSET_TAGS = (); }; };
 		FA49ECBF1B8F73E80097AE8B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA49ECBD1B8F73E80097AE8B /* MainWindow.xib */; settings = {ASSET_TAGS = (); }; };
+		FA55B2071B9796A5006C4B0A /* InitialWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55B2051B9796A5006C4B0A /* InitialWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		FABBA4231B979AAE00206DCD /* InitialWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABBA4211B979AAE00206DCD /* InitialWindow.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		FA49ECB91B8F62020097AE8B /* NewUserWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserWindow.xib; sourceTree = "<group>"; };
 		FA49ECBC1B8F73E80097AE8B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		FA49ECBD1B8F73E80097AE8B /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		FA55B2051B9796A5006C4B0A /* InitialWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialWindowController.swift; sourceTree = "<group>"; };
+		FABBA4211B979AAE00206DCD /* InitialWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +106,12 @@
 			isa = PBXGroup;
 			children = (
 				FA49EC3C1B8F1FF10097AE8B /* AppDelegate.swift */,
+				FA55B2051B9796A5006C4B0A /* InitialWindowController.swift */,
 				FA49ECB81B8F62020097AE8B /* NewUserWindowController.swift */,
 				FA49ECBC1B8F73E80097AE8B /* MainWindowController.swift */,
 				FA49EC3E1B8F1FF10097AE8B /* Assets.xcassets */,
 				FA49EC401B8F1FF10097AE8B /* MainMenu.xib */,
+				FABBA4211B979AAE00206DCD /* InitialWindow.xib */,
 				FA49ECB91B8F62020097AE8B /* NewUserWindow.xib */,
 				FA49ECBD1B8F73E80097AE8B /* MainWindow.xib */,
 				FA49EC431B8F1FF10097AE8B /* Info.plist */,
@@ -238,6 +244,7 @@
 				FA49ECBB1B8F62020097AE8B /* NewUserWindow.xib in Resources */,
 				FA49ECBF1B8F73E80097AE8B /* MainWindow.xib in Resources */,
 				FA49EC421B8F1FF10097AE8B /* MainMenu.xib in Resources */,
+				FABBA4231B979AAE00206DCD /* InitialWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +271,7 @@
 			files = (
 				FA49ECBA1B8F62020097AE8B /* NewUserWindowController.swift in Sources */,
 				FA49EC3D1B8F1FF10097AE8B /* AppDelegate.swift in Sources */,
+				FA55B2071B9796A5006C4B0A /* InitialWindowController.swift in Sources */,
 				FA49ECBE1B8F73E80097AE8B /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

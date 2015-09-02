@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A262e" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8187.4"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="InitialWindowController" customModule="Weight_Tracker" customModuleProvider="target">
+            <connections>
+                <outlet property="ContinueButton" destination="MMS-0l-6YA" id="agu-ah-sr5"/>
+                <outlet property="UserComboBox" destination="MEZ-Tk-YqI" id="oCe-Y6-1S6"/>
+                <outlet property="window" destination="pFx-aK-SO4" id="CRc-fG-Z6Y"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Weight Tracker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="pFx-aK-SO4">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES"/>
+            <rect key="contentRect" x="660" y="400" width="593" height="221"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" id="n7I-FB-htd">
+                <rect key="frame" x="0.0" y="0.0" width="593" height="221"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KgV-x7-OJ0">
+                        <rect key="frame" x="50" y="99" width="297" height="35"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Hi! Welcome back...." id="muq-yj-mhF">
+                            <font key="font" metaFont="system" size="29"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MEZ-Tk-YqI">
+                        <rect key="frame" x="365" y="102" width="188" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="185" id="SeT-BP-JJ5"/>
+                        </constraints>
+                        <animations/>
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Select a user..." drawsBackground="YES" completes="NO" numberOfVisibleItems="100" id="Cw3-o1-fdK">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </comboBoxCell>
+                    </comboBox>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VSx-03-R8E">
+                        <rect key="frame" x="256" y="13" width="150" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Create a new user" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qO6-Qk-gy3">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="NewUserButtonClicked:" target="-2" id="0iy-xB-tEm"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MMS-0l-6YA">
+                        <rect key="frame" x="455" y="13" width="101" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="89" id="H7f-MW-Rje"/>
+                        </constraints>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dhL-54-eYr">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="ContinueButtonClicked:" target="-2" id="2YU-0Z-XGu"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MEZ-Tk-YqI" firstAttribute="leading" secondItem="KgV-x7-OJ0" secondAttribute="trailing" constant="20" id="O2y-xZ-Pis"/>
+                    <constraint firstItem="MEZ-Tk-YqI" firstAttribute="centerY" secondItem="KgV-x7-OJ0" secondAttribute="centerY" id="S4C-7b-mCv"/>
+                    <constraint firstAttribute="bottom" secondItem="VSx-03-R8E" secondAttribute="bottom" constant="20" symbolic="YES" id="YbR-7v-H49"/>
+                    <constraint firstItem="KgV-x7-OJ0" firstAttribute="leading" secondItem="n7I-FB-htd" secondAttribute="leading" constant="52" id="ZtS-ce-3qz"/>
+                    <constraint firstItem="MMS-0l-6YA" firstAttribute="leading" secondItem="VSx-03-R8E" secondAttribute="trailing" constant="61" id="azX-Bj-BUM"/>
+                    <constraint firstItem="MMS-0l-6YA" firstAttribute="baseline" secondItem="VSx-03-R8E" secondAttribute="baseline" id="hEx-Xl-kGb"/>
+                    <constraint firstAttribute="trailing" secondItem="MEZ-Tk-YqI" secondAttribute="trailing" constant="43" id="if0-dz-dRF"/>
+                    <constraint firstItem="VSx-03-R8E" firstAttribute="top" secondItem="KgV-x7-OJ0" secondAttribute="bottom" constant="58" id="oZR-y7-3qt"/>
+                    <constraint firstItem="MEZ-Tk-YqI" firstAttribute="trailing" secondItem="MMS-0l-6YA" secondAttribute="trailing" id="sjr-u0-Vzr"/>
+                </constraints>
+                <animations/>
+            </view>
+            <point key="canvasLocation" x="630.5" y="488.5"/>
+        </window>
+    </objects>
+</document>
