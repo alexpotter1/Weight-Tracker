@@ -61,6 +61,17 @@
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qGo-nZ-4Re">
+                        <rect key="frame" x="38" y="532" width="87" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Users..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aeI-Wt-yRk">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="UsersButtonClicked:" target="-2" id="wOw-GY-QOA"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
             </view>

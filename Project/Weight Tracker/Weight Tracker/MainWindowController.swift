@@ -10,9 +10,22 @@ import Cocoa
 
 class MainWindowController: NSWindowController {
     
+    // Keep an optional reference to window controllers
+    var initVC: InitialWindowController? = nil
+    
     // Connecting IB objects to code
     @IBOutlet weak var HelloLabel: NSTextField!
     @IBOutlet weak var LatestWeightLabel: NSTextField!
+    
+    @IBAction func UsersButtonClicked(sender: NSButton) {
+        // Creating a new reference to window controller, and loading
+        initVC = InitialWindowController(windowNibName: "InitialWindow")
+        initVC?.loadWindow()
+        initVC?.windowDidLoad()
+        initVC?.showWindow(self)
+        
+        self.window?.close()
+    }
     
     // Loads the user's information and greeter (the two sentences at the top of the window)
     func setupUser() {
