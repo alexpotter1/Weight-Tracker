@@ -17,7 +17,7 @@
         <window title="Weight Tracker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="pFx-aK-SO4">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES"/>
-            <rect key="contentRect" x="660" y="400" width="593" height="221"/>
+            <rect key="contentRect" x="640" y="400" width="593" height="221"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="n7I-FB-htd">
                 <rect key="frame" x="0.0" y="0.0" width="593" height="221"/>
