@@ -5,7 +5,7 @@
 The design started out with a single window, with a sidebar for user management and a tab bar to switch between two views.
 
 The first design storyboard looked like this:
-![Design Storyboard 1](/Diagrams/design_diagram_1.jpeg?raw=true "Design Storyboard 1")
+![Design Storyboard 1](Diagrams/design_diagram_1.jpeg?raw=true "Design Storyboard 1")
 
 #### Source List
 The shaded left area of the window would be what is known as the "NSOutlineView" or a "Source List" - a sidebar that lets users navigate or select objects. In this case it would be users. An example of the Source List (in Yosemite) is shown below:
@@ -32,7 +32,7 @@ In addition, the Source List was becoming particularly problematic to have in th
 Thus, I spoke with my client to tell him that the design would be moving in a different direction. The client, as before, didn't explicitly express any preferences to how the design will function. Despite this, the objectives of the app were still desired, so the new design must still accommodate them.
 
 I subsequently came up with the following design:
-![Design Storyboard 2](/Diagrams/design_diagram_2.jpeg?raw=true Design Storyboard 2)
+![Design Storyboard 2](Diagrams/design_diagram_2.jpeg?raw=true Design Storyboard 2)
 
 #### Profile management
 The new design requires the user to "log in" to their profile as soon as the app starts. This is so that the user is guided into doing so, and it prevents the user from forgetting to create a user when using the application.
