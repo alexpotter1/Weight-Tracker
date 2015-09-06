@@ -3,7 +3,7 @@
 The initial design for the structure of the project was influenced by the design storyboard. Once the initial design was created, I started to map out how the structure would be like. The main part of the project
 
 Initially, the data storyboard looked like this:
-![Data Storyboard 1](/Diagrams/data_diagram_1.jpeg?raw=true "Data Storyboard 1")
+![Data Storyboard 1](Diagrams/data_diagram_1.jpeg?raw=true "Data Storyboard 1")
 
 #### Swift code and Xcode files
 The middle section of the storyboard denotes the Swift source code used in the project, as well as the files that were created by Xcode when the project was initialised.
@@ -28,7 +28,7 @@ As mentioned in *Design Progression*, upon creating the project I soon realised 
 
 Thus, after refining the design for reasons again mentioned in *Design Progression*, I created this data storyboard:
 
-![Data Storyboard 2](/Diagrams/data_diagram_2.jpeg?raw=true "Data Storyboard 2")
+![Data Storyboard 2](Diagrams/data_diagram_2.jpeg?raw=true "Data Storyboard 2")
 
 #### Swift code and Xcode files
 This storyboard now includes the *"XIB"* files that define a user interface for Mavericks and older OS X versions. This is confirmed to work with the client's computer.
@@ -50,6 +50,8 @@ var initialVC: InitialWindowController? = nil
 
 
 // When the controller needs to be initialised...
+initialVC = InitialWindowController(windowNibName: "InitialWindow")
+
 initialVC?.loadWindow()
 initialVC?.windowDidLoad()
 initialVC?.showWindow(self)
@@ -85,7 +87,7 @@ NSUserDefaults.standardUserDefaults().setObject(string, forKey: "myString")
 NSUserDefaults.standardUserDefaults.synchronize()
 
 // sometime later...
-var stringObject = NSUserDefaults.standardUserDefaults.objectForKey("myString")
+var stringObject = NSUserDefaults.standardUserDefaults().objectForKey("myString")
 print(stringObject as! String) // should print "Hello"
 ```
 
