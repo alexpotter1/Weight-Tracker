@@ -5,10 +5,12 @@
 The design started out with a single window, with a sidebar for user management and a tab bar to switch between two views.
 
 The first design storyboard looked like this:
+<br></br>
 ![Design Storyboard 1](Diagrams/design_diagram_1.jpeg?raw=true "Design Storyboard 1")
 
 #### Source List
 The shaded left area of the window would be what is known as the "NSOutlineView" or a "Source List" - a sidebar that lets users navigate or select objects. In this case it would be users. An example of the Source List (in Yosemite) is shown below:
+<br></br>
 ![Yosemite Source List](https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Art/finder_sidebar_2x.png "Yosemite Source List: Apple OS X Human Interface Guidelines")
 
 Note, on Yosemite, the Source List sidebar would be translucent. On the client's operating system (Mavericks, which is older), it would not have translucency.
@@ -31,8 +33,10 @@ In addition, the Source List was becoming particularly problematic to have in th
 
 Thus, I spoke with my client to tell him that the design would be moving in a different direction. The client, as before, didn't explicitly express any preferences to how the design will function. Despite this, the objectives of the app were still desired, so the new design must still accommodate them.
 
+<div class="page-break"></div>
+
 I subsequently came up with the following design:
-![Design Storyboard 2](Diagrams/design_diagram_2.jpeg?raw=true Design Storyboard 2)
+![Design Storyboard 2](Diagrams/design_diagram_2.jpeg?raw=true "Design Storyboard 2")
 
 #### Profile management
 The new design requires the user to "log in" to their profile as soon as the app starts. This is so that the user is guided into doing so, and it prevents the user from forgetting to create a user when using the application.
@@ -60,9 +64,10 @@ To input the data, the client expressed a desire for a _"calculator"_ or _"keypa
 A popover is a small window that appears within a specific action or context; in this case, that is the creation of a new row of the user's new weight. They appear when the user needs them and should disappear as soon as possible when they are not needed.
 
 Examples are shown below:
+<br></br>
 
 ![Popover 1](https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Art/popover_unattached_2x.png "Popover 1")
-
+<br></br>
 ![Popover 2](https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Art/popover_dictionary_2x.png "Popover 2")
 
 ##### Profile settings
@@ -75,7 +80,7 @@ Another action is the goal that the user wants to achieve, and what date that th
 The last action that the settings window will do initially is to delete the current user. This may be useful to the user if they do not wish to proceed with their user; they may instead wish to start anew. The _"Delete User"_ button would be placed far enough away from the other UI elements in the window so that it cannot be pressed accidentally - in addition, an alert will display to warn the user so that they can confirm if they want to delete the user. An alert is most often presented as a sheet, but is sometimes presented modally (as a new window).
 
 An example of an alert is shown below:
-
+<br></br>
 ![Modal Alert](https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Art/alert_example_2x.png "Modal Alert")
 
 **All images used are from Apple's OS X Human Interface Guidelines. Copyright © Apple Inc. 2015** http://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/index.html
