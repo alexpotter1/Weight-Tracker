@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="HelloLabel" destination="jlP-ql-UTa" id="aNy-5r-aPh"/>
                 <outlet property="LatestWeightLabel" destination="bD0-4g-E8E" id="Aap-nM-3YF"/>
+                <outlet property="SettingsButton" destination="9ui-ih-Yed" id="mfr-dl-VdF"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -62,7 +63,7 @@
                         </tabViewItems>
                     </tabView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qGo-nZ-4Re">
-                        <rect key="frame" x="38" y="532" width="87" height="32"/>
+                        <rect key="frame" x="33" y="532" width="87" height="32"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="Users..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aeI-Wt-yRk">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -72,6 +73,17 @@
                             <action selector="UsersButtonClicked:" target="-2" id="wOw-GY-QOA"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ui-ih-Yed">
+                        <rect key="frame" x="666" y="532" width="102" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Settings..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ac2-GW-26V">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="SettingsButtonClicked:" target="-2" id="U7x-Cs-WZN"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
             </view>
@@ -79,5 +91,11 @@
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
         </window>
+        <viewController title="SettingsPopoverViewController" nibName="SettingsPopoverView" id="62T-ua-jCJ" userLabel="Popover View Controller" customClass="SettingsPopoverViewController" customModule="Weight_Tracker" customModuleProvider="target"/>
+        <popover behavior="t" id="BaD-ah-1dg">
+            <connections>
+                <outlet property="contentViewController" destination="62T-ua-jCJ" id="XoW-bQ-1mO"/>
+            </connections>
+        </popover>
     </objects>
 </document>

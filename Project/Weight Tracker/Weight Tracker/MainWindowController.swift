@@ -12,10 +12,13 @@ class MainWindowController: NSWindowController {
     
     // Keep an optional reference to window controllers
     var initVC: InitialWindowController? = nil
+    var SettingsPopover: NSPopover? = nil
+    
     
     // Connecting IB objects to code
     @IBOutlet weak var HelloLabel: NSTextField!
     @IBOutlet weak var LatestWeightLabel: NSTextField!
+    @IBOutlet weak var SettingsButton: NSButton!
     
     @IBAction func UsersButtonClicked(sender: NSButton) {
         // Creating a new reference to window controller, and loading
@@ -25,6 +28,12 @@ class MainWindowController: NSWindowController {
         initVC?.showWindow(self)
         
         self.window?.close()
+    }
+    
+    @IBAction func SettingsButtonClicked(sender: NSButton) {
+        SettingsPopover = NSPopover()
+        SettingsPopover!.contentViewController = SettingsPopoverViewController(nibName: "SettingsPopoverView", bundle: nil)
+        SettingsPopover!.showRelativeToRect(SettingsButton.bounds, ofView: SettingsButton, preferredEdge: NSRectEdge.MinY)
     }
     
     // Loads the user's information and greeter (the two sentences at the top of the window)
