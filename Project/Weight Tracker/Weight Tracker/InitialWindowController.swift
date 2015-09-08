@@ -12,8 +12,10 @@ class InitialWindowController: NSWindowController {
     
     /* Keeps a reference to the window controllers that we're gonna switch to, so that it doesn't get deallocated (otherwise, errors) */
     // In Cocoa, windows/views are loaded lazily instead of all at once (better performance)
-    let newUserVC = NewUserWindowController(windowNibName: "NewUserWindow")
-    let mainWindowVC = MainWindowController(windowNibName: "MainWindow")
+    
+    // Optional references are made here to avoid errors with reference counting
+    var newUserVC: NewUserWindowController? = nil
+    var mainWindowVC: MainWindowController? = nil
     
     // Connecting IB objects
     @IBOutlet weak var UserComboBox: NSComboBox!
@@ -24,15 +26,18 @@ class InitialWindowController: NSWindowController {
         /* Begins the modal sheet animation when the New User button is clicked;
         this presents the new window on top of the previous window, sliding down
         into focus */
-        self.window!.beginSheet(newUserVC.window!, completionHandler: nil)
+        
+        newUserVC = NewUserWindowController(windowNibName: "NewUserWindow")
+        self.window!.beginSheet(newUserVC!.window!, completionHandler: nil)
     }
     
     @IBAction func ContinueButtonClicked(sender: NSButton) {
         print("loading MainWindowController")
         
-        mainWindowVC.loadWindow()
-        mainWindowVC.windowDidLoad()
-        mainWindowVC.showWindow(self)
+        mainWindowVC = MainWindowController(windowNibName: "MainWindow")
+        mainWindowVC?.loadWindow()
+        mainWindowVC?.windowDidLoad()
+        mainWindowVC?.showWindow(self)
     }
     
     
