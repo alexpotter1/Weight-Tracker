@@ -17,6 +17,9 @@ class InitialWindowController: NSWindowController {
     var newUserVC: NewUserWindowController? = nil
     var mainWindowVC: MainWindowController? = nil
     
+    let devSettings = DeveloperSettings.init(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
+
+    
     // Connecting IB objects
     @IBOutlet weak var UserComboBox: NSComboBox!
     @IBOutlet weak var ContinueButton: NSButton!
@@ -32,7 +35,9 @@ class InitialWindowController: NSWindowController {
     }
     
     @IBAction func ContinueButtonClicked(sender: NSButton) {
-        print("loading MainWindowController")
+        if devSettings.DebugPrintingEnabled == true {
+            print("loading MainWindowController")
+        }
         
         mainWindowVC = MainWindowController(windowNibName: "MainWindow")
         mainWindowVC?.loadWindow()
@@ -42,7 +47,9 @@ class InitialWindowController: NSWindowController {
     
     
     func populateNSComboBoxWhenAppLaunches() {
-        print("Populating combo box initially")
+        if devSettings.DebugPrintingEnabled == true {
+            print("Populating combo box initially")
+        }
         
         /* The reason why this line exists more than once is that
         we want it to reload the NSUserDefaults object to get new names */
@@ -67,7 +74,9 @@ class InitialWindowController: NSWindowController {
     // Function that will fill the NSComboBox with users from persistent storage (NSUserDefaults)
     // This will run when a NSNotification is received from the function that saves the data
     func populateNSComboBox(notification: NSNotification) {
-        print("Populating combo box")
+        if devSettings.DebugPrintingEnabled == true {
+            print("Populating combo box")
+        }
         
         /* The reason why this line exists more than once is that
         we want it to reload the NSUserDefaults object to get new names */
@@ -91,7 +100,9 @@ class InitialWindowController: NSWindowController {
         NSUserDefaults.standardUserDefaults().setObject(savedString, forKey: "currentUser")
         
         // for debugging
-        print("\(savedString) saved to NSUserDefaults")
+        if devSettings.DebugPrintingEnabled == true {
+            print("\(savedString) saved to NSUserDefaults")
+        }
         
     }
     // This will tell the first window to close after the main window has opened
@@ -102,7 +113,6 @@ class InitialWindowController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
-
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         
         // Disabling the continue button initially as no user would be selected
