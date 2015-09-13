@@ -17,7 +17,7 @@ class SettingsPopoverViewController: NSViewController {
     }
     
     func weightUnitSelectionDidChange(notification: NSNotification) {
-        var selectedItem = WeightUnitBox.titleOfSelectedItem
+        let selectedItem = WeightUnitBox.titleOfSelectedItem
         if selectedItem != nil {
             print(selectedItem!)
             NSUserDefaults.standardUserDefaults().setObject(selectedItem!, forKey: "SettingsWeightUnitItem")

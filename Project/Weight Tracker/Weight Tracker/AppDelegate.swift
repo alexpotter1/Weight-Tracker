@@ -8,6 +8,16 @@
 
 import Cocoa
 
+public class DeveloperSettings {
+    var DebugPrintingEnabled: Bool
+    var DebugDeleteDBEnabled: Bool
+    
+    init(DebugPrintingEnabled: Bool, DebugDeleteDBEnabled: Bool) {
+        self.DebugPrintingEnabled = DebugPrintingEnabled
+        self.DebugDeleteDBEnabled = DebugDeleteDBEnabled
+    }
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -15,9 +25,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        // debug
+        let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: true)
         
-        // debug code
-        //NSUserDefaults.standardUserDefaults().removeObjectForKey("NewUserNames")
+        if devSettings.DebugDeleteDBEnabled == true {
+            let appDomain: String! = NSBundle.mainBundle().bundleIdentifier
+            NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        }
         
         initVC.loadWindow()
         initVC.windowDidLoad()
