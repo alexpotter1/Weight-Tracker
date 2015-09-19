@@ -50,19 +50,19 @@ class MainWindowController: NSWindowController {
             // Get values from user's dictionary
             let profileInfoDictionary = profileInfo as! NSMutableDictionary
             let weightUnitValue = profileInfoDictionary.valueForKey("weightUnit") as! String
-            let weightValueArray = profileInfoDictionary.valueForKey("latestPredictedWeightLoss")
+            let lastWeightValueArray: [String] = ((profileInfoDictionary.valueForKey("latestPredictedWeightLoss") as! [String]).last?.componentsSeparatedByString(";"))!
+            let stoneValue = lastWeightValueArray.last!.componentsSeparatedByString(".")
             let weightGainOrLoss = profileInfoDictionary.valueForKey("latestPredictedGain/Loss") as! Int
             var LatestWeightLabelValueSet: Bool = false
             var LatestWeightLabelString: String = ""
     
             switch weightUnitValue {
             case "kg":
-                LatestWeightLabelString = "You're on track for \((weightValueArray as! [String]).last!)kg weight "
+                LatestWeightLabelString = "You're on track for \(lastWeightValueArray[0])kg weight "
             case "lbs":
-                LatestWeightLabelString = "You're on track for \((weightValueArray as! [String]).last!)lbs weight "
+                LatestWeightLabelString = "You're on track for \(lastWeightValueArray[0])lbs weight "
             case "st lbs":
-                var stlbsArray: [String] = ((weightValueArray as! [String]).last?.componentsSeparatedByString("."))!
-                LatestWeightLabelString = "You're on track for \(stlbsArray[0])st \(stlbsArray[1])lbs weight "
+                LatestWeightLabelString = "You're on track for \(stoneValue[0])st \(lastWeightValueArray[1])lbs weight "
             default:
                 LatestWeightLabel.stringValue = "You're on track for 0kg weight loss"
                 LatestWeightLabelValueSet = true

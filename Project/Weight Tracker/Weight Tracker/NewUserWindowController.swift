@@ -17,7 +17,7 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
     @IBAction func DoneButtonClicked(sender: NSButton) {
         
         // Setup the dictionary to hold all the user's information, save to NSUserDefaults
-        let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", ["0.0"], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
+        let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", ["0.0;0.0"], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
         NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(NewUserTextField.stringValue)")
         NSUserDefaults.standardUserDefaults().synchronize()
         
