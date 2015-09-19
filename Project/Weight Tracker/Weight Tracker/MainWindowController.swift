@@ -12,7 +12,7 @@ class MainWindowController: NSWindowController {
     
     // Keep an optional reference to window controllers
     var initVC: InitialWindowController? = nil
-    var SettingsPopover: NSPopover? = nil
+    var SettingsController: SettingsWindowController? = nil
     
     
     // Connecting IB objects to code
@@ -31,9 +31,8 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func SettingsButtonClicked(sender: NSButton) {
-        SettingsPopover = NSPopover()
-        SettingsPopover!.contentViewController = SettingsPopoverViewController(nibName: "SettingsPopoverView", bundle: nil)
-        SettingsPopover!.showRelativeToRect(SettingsButton.bounds, ofView: SettingsButton, preferredEdge: NSRectEdge.MinY)
+        SettingsController = SettingsWindowController(windowNibName: "SettingsWindow")
+        self.window!.beginSheet(SettingsController!.window!, completionHandler: nil)
     }
     
     // Loads the user's information and greeter (the two sentences at the top of the window)

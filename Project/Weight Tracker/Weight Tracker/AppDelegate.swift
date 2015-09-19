@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         // debug
-        let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: true)
+        let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
         
         if devSettings.DebugDeleteDBEnabled == true {
             let appDomain: String! = NSBundle.mainBundle().bundleIdentifier
