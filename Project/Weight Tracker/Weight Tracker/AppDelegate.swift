@@ -47,6 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "NSComboBoxSelectionDidChangeNotification", object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "FirstWindowCloseNotification", object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "NSMenuDidSendActionNotification", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "MainWindowSetupUserNotification", object: nil)
     }
 
 

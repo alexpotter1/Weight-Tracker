@@ -36,7 +36,7 @@ class MainWindowController: NSWindowController {
     }
     
     // Loads the user's information and greeter (the two sentences at the top of the window)
-    func setupUser() {
+    func setupUser(notification: NSNotification) {
         let profileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
         let profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(profileName)")
         
@@ -57,11 +57,11 @@ class MainWindowController: NSWindowController {
     
             switch weightUnitValue {
             case "kg":
-                LatestWeightLabelString = "You're on track for \((weightValueArray as! [String]).last)kg weight "
+                LatestWeightLabelString = "You're on track for \((weightValueArray as! [String]).last!)kg weight "
             case "lbs":
-                LatestWeightLabelString = "You're on track for \((weightValueArray as! [String]).last)lbs weight "
-            case "stlbs":
-                var stlbsArray: [String] = ((weightValueArray as! [String]).last?.componentsSeparatedByString(";"))!
+                LatestWeightLabelString = "You're on track for \((weightValueArray as! [String]).last!)lbs weight "
+            case "st lbs":
+                var stlbsArray: [String] = ((weightValueArray as! [String]).last?.componentsSeparatedByString("."))!
                 LatestWeightLabelString = "You're on track for \(stlbsArray[0])st \(stlbsArray[1])lbs weight "
             default:
                 LatestWeightLabel.stringValue = "You're on track for 0kg weight loss"
@@ -70,9 +70,9 @@ class MainWindowController: NSWindowController {
             
             if LatestWeightLabelValueSet == false {
                 if weightGainOrLoss == 0 { // 0 = loss, anything else = gain
-                    HelloLabel.stringValue = LatestWeightLabelString + "loss"
+                    LatestWeightLabel.stringValue = LatestWeightLabelString + "loss"
                 } else {
-                    HelloLabel.stringValue = LatestWeightLabelString + "gain"
+                    LatestWeightLabel.stringValue = LatestWeightLabelString + "gain"
                 }
             }
         }
@@ -86,8 +86,9 @@ class MainWindowController: NSWindowController {
         
         // Posts notification to shutdown the other window, as we don't need it anymore
         NSNotificationCenter.defaultCenter().postNotificationName("FirstWindowCloseNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUser:", name: "MainWindowSetupUserNotification", object: nil)
         
-        setupUser()
+        NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
     }
     
 }
