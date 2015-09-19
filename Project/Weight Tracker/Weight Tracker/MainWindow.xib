@@ -23,17 +23,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bD0-4g-E8E">
-                        <rect key="frame" x="228" y="528" width="374" height="22"/>
-                        <animations/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="You're on track for () weight (gain/loss)" id="2Pc-7c-u12">
-                            <font key="font" metaFont="system" size="18"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jlP-ql-UTa">
-                        <rect key="frame" x="258" y="558" width="304" height="27"/>
+                        <rect key="frame" x="248" y="558" width="304" height="27"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Hi, Person (change)" id="a4I-Bn-IVf">
                             <font key="font" metaFont="system" size="22"/>
@@ -42,20 +33,20 @@
                         </textFieldCell>
                     </textField>
                     <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ecG-zz-eZZ">
-                        <rect key="frame" x="-1" y="-10" width="803" height="529"/>
+                        <rect key="frame" x="-1" y="-5" width="803" height="524"/>
                         <animations/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Graph" identifier="1" id="uWj-eR-FLf">
-                                <view key="view" ambiguous="YES" id="bH9-17-VgR">
-                                    <rect key="frame" x="10" y="33" width="131" height="0.0"/>
+                                <view key="view" id="bH9-17-VgR">
+                                    <rect key="frame" x="10" y="33" width="783" height="478"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Information" identifier="2" id="NmS-Gj-3Zt">
-                                <view key="view" id="qqg-8d-y7O">
-                                    <rect key="frame" x="10" y="33" width="783" height="483"/>
+                                <view key="view" ambiguous="YES" id="qqg-8d-y7O">
+                                    <rect key="frame" x="10" y="33" width="783" height="478"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
                                 </view>
@@ -84,6 +75,15 @@
                             <action selector="SettingsButtonClicked:" target="-2" id="U7x-Cs-WZN"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bD0-4g-E8E">
+                        <rect key="frame" x="213" y="528" width="374" height="22"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="You're on track for () weight (gain/loss)" id="2Pc-7c-u12">
+                            <font key="font" metaFont="system" size="18"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <animations/>
             </view>

@@ -43,21 +43,20 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZjV-ph-M0W">
                         <rect key="frame" x="107" y="86" width="185" height="26"/>
                         <animations/>
-                        <popUpButtonCell key="cell" type="push" title="Kilograms (kg)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="efD-eS-4v1" id="6XG-SL-8kH">
+                        <popUpButtonCell key="cell" type="push" title="Stone &amp; Pounds (st lbs)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="a8r-8S-zsE" id="6XG-SL-8kH">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="rTe-Yu-rum">
                                 <items>
-                                    <menuItem title="Kilograms (kg)" state="on" id="efD-eS-4v1">
+                                    <menuItem title="Kilograms (kg)" keyEquivalent="k" id="efD-eS-4v1">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
-                                    <menuItem title="Pounds (lbs)" id="vSF-Rk-sNX">
-                                        <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
+                                    <menuItem title="Pounds (lbs)" keyEquivalent="p" id="vSF-Rk-sNX">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
-                                    <menuItem title="Stone &amp; Pounds (st lbs)" id="a8r-8S-zsE"/>
+                                    <menuItem title="Stone &amp; Pounds (st lbs)" state="on" keyEquivalent="s" id="a8r-8S-zsE">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
                                 </items>
                             </menu>
                         </popUpButtonCell>
