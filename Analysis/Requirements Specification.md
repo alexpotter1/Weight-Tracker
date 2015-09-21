@@ -1,4 +1,4 @@
-####Requirement Specification
+# Requirement Specification
 
 Based upon the initial feasibility study and interaction with the client, the proposed requirements of the system are as follows:
 
@@ -6,9 +6,16 @@ Based upon the initial feasibility study and interaction with the client, the pr
 
 2. The system must be able to function with weight in measurement units of pounds, kilograms, as well as stones and pounds;
 
-3. The system will have a means of providing visual feedback to the user via a graphical method.
+3. The system will have a means of providing visual feedback to the user via a graphical method;
 
-#####Hardware Requirements
+4. The system must be able to handle multiple users, display their own separate profiles and manage the data associated with those profiles to persist even when the application is closed;
+
+5. The system must launch and function effectively, without significant delays, hangs or crashes;
+
+6. The system should be able to predict the user's eventual weight after the time period specified.
+
+
+## Hardware Requirements
 The hardware requirements for this application are based upon the client's computer.
 
 *The client's computer is a 24-inch Late 2007 iMac. System specifications are shown (from apple.com):*
@@ -29,7 +36,7 @@ The hardware requirements for this application are based upon the client's compu
 
 * Gigabit Ethernet & WiFi 802.11n
 
-#####Software Requirements
+## Software Requirements
 Since the solution will be built in Apple's Xcode development environment and since it will utilise Swift as the language, the product should work on all recent Mac OS X versions above 10.9 Mavericks (when initial support for Swift was added).
 
 *The target computer's operating system:*

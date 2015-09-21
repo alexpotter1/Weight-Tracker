@@ -8,6 +8,12 @@ The first design storyboard looked like this:
 <br></br>
 ![Design Storyboard 1](Diagrams/design_diagram_1.jpeg?raw=true "Design Storyboard 1")
 
+The initial design conforms to the following requirements defined in the specification:
+* **1**: Weight table in first screen
+* **3**: Graph in second screen, presents weight
+* **4**: User sidebar in both windows
+* **6**: Text notifying user of their progress with respect to their goal in first screen
+
 #### Source List
 The shaded left area of the window would be what is known as the "NSOutlineView" or a "Source List" - a sidebar that lets users navigate or select objects. In this case it would be users. An example of the Source List (in Yosemite) is shown below:
 <br></br>
@@ -25,7 +31,13 @@ On the other tab, a graph would be shown of the user's progress (weight loss/gai
 
 ### Second design and storyboard
 #### Issues with the first design
-Unfortunately, just after the project was created I realised that the first design would not be able to create a working application on the client's computer. That is because by default, a "Storyboard" is created to handle the UI design, and this only functions on a newer OS than the client is running. I had two solutions to this problem:
+Unfortunately, just after the project was created I realised that the first design would not be able to create a working application on the client's computer.
+
+I physically attempted to run a prototype on the client's computer, and it loaded but it didn't show an interface.
+This would have not met the following requirement in the specification:
+* **5**: Application must load, function effectively and not hang or crash
+
+By default, a "Storyboard" is created to handle the UI design, and this only functions on a newer OS than the client is running. I had two solutions to this problem:
 * Advise the user to upgrade their operating system - I did not want to have to do this
 * Create a new application with legacy "XIB" user interface files that function on the target OS
 
@@ -37,6 +49,17 @@ Thus, I spoke with my client to tell him that the design would be moving in a di
 
 I subsequently came up with the following design:
 ![Design Storyboard 2](Diagrams/design_diagram_2.jpeg?raw=true "Design Storyboard 2")
+
+This subsequent design explicitly conforms to the following requirements in the specification:
+
+* **1**: Weight table in window 3
+* **2**: Dialog box for choosing weight unit in window 5
+* **3**: Graph in window 4, showing user progress
+* **4**: Multiple users, windows 1 and 2
+* **6**: Text informing user of progress in window 3
+
+In addition, the following requirements were confirmed to be met when this design was made functional with an early prototype:
+* **5**: The application launches and displays a functional interface on OS X Mavericks.
 
 #### Profile management
 The new design requires the user to "log in" to their profile as soon as the app starts. This is so that the user is guided into doing so, and it prevents the user from forgetting to create a user when using the application.
