@@ -31,7 +31,9 @@ Thus, after refining the design for reasons again mentioned in *Design Progressi
 ![Data Storyboard 2](Diagrams/data_diagram_2.jpeg?raw=true "Data Storyboard 2")
 
 #### Swift code and Xcode files
-This storyboard now includes the *"XIB"* files that define a user interface for Mavericks and older OS X versions. This is confirmed to work with the client's computer.
+This storyboard now includes the *"XIB"* files that define a user interface for Mavericks and older OS X versions. This is confirmed to work with the client's computer, thus meeting the following requirements in the specification:
+
+* **5**: The application must launch and run effectively, without significant delays or crashes.
 
 *"XIB"* files are used in this project to be linked with one controller class; the class is set as the *"File's Owner"*, meaning that it can fully manipulate and interact with the objects in the XIB file. This means that there are a lot more XIB files as the design has changed to have multiple windows, each with their own controller classes.
 
@@ -67,6 +69,10 @@ The data storyboard describes two files - *CorePlot.m* and *CorePlot.h*. The det
 * *CorePlot.h* is an Objective-C header file defines the methods, functions, variables and properties that can later be used.
 * *CorePlot.m* is an Objective-C implementation file - existing here is the logic for the methods, functions, properties and variables that are defined in the header file.
 
+These files are necessary to facilitate graph drawing to implement the following requirements from the specification:
+
+* **3**: Provide visual feedback to the user with a graphical method
+
 ##### Objective-C to Swift Bridging header
 To access the methods and properties in Core Plot, the project must have a *Bridging Header*, so that the Swift code and the Objective-C code can work together. On the design storyboard, this is shown by a box that a line runs through from *CorePlot.m* to my graph view controller.
 
@@ -76,6 +82,9 @@ In my project, there are two ways of persistently storing the user's data:
 * NSUserDefaults, a simple database used for storing arrays, integers, strings, etc.
 
 I decided to use NSUserDefaults as it is easier for a small project such as mine where not much data will need to be saved. Even the weight data in the Weight Table can be stored as an array of Doubles, which NSUserDefaults can accept (and then the graph can plot this data).
+
+The use of NSUserDefaults to persistently store profile data thus meets the following requirements defined in the specification:
+* **4**: The system must be able to handle multiple users, display their own separate profiles and manage the data associated with those profiles to persist even when the application is closed;
 
 At the top of the design storyboard, the initial objects stored under NSUserDefaults are made. Each object must have a key, so that it can be accessed, and the object is an optional type that must be downcast to the type that is stored.
 For example, if a string is stored in an NSUserDefaults object:
