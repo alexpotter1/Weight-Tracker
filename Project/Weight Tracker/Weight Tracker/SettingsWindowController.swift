@@ -10,11 +10,51 @@ import Cocoa
 
 class SettingsWindowController: NSWindowController {
     
+    var InitialWC: InitialWindowController? = nil
+    
+    let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
+    
     // Connecting IB objects to code
     @IBOutlet weak var WeightUnitBox: NSPopUpButton!
+    
+    @IBAction func DeleteUserButtonClicked(sender: NSButton) {
+        let alert = NSAlert()
+        alert.alertStyle = NSAlertStyle.CriticalAlertStyle
+        alert.messageText = "Are you sure?"
+        alert.informativeText = "Are you sure that you want to delete the current user? This action cannot be undone."
+        alert.addButtonWithTitle("Delete")
+        alert.addButtonWithTitle("Return")
+        alert.beginSheetModalForWindow(self.window!, completionHandler: self.DeleteUserAlertHandler)
+        
+    }
     @IBAction func DoneButtonClicked(sender: NSButton) {
         NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
         self.window!.close()
+    }
+    
+    func DeleteUserAlertHandler(choice: NSModalResponse) {
+        switch choice {
+        case NSAlertFirstButtonReturn:
+            // We're deleting the user...
+            let userArray = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames")!.mutableCopy() as! NSMutableArray
+            let currentUser = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
+            userArray.removeObjectIdenticalTo(currentUser)
+            
+            // Save new user array back to NSUserDefaults
+            NSUserDefaults.standardUserDefaults().setObject(userArray, forKey: "NewUserNames")
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("ResetToInitialWindowNotification", object: nil)
+            self.window!.close()
+            
+            InitialWC = InitialWindowController(windowNibName: "InitialWindow")
+            InitialWC!.showWindow(self)
+            
+        case NSAlertSecondButtonReturn:
+            if devSettings.DebugPrintingEnabled == true {
+                print("return")
+            }
+        default: break
+        }
     }
     
     func weightUnitSelectionDidChange(notification: NSNotification) {
@@ -23,7 +63,9 @@ class SettingsWindowController: NSWindowController {
         let profileInfoDictionary = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(currentUser)")?.mutableCopy()
         // selectedItem is of type String?, so checking if nil first
         if selectedItem != nil {
-            print(selectedItem!) // debug
+            if devSettings.DebugPrintingEnabled == true {
+                print(selectedItem!) // debug
+            }
             // Saving shortened value to NSUserDefaults
             switch selectedItem! {
                 case "Kilograms (kg)":
