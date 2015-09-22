@@ -89,6 +89,10 @@ class InitialWindowController: NSWindowController {
         UserComboBox.addItemWithObjectValue((names as! [String]).last!)
     }
     
+    func endWindow(notification: NSNotification) {
+        self.window?.close()
+    }
+    
     // Function that runs when the user selects something in the NSComboBox
     func comboBoxSelectionDidChange(notification: NSNotification) {
         // Enable Continue Button
@@ -118,6 +122,7 @@ class InitialWindowController: NSWindowController {
         check if the user selected something in the NSComboBox */
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "populateNSComboBox:", name: "NameDataSavedNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "comboBoxSelectionDidChange:", name: "NSComboBoxSelectionDidChangeNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "endWindow:", name: "FirstWindowEndedNotification", object: nil)
         
         // Initial population of NSComboBox
         populateNSComboBoxWhenAppLaunches()

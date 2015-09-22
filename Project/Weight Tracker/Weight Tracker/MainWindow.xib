@@ -38,14 +38,14 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Graph" identifier="1" id="uWj-eR-FLf">
-                                <view key="view" id="bH9-17-VgR">
-                                    <rect key="frame" x="10" y="33" width="783" height="478"/>
+                                <view key="view" ambiguous="YES" id="bH9-17-VgR">
+                                    <rect key="frame" x="10" y="33" width="131" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Information" identifier="2" id="NmS-Gj-3Zt">
-                                <view key="view" ambiguous="YES" id="qqg-8d-y7O">
+                                <view key="view" id="qqg-8d-y7O">
                                     <rect key="frame" x="10" y="33" width="783" height="478"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
@@ -91,11 +91,5 @@
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
         </window>
-        <viewController title="SettingsPopoverViewController" nibName="SettingsPopoverView" id="62T-ua-jCJ" userLabel="Popover View Controller" customClass="SettingsPopoverViewController" customModule="Weight_Tracker" customModuleProvider="target"/>
-        <popover behavior="t" id="BaD-ah-1dg">
-            <connections>
-                <outlet property="contentViewController" destination="62T-ua-jCJ" id="XoW-bQ-1mO"/>
-            </connections>
-        </popover>
     </objects>
 </document>

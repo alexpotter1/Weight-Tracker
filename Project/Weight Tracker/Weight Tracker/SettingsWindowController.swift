@@ -38,10 +38,12 @@ class SettingsWindowController: NSWindowController {
             // We're deleting the user...
             let userArray = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames")!.mutableCopy() as! NSMutableArray
             let currentUser = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
-            userArray.removeObjectIdenticalTo(currentUser)
+            userArray.removeObject(currentUser)
             
             // Save new user array back to NSUserDefaults
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("NewUserNames")
             NSUserDefaults.standardUserDefaults().setObject(userArray, forKey: "NewUserNames")
+            NSUserDefaults.standardUserDefaults().synchronize()
             
             NSNotificationCenter.defaultCenter().postNotificationName("ResetToInitialWindowNotification", object: nil)
             self.window!.close()
