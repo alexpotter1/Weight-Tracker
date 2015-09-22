@@ -14,6 +14,8 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
     @IBOutlet weak var NewUserTextField: NSTextField!
     @IBOutlet weak var DoneButton: NSButton!
     
+    let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
+    
     @IBAction func DoneButtonClicked(sender: NSButton) {
         
         // Setup the dictionary to hold all the user's information, save to NSUserDefaults
@@ -27,8 +29,9 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
             var textArray: [String] = []
             textArray.append(NewUserTextField.stringValue)
             
-            // debugging
-            //print(textArray)
+            if devSettings.DebugPrintingEnabled == true {
+                print(textArray)
+            }
             
             // Save to persistent storage
             NSUserDefaults.standardUserDefaults().setObject(textArray, forKey: "NewUserNames")
@@ -46,11 +49,11 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
             // Appending text input to the end of the user array stored in NSUserDefaults
             var textArrayDefaults = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
             textArrayDefaults.append(NewUserTextField.stringValue)
-            // debugging
-            //print(textArrayDefaults)
             
             // For debugging purposes
-            print("\(NewUserTextField.stringValue) saved to NSUserDefaults")
+            if devSettings.DebugPrintingEnabled == true {
+                print("\(NewUserTextField.stringValue) saved to NSUserDefaults")
+            }
             
             // Saving back to NSUserDefaults
             NSUserDefaults.standardUserDefaults().setObject(textArrayDefaults, forKey: "NewUserNames")

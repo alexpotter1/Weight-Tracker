@@ -72,6 +72,17 @@
                             <action selector="DoneButtonClicked:" target="-2" id="v6v-i8-jty"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0i5-cb-axL">
+                        <rect key="frame" x="524" y="6" width="112" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Delete User" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yOc-Qu-Pqg">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="DeleteUserButtonClicked:" target="-2" id="zYL-hd-6ub"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
             </view>

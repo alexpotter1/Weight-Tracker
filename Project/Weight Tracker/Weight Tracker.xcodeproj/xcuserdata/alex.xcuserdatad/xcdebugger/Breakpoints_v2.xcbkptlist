@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Weight Tracker/NewUserWindowController.swift"
-            timestampString = "462672938.985978"
+            timestampString = "464615683.556385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108">
+            startingLineNumber = "111"
+            endingLineNumber = "111">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

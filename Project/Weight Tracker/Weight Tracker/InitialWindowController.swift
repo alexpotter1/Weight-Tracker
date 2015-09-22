@@ -43,6 +43,7 @@ class InitialWindowController: NSWindowController {
         mainWindowVC?.loadWindow()
         mainWindowVC?.windowDidLoad()
         mainWindowVC?.showWindow(self)
+        self.window?.close()
     }
     
     
@@ -105,11 +106,6 @@ class InitialWindowController: NSWindowController {
         }
         
     }
-    // This will tell the first window to close after the main window has opened
-    // Listening for notification name "FirstWindowCloseNotification"
-    func notInFocusAnymore(notification: NSNotification) {
-        self.window?.close()
-    }
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -122,8 +118,6 @@ class InitialWindowController: NSWindowController {
         check if the user selected something in the NSComboBox */
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "populateNSComboBox:", name: "NameDataSavedNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "comboBoxSelectionDidChange:", name: "NSComboBoxSelectionDidChangeNotification", object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notInFocusAnymore:", name: "FirstWindowCloseNotification", object: nil)
         
         // Initial population of NSComboBox
         populateNSComboBoxWhenAppLaunches()
