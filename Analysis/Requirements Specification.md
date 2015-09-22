@@ -14,6 +14,12 @@ Based upon the initial feasibility study and interaction with the client, the pr
 
 6. The system should be able to predict the user's eventual weight after the time period specified.
 
+  *As before, the client explicitly stated in the initial discussion that they wanted this feature*
+
+7. The system should be well designed, easy to use and simple in terms of navigation.
+
+*The user requested this so that the application can be used without significant mental effort, and such that anyone can use the application if they wish without having any prior knowledge at all.*
+
 
 ## Hardware Requirements
 The hardware requirements for this application are based upon the client's computer.
