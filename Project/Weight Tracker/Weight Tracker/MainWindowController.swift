@@ -14,6 +14,7 @@ class MainWindowController: NSWindowController {
     var initVC: InitialWindowController? = nil
     var SettingsController: SettingsWindowController? = nil
     
+    let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
     
     // Connecting IB objects to code
     @IBOutlet weak var HelloLabel: NSTextField!
@@ -33,6 +34,11 @@ class MainWindowController: NSWindowController {
     @IBAction func SettingsButtonClicked(sender: NSButton) {
         SettingsController = SettingsWindowController(windowNibName: "SettingsWindow")
         self.window!.beginSheet(SettingsController!.window!, completionHandler: nil)
+    }
+    
+    // This closes the main window after the sheet has closed so that only the initial screen is shown
+    func UserDeletedResetState(notification: NSNotification) {
+        self.window?.close()
     }
     
     // Loads the user's information and greeter (the two sentences at the top of the window)
@@ -84,10 +90,8 @@ class MainWindowController: NSWindowController {
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         
-        // Posts notification to shutdown the other window, as we don't need it anymore
-        NSNotificationCenter.defaultCenter().postNotificationName("FirstWindowCloseNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUser:", name: "MainWindowSetupUserNotification", object: nil)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "UserDeletedResetState:", name: "ResetToInitialWindowNotification", object: nil)
         NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
     }
     
