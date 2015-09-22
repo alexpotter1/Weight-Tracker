@@ -14,6 +14,8 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
     @IBOutlet weak var NewUserTextField: NSTextField!
     @IBOutlet weak var DoneButton: NSButton!
     
+    var MainWC: MainWindowController? = nil
+    
     let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
     
     @IBAction func DoneButtonClicked(sender: NSButton) {
@@ -42,8 +44,14 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
             used to populate the NSComboBox so that the user can choose a user */
             NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
             
-            // Prevents modal sheet from blocking the app from exiting
+            // Go straight to main window and set user accordingly
+            NSUserDefaults.standardUserDefaults().setObject(NewUserTextField.stringValue, forKey: "currentUser")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            MainWC = MainWindowController(windowNibName: "MainWindow")
+            MainWC!.showWindow(self)
             self.window?.close()
+            NSNotificationCenter.defaultCenter().postNotificationName("FirstWindowEndedNotification", object: nil)
         } else {
             
             // Appending text input to the end of the user array stored in NSUserDefaults
@@ -64,9 +72,14 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
             used to populate the NSComboBox so that the user can choose a user */
             NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
             
-            // Prevents modal sheet from blocking the app from exiting
-            NSApp.endSheet(self.window!)
-            self.window!.orderOut(self.window)
+            // Go straight to main window and set user accordingly
+            NSUserDefaults.standardUserDefaults().setObject(NewUserTextField.stringValue, forKey: "currentUser")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            MainWC = MainWindowController(windowNibName: "MainWindow")
+            MainWC!.showWindow(self)
+            self.window?.close()
+            NSNotificationCenter.defaultCenter().postNotificationName("FirstWindowEndedNotification", object: nil)
         }
     }
     
