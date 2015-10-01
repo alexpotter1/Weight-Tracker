@@ -8,6 +8,7 @@
 
 import Cocoa
 
+// Class to control whether debugging is enabled or not.
 public class DeveloperSettings {
     var DebugPrintingEnabled: Bool
     var DebugDeleteDBEnabled: Bool
@@ -29,6 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
         
         if devSettings.DebugDeleteDBEnabled == true {
+            // Removes data in NSUserDefaults
             let appDomain: String! = NSBundle.mainBundle().bundleIdentifier
             NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         }
