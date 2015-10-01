@@ -98,7 +98,7 @@ class InitialWindowController: NSWindowController {
         // Enable Continue Button
         ContinueButton.enabled = true
         // Get selected name
-        let savedString: String = UserComboBox.objectValueOfSelectedItem as! String
+        let savedString: String? = UserComboBox.objectValueOfSelectedItem as? String
         
         // Save to NSUserDefaults under a key of currentUser
         // This will be the identity of the current user that the program will use
