@@ -55,13 +55,16 @@ class MainWindowController: NSWindowController {
         } else {
             // Get values from user's dictionary
             let profileInfoDictionary = profileInfo as! NSMutableDictionary
+            
             let weightUnitValue = profileInfoDictionary.valueForKey("weightUnit") as! String
             let lastWeightValueArray: [String] = ((profileInfoDictionary.valueForKey("latestPredictedWeightLoss") as! [String]).last?.componentsSeparatedByString(";"))!
+            
             let stoneValue = lastWeightValueArray.last!.componentsSeparatedByString(".")
             let weightGainOrLoss = profileInfoDictionary.valueForKey("latestPredictedGain/Loss") as! Int
             var LatestWeightLabelValueSet: Bool = false
             var LatestWeightLabelString: String = ""
-    
+            
+            // Modifies sentence to correspond to user's weight unit
             switch weightUnitValue {
             case "kg":
                 LatestWeightLabelString = "You're on track for \(lastWeightValueArray[0])kg weight "
