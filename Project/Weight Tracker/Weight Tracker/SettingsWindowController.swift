@@ -41,7 +41,7 @@ class SettingsWindowController: NSWindowController {
             // We're deleting the user...
             let userArray = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames")!.mutableCopy() as! NSMutableArray
             let currentUser = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
-            userArray.removeObject(currentUser)
+            userArray.removeObjectIdenticalTo(currentUser)
             
             // Save new user array back to NSUserDefaults
             NSUserDefaults.standardUserDefaults().removeObjectForKey("NewUserNames")
