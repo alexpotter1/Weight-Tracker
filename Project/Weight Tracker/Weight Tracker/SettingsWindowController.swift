@@ -18,6 +18,7 @@ class SettingsWindowController: NSWindowController {
     @IBOutlet weak var WeightUnitBox: NSPopUpButton!
     
     @IBAction func DeleteUserButtonClicked(sender: NSButton) {
+        // Confirmation dialog - we don't want the user to accidentally delete their own profile
         let alert = NSAlert()
         alert.alertStyle = NSAlertStyle.CriticalAlertStyle
         alert.messageText = "Are you sure?"
@@ -28,10 +29,12 @@ class SettingsWindowController: NSWindowController {
         
     }
     @IBAction func DoneButtonClicked(sender: NSButton) {
+        // Reloads the window below the settings sheet
         NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
         self.window!.close()
     }
     
+    // Handles the possible return values of the delete user dialog (which button the user pressed)
     func DeleteUserAlertHandler(choice: NSModalResponse) {
         switch choice {
         case NSAlertFirstButtonReturn:
