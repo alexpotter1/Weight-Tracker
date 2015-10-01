@@ -20,67 +20,84 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
     
     @IBAction func DoneButtonClicked(sender: NSButton) {
         
-        // Setup the dictionary to hold all the user's information, save to NSUserDefaults
-        let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", ["0.0;0.0"], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
-        NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(NewUserTextField.stringValue)")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-        // Check if array exists in NSUserDefaults (persistent storage)
-        if NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") == nil {
-            // Create new array of users and add the user to the list
-            var textArray: [String] = []
-            textArray.append(NewUserTextField.stringValue)
+        // First of all, check if another user exists with the same name
+        // Don't allow the user to create another profile with the same name here.
+        let userArray: [String] = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
+        if userArray.contains(NewUserTextField.stringValue) {
+            // The user is trying to create a profile with the same name as another one, so present an alert dialog
+            let alert = NSAlert()
+            alert.alertStyle = NSAlertStyle.CriticalAlertStyle
+            alert.messageText = "Cannot create user"
+            alert.informativeText = "Multiple user profiles cannot exist with the same name. A profile exists with the name that you have typed. Please type a different profile name."
+            alert.addButtonWithTitle("OK")
+            alert.beginSheetModalForWindow(self.window!, completionHandler: nil)
             
-            if devSettings.DebugPrintingEnabled == true {
-                print(textArray)
-            }
-            
-            // Save to persistent storage
-            NSUserDefaults.standardUserDefaults().setObject(textArray, forKey: "NewUserNames")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            
-            /* Sending a notification to the other view controller that
-            the data has been saved to NSUserDefaults. As a result, it can be
-            used to populate the NSComboBox so that the user can choose a user */
-            NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
-            
-            // Go straight to main window and set user accordingly
-            NSUserDefaults.standardUserDefaults().setObject(NewUserTextField.stringValue, forKey: "currentUser")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            
-            MainWC = MainWindowController(windowNibName: "MainWindow")
-            MainWC!.showWindow(self)
-            self.window?.close()
-            NSNotificationCenter.defaultCenter().postNotificationName("FirstWindowEndedNotification", object: nil)
         } else {
             
-            // Appending text input to the end of the user array stored in NSUserDefaults
-            var textArrayDefaults = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
-            textArrayDefaults.append(NewUserTextField.stringValue)
+            // Setup the dictionary to hold all the user's information, save to NSUserDefaults
+            let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", ["0.0;0.0"], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
+            NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(NewUserTextField.stringValue)")
+            NSUserDefaults.standardUserDefaults().synchronize()
             
-            // For debugging purposes
-            if devSettings.DebugPrintingEnabled == true {
-                print("\(NewUserTextField.stringValue) saved to NSUserDefaults")
+            // Check if array exists in NSUserDefaults (persistent storage)
+            if NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") == nil {
+                // Create new array of users and add the user to the list
+                var textArray: [String] = []
+                textArray.append(NewUserTextField.stringValue)
+                
+                if devSettings.DebugPrintingEnabled == true {
+                    print(textArray)
+                }
+                
+                // Save to persistent storage
+                NSUserDefaults.standardUserDefaults().setObject(textArray, forKey: "NewUserNames")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
+                /* Sending a notification to the other view controller that
+                the data has been saved to NSUserDefaults. As a result, it can be
+                used to populate the NSComboBox so that the user can choose a user */
+                NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
+                
+                // Go straight to main window and set user accordingly
+                NSUserDefaults.standardUserDefaults().setObject(NewUserTextField.stringValue, forKey: "currentUser")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
+                MainWC = MainWindowController(windowNibName: "MainWindow")
+                MainWC!.showWindow(self)
+                self.window?.close()
+                NSNotificationCenter.defaultCenter().postNotificationName("FirstWindowEndedNotification", object: nil)
+            } else {
+                
+                // Appending text input to the end of the user array stored in NSUserDefaults
+                var textArrayDefaults = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
+                textArrayDefaults.append(NewUserTextField.stringValue)
+                
+                // For debugging purposes
+                if devSettings.DebugPrintingEnabled == true {
+                    print("\(NewUserTextField.stringValue) saved to NSUserDefaults")
+                }
+                
+                // Saving back to NSUserDefaults
+                NSUserDefaults.standardUserDefaults().setObject(textArrayDefaults, forKey: "NewUserNames")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
+                /* Sending a notification to the other view controller that
+                the data has been saved to NSUserDefaults. As a result, it can be
+                used to populate the NSComboBox so that the user can choose a user */
+                NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
+                
+                // Go straight to main window and set user accordingly
+                NSUserDefaults.standardUserDefaults().setObject(NewUserTextField.stringValue, forKey: "currentUser")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
+                MainWC = MainWindowController(windowNibName: "MainWindow")
+                MainWC!.showWindow(self)
+                self.window?.close()
+                NSNotificationCenter.defaultCenter().postNotificationName("FirstWindowEndedNotification", object: nil)
             }
-            
-            // Saving back to NSUserDefaults
-            NSUserDefaults.standardUserDefaults().setObject(textArrayDefaults, forKey: "NewUserNames")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            
-            /* Sending a notification to the other view controller that
-            the data has been saved to NSUserDefaults. As a result, it can be
-            used to populate the NSComboBox so that the user can choose a user */
-            NSNotificationCenter.defaultCenter().postNotificationName("NameDataSavedNotification", object: nil)
-            
-            // Go straight to main window and set user accordingly
-            NSUserDefaults.standardUserDefaults().setObject(NewUserTextField.stringValue, forKey: "currentUser")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            
-            MainWC = MainWindowController(windowNibName: "MainWindow")
-            MainWC!.showWindow(self)
-            self.window?.close()
-            NSNotificationCenter.defaultCenter().postNotificationName("FirstWindowEndedNotification", object: nil)
+
         }
+        
     }
     
     override func controlTextDidChange(notification: NSNotification) {
