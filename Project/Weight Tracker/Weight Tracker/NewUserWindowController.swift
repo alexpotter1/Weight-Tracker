@@ -21,26 +21,34 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
     @IBAction func DoneButtonClicked(sender: NSButton) {
         
         // First of all, check if another user exists with the same name
-        // Don't allow the user to create another profile with the same name here.
-        let userArray: [String] = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
-        if userArray.contains(NewUserTextField.stringValue) {
-            // The user is trying to create a profile with the same name as another one, so present an alert dialog
-            let alert = NSAlert()
-            alert.alertStyle = NSAlertStyle.CriticalAlertStyle
-            alert.messageText = "Cannot create user"
-            alert.informativeText = "Multiple user profiles cannot exist with the same name. A profile exists with the name that you have typed. Please type a different profile name."
-            alert.addButtonWithTitle("OK")
-            alert.beginSheetModalForWindow(self.window!, completionHandler: nil)
-            
+        var userArrayAlreadyExists: Bool? = nil
+        var userNameErrorDialogOccurred: Bool = false
+        
+        if NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") == nil {
+            userArrayAlreadyExists = false
         } else {
+            userArrayAlreadyExists = true
             
+            let userArray: [String] = NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") as! [String]
+            if userArray.contains(NewUserTextField.stringValue) {
+                // The user is trying to create a profile with the same name as another one, so present an alert dialog
+                let alert = NSAlert()
+                alert.alertStyle = NSAlertStyle.CriticalAlertStyle
+                alert.messageText = "Cannot create user"
+                alert.informativeText = "Multiple user profiles cannot exist with the same name. A profile exists with the name that you have typed. Please type a different profile name."
+                alert.addButtonWithTitle("OK")
+                alert.beginSheetModalForWindow(self.window!, completionHandler: nil)
+                userNameErrorDialogOccurred = true
+            }
+        }
+        if userNameErrorDialogOccurred == false {
             // Setup the dictionary to hold all the user's information, save to NSUserDefaults
             let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", ["0.0;0.0"], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
             NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(NewUserTextField.stringValue)")
             NSUserDefaults.standardUserDefaults().synchronize()
             
             // Check if array exists in NSUserDefaults (persistent storage)
-            if NSUserDefaults.standardUserDefaults().objectForKey("NewUserNames") == nil {
+            if userArrayAlreadyExists == false {
                 // Create new array of users and add the user to the list
                 var textArray: [String] = []
                 textArray.append(NewUserTextField.stringValue)
@@ -97,8 +105,8 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
             }
 
         }
-        
     }
+    
     
     override func controlTextDidChange(notification: NSNotification) {
         /* Checking if the NSTextField is empty, as this would resolve a bug where
