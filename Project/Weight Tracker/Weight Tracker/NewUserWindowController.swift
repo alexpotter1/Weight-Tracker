@@ -43,7 +43,8 @@ class NewUserWindowController: NSWindowController, NSTextFieldDelegate {
         }
         if userNameErrorDialogOccurred == false {
             // Setup the dictionary to hold all the user's information, save to NSUserDefaults
-            let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", ["0.0;0.0"], 0], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss"])
+            let profileInfoDictionary: NSMutableDictionary = NSMutableDictionary(objects: ["", ["0.0;0.0"], 0, ["72.6", "72.52"], ["Sep 29 2015", "Oct 2 2015"]], forKeys: ["weightUnit", "latestPredictedWeightLoss", "latestPredictedGain/Loss", "weightValues", "weightValueDates"])
+            
             NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(NewUserTextField.stringValue)")
             NSUserDefaults.standardUserDefaults().synchronize()
             
