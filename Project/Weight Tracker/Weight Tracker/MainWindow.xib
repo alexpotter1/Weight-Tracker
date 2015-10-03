@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A262e" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15B22c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -38,14 +38,14 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Graph" identifier="1" id="uWj-eR-FLf">
-                                <view key="view" ambiguous="YES" id="bH9-17-VgR">
+                                <view key="view" id="bH9-17-VgR">
                                     <rect key="frame" x="10" y="33" width="131" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Information" identifier="2" id="NmS-Gj-3Zt">
-                                <view key="view" id="qqg-8d-y7O">
+                                <view key="view" ambiguous="YES" id="qqg-8d-y7O">
                                     <rect key="frame" x="10" y="33" width="783" height="478"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
