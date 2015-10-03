@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainWindowController: NSWindowController {
+class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableViewDataSource {
     
     // Keep an optional reference to window controllers
     var initVC: InitialWindowController? = nil
@@ -21,6 +21,13 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var LatestWeightLabel: NSTextField!
     @IBOutlet weak var SettingsButton: NSButton!
     @IBOutlet weak var WeightTable: NSTableView!
+    
+    let profileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
+    var profileInfo: NSMutableDictionary? = nil
+    var weightTableArray: NSMutableArray? = nil
+    var weightTableDateArray: NSMutableArray? = nil
+    
+    var weightUnit: String? = nil
     
     @IBAction func UsersButtonClicked(sender: NSButton) {
         // Creating a new reference to window controller, and loading
@@ -41,6 +48,33 @@ class MainWindowController: NSWindowController {
         
     }
     
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        print(self.weightTableArray!.count)
+        return self.weightTableArray!.count
+    }
+    
+    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        print("table view func run")
+        var tableCellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
+        
+        if tableColumn!.identifier == "weightDates" {
+            let date = self.weightTableDateArray![row]
+            tableCellView.textField!.stringValue = date as! String
+            return tableCellView
+        }
+        
+        if tableColumn!.identifier == "weightValues" {
+            print("filling values")
+            let weight = self.weightTableArray![row]
+            tableCellView.textField!.stringValue = weight as! String + weightUnit!
+            return tableCellView
+        }
+        
+        
+        return tableCellView
+        
+    }
+    
     // This closes the main window after the sheet has closed so that only the initial screen is shown
     func UserDeletedResetState(notification: NSNotification) {
         self.window?.close()
@@ -48,24 +82,20 @@ class MainWindowController: NSWindowController {
     
     // Loads the user's information and greeter (the two sentences at the top of the window)
     func setupUser(notification: NSNotification) {
-        let profileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
-        let profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(profileName)")
         
         // Customises the greeter
-        HelloLabel.stringValue = "Hi, \(profileName)"
+        HelloLabel.stringValue = "Hi, \(self.profileName)"
         
         // Displays tracked weight
         if profileInfo == nil { // shouldn't be nil
             LatestWeightLabel.stringValue = "No weight goal set yet..."
         } else {
             // Get values from user's dictionary
-            let profileInfoDictionary = profileInfo as! NSMutableDictionary
-            
-            let weightUnitValue = profileInfoDictionary.valueForKey("weightUnit") as! String
-            let lastWeightValueArray: [String] = ((profileInfoDictionary.valueForKey("latestPredictedWeightLoss") as! [String]).last?.componentsSeparatedByString(";"))!
+            let weightUnitValue = self.profileInfo!.valueForKey("weightUnit") as! String
+            let lastWeightValueArray: [String] = ((self.profileInfo!.valueForKey("latestPredictedWeightLoss") as! [String]).last?.componentsSeparatedByString(";"))!
             
             let stoneValue = lastWeightValueArray.last!.componentsSeparatedByString(".")
-            let weightGainOrLoss = profileInfoDictionary.valueForKey("latestPredictedGain/Loss") as! Int
+            let weightGainOrLoss = self.profileInfo!.valueForKey("latestPredictedGain/Loss") as! Int
             var LatestWeightLabelValueSet: Bool = false
             var LatestWeightLabelString: String = ""
             
@@ -95,9 +125,22 @@ class MainWindowController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
-
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         
+        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        self.profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(self.profileName)")!.mutableCopy() as? NSMutableDictionary
+        print(self.profileInfo)
+        
+        // Getting weight table values from profileInfo dictionary as soon as the window loads, putting into array
+        self.weightTableArray = profileInfo?.objectForKey("weightValues") as! NSMutableArray
+        self.weightTableDateArray = profileInfo?.objectForKey("weightValueDates") as! NSMutableArray
+        print(self.weightTableArray)
+        print(self.weightTableDateArray)
+        // Getting weight unit
+        self.weightUnit = profileInfo?.objectForKey("weightUnit") as? String
+        
+        
+    
+        // Setting up notifications that will be triggered on certain events to run other classes etc
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUser:", name: "MainWindowSetupUserNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "UserDeletedResetState:", name: "ResetToInitialWindowNotification", object: nil)
         NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
