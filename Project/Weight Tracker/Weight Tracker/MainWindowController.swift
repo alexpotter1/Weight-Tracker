@@ -134,8 +134,8 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         print(self.profileInfo)
         
         // Getting weight table values from profileInfo dictionary as soon as the window loads, putting into array
-        self.weightTableArray = profileInfo?.objectForKey("weightValues") as! NSMutableArray
-        self.weightTableDateArray = profileInfo?.objectForKey("weightValueDates") as! NSMutableArray
+        self.weightTableArray = profileInfo?.objectForKey("weightValues")!.mutableCopy() as! NSMutableArray
+        self.weightTableDateArray = profileInfo?.objectForKey("weightValueDates")!.mutableCopy() as! NSMutableArray
         print(self.weightTableArray)
         print(self.weightTableDateArray)
         // Getting weight unit
