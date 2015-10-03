@@ -20,6 +20,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var HelloLabel: NSTextField!
     @IBOutlet weak var LatestWeightLabel: NSTextField!
     @IBOutlet weak var SettingsButton: NSButton!
+    @IBOutlet weak var WeightTable: NSTableView!
     
     @IBAction func UsersButtonClicked(sender: NSButton) {
         // Creating a new reference to window controller, and loading
@@ -34,6 +35,10 @@ class MainWindowController: NSWindowController {
     @IBAction func SettingsButtonClicked(sender: NSButton) {
         SettingsController = SettingsWindowController(windowNibName: "SettingsWindow")
         self.window!.beginSheet(SettingsController!.window!, completionHandler: nil)
+    }
+    
+    @IBAction func WeightTableAddButtonClicked(sender: NSButton) {
+        
     }
     
     // This closes the main window after the sheet has closed so that only the initial screen is shown
