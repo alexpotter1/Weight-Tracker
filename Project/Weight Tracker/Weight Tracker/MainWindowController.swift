@@ -49,13 +49,16 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        print(self.weightTableArray!.count)
-        return self.weightTableArray!.count
+        if self.weightTableArray!.count != 0 {
+            return self.weightTableArray!.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         print("table view func run")
-        var tableCellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
+        let tableCellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         
         if tableColumn!.identifier == "weightDates" {
             let date = self.weightTableDateArray![row]
