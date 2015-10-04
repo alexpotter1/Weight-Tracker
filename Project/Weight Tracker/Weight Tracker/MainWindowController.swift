@@ -13,6 +13,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     // Keep an optional reference to window controllers
     var initVC: InitialWindowController? = nil
     var SettingsController: SettingsWindowController? = nil
+    var WeightEntryPopover: NSPopover? = nil
     
     let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
     
@@ -21,6 +22,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     @IBOutlet weak var LatestWeightLabel: NSTextField!
     @IBOutlet weak var SettingsButton: NSButton!
     @IBOutlet weak var WeightTable: NSTableView!
+    @IBOutlet weak var WeightTableAddButton: NSButton!
     
     let profileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
     var profileInfo: NSMutableDictionary? = nil
@@ -45,6 +47,32 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     @IBAction func WeightTableAddButtonClicked(sender: NSButton) {
+        WeightEntryPopover = NSPopover()
+        WeightEntryPopover?.contentViewController = PopoverEntryViewController(nibName: "PopoverEntryView", bundle: nil)
+        WeightEntryPopover?.showRelativeToRect(WeightTableAddButton.bounds, ofView: WeightTableAddButton, preferredEdge: NSRectEdge.MaxY)
+
+    }
+    
+    func updateWeightTable() {
+        
+        self.profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(self.profileName)")!.mutableCopy() as? NSMutableDictionary
+        
+        // Getting weight table values from profileInfo dictionary as soon as the window loads, putting into array
+        self.weightTableArray = profileInfo?.objectForKey("weightValues")!.mutableCopy() as? NSMutableArray
+        self.weightTableDateArray = profileInfo?.objectForKey("weightValueDates")!.mutableCopy() as? NSMutableArray
+        
+        // Getting weight unit
+        self.weightUnit = profileInfo?.objectForKey("weightUnit") as? String
+        
+        // debugging
+        if devSettings.DebugPrintingEnabled == true {
+            print(self.profileInfo)
+            print(self.weightTableArray)
+            print(self.weightTableDateArray)
+        }
+        let rowIndex = self.weightTableArray!.count - 1
+        
+        self.WeightTable.insertRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
         
     }
     
@@ -57,7 +85,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        print("table view func run")
         let tableCellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         
         if tableColumn!.identifier == "weightDates" {
@@ -67,7 +94,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         }
         
         if tableColumn!.identifier == "weightValues" {
-            print("filling values")
             let weight = self.weightTableArray![row]
             tableCellView.textField!.stringValue = weight as! String + weightUnit!
             return tableCellView
@@ -128,16 +154,14 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
 
     override func windowDidLoad() {
         super.windowDidLoad()
-        
+    
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         self.profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(self.profileName)")!.mutableCopy() as? NSMutableDictionary
-        print(self.profileInfo)
         
         // Getting weight table values from profileInfo dictionary as soon as the window loads, putting into array
-        self.weightTableArray = profileInfo?.objectForKey("weightValues")!.mutableCopy() as! NSMutableArray
-        self.weightTableDateArray = profileInfo?.objectForKey("weightValueDates")!.mutableCopy() as! NSMutableArray
-        print(self.weightTableArray)
-        print(self.weightTableDateArray)
+        self.weightTableArray = profileInfo?.objectForKey("weightValues")!.mutableCopy() as? NSMutableArray
+        self.weightTableDateArray = profileInfo?.objectForKey("weightValueDates")!.mutableCopy() as? NSMutableArray
+        
         // Getting weight unit
         self.weightUnit = profileInfo?.objectForKey("weightUnit") as? String
         
