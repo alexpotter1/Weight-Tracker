@@ -15,20 +15,24 @@ class PopoverEntryViewController: NSViewController {
     @IBAction func DoneButtonPressed(sender: NSButton) {
         if !(EntryField.stringValue.isEmpty) {
             let currentProfileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
-            var profileInfoDictionary: NSMutableDictionary = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(currentProfileName)")!.mutableCopy() as! NSMutableDictionary
+            let profileInfoDictionary: NSMutableDictionary = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(currentProfileName)")!.mutableCopy() as! NSMutableDictionary
             
-            var weightValueArray = profileInfoDictionary.objectForKey("weightValues")!.mutableCopy() as! NSMutableArray
-            var weightDateArray = profileInfoDictionary.objectForKey("weightValueDates")!.mutableCopy() as! NSMutableArray
+            let weightValueArray = profileInfoDictionary.objectForKey("weightValues")!.mutableCopy() as! NSMutableArray
+            let weightDateArray = profileInfoDictionary.objectForKey("weightValueDates")!.mutableCopy() as! NSMutableArray
             
             // Get current system date
             let date = NSDate()
+            /* NSDateFormatter outputs the time from NSDate (in seconds since January 1 2000) as a human readable format */
             let dateFormatter = NSDateFormatter()
+            
+            /* FullStyle formats this in the form 'Name of Day, Date, Month, Year' - e.g. "Sunday, 4 October 2015" */
             dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
             let localDateRightNow: String = dateFormatter.stringFromDate(date) 
             
             weightDateArray.addObject(localDateRightNow)
             weightValueArray.addObject(EntryField.stringValue)
             
+            // Saving the user's entered weight value and current date back to NSUserDefaults
             profileInfoDictionary.setObject(weightDateArray, forKey: "weightValueDates")
             profileInfoDictionary.setObject(weightValueArray, forKey: "weightValues")
             NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(currentProfileName)")
@@ -39,6 +43,7 @@ class PopoverEntryViewController: NSViewController {
             NSApplication.sharedApplication().sendAction("updateWeightTable", to: nil, from: nil)
             
         }
+        // We want to return to the main window after pressing 'Done'
         self.view.window!.close()
         
     }
