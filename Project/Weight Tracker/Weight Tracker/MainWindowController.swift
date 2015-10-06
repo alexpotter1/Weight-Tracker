@@ -54,17 +54,20 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     func updateWeightTable() {
-        self.updateUserWeightData()
+        self.updateUserWeightData(0)
         let rowIndex = self.weightTableArray!.count - 1
         self.WeightTable.insertRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
         
     }
     
     func updateUserNotification(notification: NSNotification) {
-        self.updateWeightTable()
+        self.updateUserWeightData(1)
     }
     
-    func updateUserWeightData() {
+    func updateUserWeightData(mode: Int) {
+        if mode == 1 {
+            WeightTable.reloadData()
+        }
         self.profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(self.profileName)")!.mutableCopy() as? NSMutableDictionary
         
         // Getting weight table values from profileInfo dictionary as soon as the window loads, putting into array
@@ -92,7 +95,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        tableView.reloadData()
         let tableCellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         
         if tableColumn!.identifier == "weightDates" {
@@ -165,7 +167,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         
-        self.updateUserWeightData()
+        self.updateUserWeightData(0)
         // Setting up notifications that will be triggered on certain events to run other classes etc
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUser:", name: "MainWindowSetupUserNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "UserDeletedResetState:", name: "ResetToInitialWindowNotification", object: nil)
