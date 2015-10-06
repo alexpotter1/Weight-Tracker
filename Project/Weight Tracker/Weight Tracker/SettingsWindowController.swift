@@ -84,6 +84,10 @@ class SettingsWindowController: NSWindowController {
             
             NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(currentUser)")
             NSUserDefaults.standardUserDefaults().synchronize()
+            
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("UpdateUserData", object: nil)
+            
         }
     }
 
