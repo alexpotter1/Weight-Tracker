@@ -55,11 +55,13 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     
     func updateWeightTable() {
         self.updateUserWeightData()
-
         let rowIndex = self.weightTableArray!.count - 1
-        
         self.WeightTable.insertRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
         
+    }
+    
+    func updateUserNotification(notification: NSNotification) {
+        self.updateWeightTable()
     }
     
     func updateUserWeightData() {
@@ -80,6 +82,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         }
     }
     
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         if self.weightTableArray!.count != 0 {
             return self.weightTableArray!.count
@@ -89,6 +92,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        tableView.reloadData()
         let tableCellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         
         if tableColumn!.identifier == "weightDates" {
@@ -99,7 +103,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         
         if tableColumn!.identifier == "weightValues" {
             let weight = self.weightTableArray![row]
-            tableCellView.textField!.stringValue = weight as! String + weightUnit!
+            tableCellView.textField!.stringValue = weight as! String + self.weightUnit!
             return tableCellView
         }
         
@@ -162,13 +166,13 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         
         self.updateUserWeightData()
-        
-        
-    
         // Setting up notifications that will be triggered on certain events to run other classes etc
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupUser:", name: "MainWindowSetupUserNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "UserDeletedResetState:", name: "ResetToInitialWindowNotification", object: nil)
         NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUserNotification:", name: "UpdateUserData", object: nil)
+        
+        
     }
     
 }
