@@ -54,7 +54,15 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     func updateWeightTable() {
+        self.updateUserWeightData()
+
+        let rowIndex = self.weightTableArray!.count - 1
         
+        self.WeightTable.insertRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
+        
+    }
+    
+    func updateUserWeightData() {
         self.profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(self.profileName)")!.mutableCopy() as? NSMutableDictionary
         
         // Getting weight table values from profileInfo dictionary as soon as the window loads, putting into array
@@ -70,10 +78,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             print(self.weightTableArray)
             print(self.weightTableDateArray)
         }
-        let rowIndex = self.weightTableArray!.count - 1
-        
-        self.WeightTable.insertRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
-        
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
@@ -156,14 +160,8 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         super.windowDidLoad()
     
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-        self.profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(self.profileName)")!.mutableCopy() as? NSMutableDictionary
         
-        // Getting weight table values from profileInfo dictionary as soon as the window loads, putting into array
-        self.weightTableArray = profileInfo?.objectForKey("weightValues")!.mutableCopy() as? NSMutableArray
-        self.weightTableDateArray = profileInfo?.objectForKey("weightValueDates")!.mutableCopy() as? NSMutableArray
-        
-        // Getting weight unit
-        self.weightUnit = profileInfo?.objectForKey("weightUnit") as? String
+        self.updateUserWeightData()
         
         
     
