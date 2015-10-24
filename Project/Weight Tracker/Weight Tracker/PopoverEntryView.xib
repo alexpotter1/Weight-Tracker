@@ -23,6 +23,7 @@
                     <buttonCell key="cell" type="smallSquare" title="7" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Idc-7d-fN6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">7</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="XLd-7w-bH9"/>
@@ -34,6 +35,7 @@
                     <buttonCell key="cell" type="smallSquare" title="8" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oo1-tW-s9Y">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">8</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="veH-P2-qZs"/>
@@ -45,6 +47,7 @@
                     <buttonCell key="cell" type="smallSquare" title="9" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yhn-uc-utu">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">9</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="iQN-Wx-zmK"/>
@@ -56,6 +59,7 @@
                     <buttonCell key="cell" type="smallSquare" title="4" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sbd-pb-wem">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">4</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="KlT-4O-kjA"/>
@@ -67,6 +71,7 @@
                     <buttonCell key="cell" type="smallSquare" title="5" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ATj-sw-NN4">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">5</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="dMG-nj-cxg"/>
@@ -78,6 +83,7 @@
                     <buttonCell key="cell" type="smallSquare" title="6" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0PV-My-IXF">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">6</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="n9T-jA-keW"/>
@@ -89,6 +95,7 @@
                     <buttonCell key="cell" type="smallSquare" title="3" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VMf-XP-TTV">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">3</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="hSO-WV-LPj"/>
@@ -100,6 +107,7 @@
                     <buttonCell key="cell" type="smallSquare" title="2" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LTw-hL-2Pu">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">2</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="CUW-re-2Kd"/>
@@ -111,6 +119,7 @@
                     <buttonCell key="cell" type="smallSquare" title="1" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ofj-qv-Jlo">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">1</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="YBY-ce-YpZ"/>
@@ -122,6 +131,7 @@
                     <buttonCell key="cell" type="smallSquare" title="0" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R2l-Ne-tJD">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">0</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="aEt-Aq-Wsh"/>
@@ -133,6 +143,7 @@
                     <buttonCell key="cell" type="smallSquare" title="." bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="s4b-Y6-hT4">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent">.</string>
                     </buttonCell>
                     <connections>
                         <action selector="numberPressed:" target="-2" id="lJA-go-dlu"/>
@@ -144,6 +155,9 @@
                     <buttonCell key="cell" type="smallSquare" title="C" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ThC-9m-7BI">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                     </buttonCell>
                     <connections>
                         <action selector="ClearButtonPressed:" target="-2" id="JfT-wQ-cY4"/>

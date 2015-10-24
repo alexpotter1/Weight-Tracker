@@ -53,6 +53,10 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
 
     }
     
+    @IBAction func WeightTableDeleteButtonClicked(sender: NSButton) {
+        self.updateUserWeightData(2)
+    }
+    
     func updateWeightTable() {
         self.updateUserWeightData(0)
         let rowIndex = self.weightTableArray!.count - 1
@@ -65,8 +69,19 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     func updateUserWeightData(mode: Int) {
+        var rowIndex = 0
+        
         if mode == 1 {
             WeightTable.reloadData()
+        } else if mode == 2 { // delete selected row in table
+            
+            if WeightTable.numberOfSelectedRows == 0 {
+                return
+            }
+            
+            rowIndex = WeightTable.selectedRow
+            WeightTable.removeRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
+            
         }
         self.profileInfo = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(self.profileName)")!.mutableCopy() as? NSMutableDictionary
         
@@ -74,8 +89,20 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         self.weightTableArray = profileInfo?.objectForKey("weightValues")!.mutableCopy() as? NSMutableArray
         self.weightTableDateArray = profileInfo?.objectForKey("weightValueDates")!.mutableCopy() as? NSMutableArray
         
-        // Getting weight unit
+        // Getting weight unit to redisplay in table
         self.weightUnit = profileInfo?.objectForKey("weightUnit") as? String
+        
+        if mode == 2 { // deleting row's value in array
+            self.weightTableArray?.removeObjectAtIndex(rowIndex)
+            self.weightTableDateArray?.removeObjectAtIndex(rowIndex)
+            
+            // Saving back to persistent storage
+            self.profileInfo?.setObject(weightTableArray!, forKey: "weightValues")
+            self.profileInfo?.setObject(weightTableDateArray!, forKey: "weightValueDates")
+            NSUserDefaults.standardUserDefaults().setObject(self.profileInfo, forKey: "profileInfo\(self.profileName)")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+        }
         
         // debugging
         if devSettings.DebugPrintingEnabled == true {
