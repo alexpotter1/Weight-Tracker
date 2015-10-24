@@ -131,8 +131,20 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         }
         
         if tableColumn!.identifier == "weightValues" {
-            let weight = self.weightTableArray![row]
-            tableCellView.textField!.stringValue = weight as! String + self.weightUnit!
+            let weight = self.weightTableArray![row] as! String
+            // We have to do some extra processing on the displayed weight if the weight unit is stones and pounds...
+            if self.weightUnit! == "st lbs" {
+                // Splitting the weight value into two components (before and after the decimal point)
+                let weight = weight.componentsSeparatedByString(".")
+                
+                // Doing a similar thing with the unit, except it's separated by a space (st lbs)
+                let unit = self.weightUnit!.componentsSeparatedByString(" ")
+                
+                // Finally, combining everything to fix the displayed weight value in st lbs;
+                tableCellView.textField!.stringValue = weight[0] + unit[0] + " "  + weight[1] + unit[1]
+                return tableCellView
+            }
+             tableCellView.textField!.stringValue = weight + self.weightUnit!
             return tableCellView
         }
         
