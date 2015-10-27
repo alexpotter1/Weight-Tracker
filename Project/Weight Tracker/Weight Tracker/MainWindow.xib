@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15B22c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -10,6 +10,7 @@
                 <outlet property="HelloLabel" destination="jlP-ql-UTa" id="aNy-5r-aPh"/>
                 <outlet property="LatestWeightLabel" destination="bD0-4g-E8E" id="Aap-nM-3YF"/>
                 <outlet property="SettingsButton" destination="9ui-ih-Yed" id="mfr-dl-VdF"/>
+                <outlet property="WeightGoalLabel" destination="mpW-uW-T7t" id="a8c-qP-BAi"/>
                 <outlet property="WeightTable" destination="2Bz-LD-h8G" id="ycd-GL-fyt"/>
                 <outlet property="WeightTableAddButton" destination="1T6-cB-7eR" id="SV5-3y-LbX"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -219,6 +220,24 @@ CA
                                                 <action selector="WeightTableDeleteButtonClicked:" target="-2" id="1It-e1-IXe"/>
                                             </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpW-uW-T7t">
+                                            <rect key="frame" x="349" y="351" width="430" height="65"/>
+                                            <animations/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="fPt-VC-B2A">
+                                                <font key="font" metaFont="system" size="27"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y7U-La-WyV">
+                                            <rect key="frame" x="337" y="419" width="78" height="17"/>
+                                            <animations/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Weight Goal" id="26m-Ru-SMy">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                     <animations/>
                                 </view>

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SettingsWindowController: NSWindowController {
+class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
     
     var InitialWC: InitialWindowController? = nil
     
@@ -16,6 +16,13 @@ class SettingsWindowController: NSWindowController {
     
     // Connecting IB objects to code
     @IBOutlet weak var WeightUnitBox: NSPopUpButton!
+    @IBOutlet weak var WeightGoalUnit: NSTextField!
+    @IBOutlet weak var WeightGoalValue: NSTextField!
+    @IBOutlet weak var WeightGoalDate: NSDatePicker!
+    
+    var currentUser: String!
+    var profileInfoDictionary: NSMutableDictionary!
+    var weightGoalArray: NSMutableArray!
     
     @IBAction func DeleteUserButtonClicked(sender: NSButton) {
         // Confirmation dialog - we don't want the user to accidentally delete their own profile
@@ -29,8 +36,33 @@ class SettingsWindowController: NSWindowController {
         
     }
     @IBAction func DoneButtonClicked(sender: NSButton) {
+        
+        self.currentUser = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
+        self.profileInfoDictionary = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(self.currentUser)")?.mutableCopy() as! NSMutableDictionary
+        
+        /* Checking first that the zeroth value in the weight goal array (the weight goal value) is initialised (by default it is 0)
+           This helps to prevent a runtime crash if the user doesn't type anything in the weight goal box.
+           If the user didn't type anything, then just exit the window. */
+        
+        if !(self.weightGoalArray[0] as! String == "0.0") {
+            // Obtaining NSDate value in weight goal date box (time in seconds since January 1, 2001)
+            let date: NSDate = WeightGoalDate.dateValue
+            // Making date value look nice (formatted e.g. Fri, 15 Jan 2016)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "EEE, d MMM yyyy"
+            let formattedDate = dateFormatter.stringFromDate(date)
+            
+            // Saving date to weight goal array, and then to persistent storage
+            self.weightGoalArray.replaceObjectAtIndex(1, withObject: formattedDate)
+            
+            self.profileInfoDictionary?.setObject(self.weightGoalArray!, forKey: "weightGoal")
+            NSUserDefaults.standardUserDefaults().setObject(self.profileInfoDictionary, forKey: "profileInfo\(self.currentUser)")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+        }
+        
         // Reloads the window below the settings sheet
-        NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateUserData", object: nil)
         self.window!.close()
     }
     
@@ -55,6 +87,7 @@ class SettingsWindowController: NSWindowController {
             InitialWC!.showWindow(self)
             
         case NSAlertSecondButtonReturn:
+            // Return (Cancel) button
             if devSettings.DebugPrintingEnabled == true {
                 print("return")
             }
@@ -62,33 +95,45 @@ class SettingsWindowController: NSWindowController {
         }
     }
     
+    // Detects if the user typed anything in the Weight Goal box; overriding from NSTextFieldDelegate protocol
+    override func controlTextDidChange(obj: NSNotification) {
+        // Set first object at index of weight goal array to whatever the user types
+        self.weightGoalArray.replaceObjectAtIndex(0, withObject: WeightGoalValue.stringValue)
+    }
+    
     func weightUnitSelectionDidChange(notification: NSNotification) {
+        print("hi")
         let selectedItem = WeightUnitBox.titleOfSelectedItem
         let currentUser = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
-        let profileInfoDictionary = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(currentUser)")?.mutableCopy()
+        self.profileInfoDictionary = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(currentUser)")?.mutableCopy() as! NSMutableDictionary
         // selectedItem is of type String?, so checking if nil first
         if selectedItem != nil {
             if devSettings.DebugPrintingEnabled == true {
                 print(selectedItem!) // debug
             }
             // Saving shortened value to NSUserDefaults
+            profileInfoDictionary!.removeObjectForKey("weightUnit")
             switch selectedItem! {
                 case "Kilograms (kg)":
-                    profileInfoDictionary!.setObject("kg", forKey: "weightUnit")
+                    self.profileInfoDictionary!.setValue("kg", forKey: "weightUnit")
                 case "Pounds (lbs)":
-                    profileInfoDictionary!.setObject("lbs", forKey: "weightUnit")
+                    self.profileInfoDictionary!.setValue("lbs", forKey: "weightUnit")
                 case "Stone & Pounds (st lbs)":
-                    profileInfoDictionary!.setObject("st lbs", forKey: "weightUnit")
+                    self.profileInfoDictionary!.setValue("st lbs", forKey: "weightUnit")
                 default: break
             }
             
-            NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary, forKey: "profileInfo\(currentUser)")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            // Updating weight goal unit value
+            WeightGoalUnit.stringValue = self.profileInfoDictionary!.valueForKey("weightUnit") as! String + " by"
+            print(WeightGoalUnit.stringValue)
             
+            NSUserDefaults.standardUserDefaults().setObject(self.profileInfoDictionary, forKey: "profileInfo\(currentUser)")
+            NSUserDefaults.standardUserDefaults().synchronize()
             
             NSNotificationCenter.defaultCenter().postNotificationName("UpdateUserData", object: nil)
             
         }
+    
     }
 
     override func windowDidLoad() {
@@ -99,8 +144,22 @@ class SettingsWindowController: NSWindowController {
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         
         // Set NSPopUpButton to show correct menu item on top
-        let currentUser = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
-        let profileInfoDictionary = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(currentUser)")
+        self.currentUser = (NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String)
+        self.profileInfoDictionary = NSUserDefaults.standardUserDefaults().objectForKey("profileInfo\(currentUser)")?.mutableCopy() as? NSMutableDictionary
+        
+        // Loading this once to avoid performance penalty of fetching this array every time a key is pressed
+        self.weightGoalArray = self.profileInfoDictionary?.valueForKey("weightGoal")!.mutableCopy() as! NSMutableArray
+        
+        // Load weight goal data (value and date)
+        // Have to convert the stored date into the type NSDate
+        WeightGoalValue.stringValue = self.weightGoalArray[0] as! String
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEE, d MMM yyyy"
+        let NSDatePickerDate: NSDate = dateFormatter.dateFromString(self.weightGoalArray[1] as! String)!
+        WeightGoalDate.dateValue = NSDatePickerDate
+        
+        // Setting Weight Goal Value (label) based upon user's weight unit selection choice
+        WeightGoalUnit.stringValue = self.profileInfoDictionary?.valueForKey("weightUnit") as! String + " by"
         
         switch profileInfoDictionary?.valueForKey("weightUnit") as! String {
             // Selecting default menu item based on string in profile info
