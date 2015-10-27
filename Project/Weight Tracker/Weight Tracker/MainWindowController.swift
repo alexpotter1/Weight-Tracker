@@ -23,6 +23,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     @IBOutlet weak var SettingsButton: NSButton!
     @IBOutlet weak var WeightTable: NSTableView!
     @IBOutlet weak var WeightTableAddButton: NSButton!
+    @IBOutlet weak var WeightGoalLabel: NSTextField!
     
     let profileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
     var profileInfo: NSMutableDictionary? = nil
@@ -91,6 +92,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         
         // Getting weight unit to redisplay in table
         self.weightUnit = profileInfo?.objectForKey("weightUnit") as? String
+        NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
         
         if mode == 2 { // deleting row's value in array
             self.weightTableArray?.removeObjectAtIndex(rowIndex)
@@ -158,7 +160,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         self.window?.close()
     }
     
-    // Loads the user's information and greeter (the two sentences at the top of the window)
+    // Loads the user's information
     func setupUser(notification: NSNotification) {
         
         // Customises the greeter
@@ -166,7 +168,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         
         // Displays tracked weight
         if profileInfo == nil { // shouldn't be nil
-            LatestWeightLabel.stringValue = "No weight goal set yet..."
+            LatestWeightLabel.stringValue = "No weights to track yet..."
         } else {
             // Get values from user's dictionary
             let weightUnitValue = self.profileInfo!.valueForKey("weightUnit") as! String
@@ -176,6 +178,22 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             let weightGainOrLoss = self.profileInfo!.valueForKey("latestPredictedGain/Loss") as! Int
             var LatestWeightLabelValueSet: Bool = false
             var LatestWeightLabelString: String = ""
+            
+            // Display weight goal
+            let weightGoalArray: NSArray? = self.profileInfo!.valueForKey("weightGoal") as? NSArray
+            if weightGoalArray != nil {
+                
+                if weightUnitValue == "st lbs" {
+                    // Separating stone and pounds values by decimal point
+                    let values: [String] = (weightGoalArray![0]).componentsSeparatedByString(".")
+                    WeightGoalLabel.stringValue = "\(values[0])st \(values[1])lbs by \(weightGoalArray![1])"
+                } else {
+                    WeightGoalLabel.stringValue = "\(weightGoalArray![0])\(weightUnitValue) by \(weightGoalArray![1])"
+                }
+            } else {
+                // Just display something to tell the user the weight goal needs to be set
+                WeightGoalLabel.stringValue = "No weight goal set yet, set one in Settings"
+            }
             
             // Modifies sentence to correspond to user's weight unit
             switch weightUnitValue {
@@ -197,10 +215,12 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
                     LatestWeightLabel.stringValue = LatestWeightLabelString + "gain"
                 }
             }
+            
+
         }
         
     }
-
+ 
     override func windowDidLoad() {
         super.windowDidLoad()
     
