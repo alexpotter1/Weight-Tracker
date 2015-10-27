@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15B22c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -7,6 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsWindowController" customModule="Weight_Tracker" customModuleProvider="target">
             <connections>
+                <outlet property="WeightGoalDate" destination="Sev-cQ-mbD" id="QnH-Xk-y89"/>
+                <outlet property="WeightGoalUnit" destination="TW1-dR-IEt" id="Xcr-QR-cZz"/>
+                <outlet property="WeightGoalValue" destination="4nz-61-Lsf" id="hkA-T5-Zw7"/>
                 <outlet property="WeightUnitBox" destination="ZjV-ph-M0W" id="7n3-si-ihM"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -48,13 +51,13 @@
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="rTe-Yu-rum">
                                 <items>
-                                    <menuItem title="Kilograms (kg)" keyEquivalent="k" id="efD-eS-4v1">
+                                    <menuItem title="Kilograms (kg)" id="efD-eS-4v1">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
-                                    <menuItem title="Pounds (lbs)" keyEquivalent="p" id="vSF-Rk-sNX">
+                                    <menuItem title="Pounds (lbs)" id="vSF-Rk-sNX">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
-                                    <menuItem title="Stone &amp; Pounds (st lbs)" state="on" keyEquivalent="s" id="a8r-8S-zsE">
+                                    <menuItem title="Stone &amp; Pounds (st lbs)" state="on" id="a8r-8S-zsE">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                 </items>
@@ -83,6 +86,54 @@
                             <action selector="DeleteUserButtonClicked:" target="-2" id="zYL-hd-6ub"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSk-og-cV6">
+                        <rect key="frame" x="18" y="64" width="82" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Weight Goal:" id="egP-2d-dh4">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nz-61-Lsf">
+                        <rect key="frame" x="109" y="61" width="145" height="22"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="4Ab-pU-BzS">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="1rk-sy-1XT"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TW1-dR-IEt">
+                        <rect key="frame" x="260" y="64" width="60" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u by" id="GoD-Tg-ayZ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sev-cQ-mbD">
+                        <rect key="frame" x="319" y="61" width="139" height="27"/>
+                        <animations/>
+                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="S0A-3V-xGa">
+                            <font key="font" metaFont="system"/>
+                            <date key="date" timeIntervalSinceReferenceDate="441763200">
+                                <!--2015-01-01 00:00:00 +0000-->
+                            </date>
+                            <date key="minDate" timeIntervalSinceReferenceDate="-978307200">
+                                <!--1970-01-01 00:00:00 +0000-->
+                            </date>
+                            <date key="maxDate" timeIntervalSinceReferenceDate="4765132800">
+                                <!--2152-01-02 00:00:00 +0000-->
+                            </date>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        </datePickerCell>
+                    </datePicker>
                 </subviews>
                 <animations/>
             </view>
