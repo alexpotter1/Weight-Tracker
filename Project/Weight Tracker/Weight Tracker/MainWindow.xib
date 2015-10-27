@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="Weight_Tracker" customModuleProvider="target">
             <connections>
+                <outlet property="ExpectedWeightLabel" destination="Q9g-E0-jyT" id="poG-w9-3o9"/>
                 <outlet property="HelloLabel" destination="jlP-ql-UTa" id="aNy-5r-aPh"/>
                 <outlet property="LatestWeightLabel" destination="bD0-4g-E8E" id="Aap-nM-3YF"/>
                 <outlet property="SettingsButton" destination="9ui-ih-Yed" id="mfr-dl-VdF"/>
@@ -220,8 +221,17 @@ CA
                                                 <action selector="WeightTableDeleteButtonClicked:" target="-2" id="1It-e1-IXe"/>
                                             </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y7U-La-WyV">
+                                            <rect key="frame" x="337" y="419" width="78" height="17"/>
+                                            <animations/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Weight Goal" id="26m-Ru-SMy">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpW-uW-T7t">
-                                            <rect key="frame" x="349" y="351" width="430" height="65"/>
+                                            <rect key="frame" x="349" y="360" width="430" height="56"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="fPt-VC-B2A">
                                                 <font key="font" metaFont="system" size="27"/>
@@ -229,11 +239,20 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y7U-La-WyV">
-                                            <rect key="frame" x="337" y="419" width="78" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SUK-fi-J9g">
+                                            <rect key="frame" x="337" y="326" width="139" height="17"/>
                                             <animations/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Weight Goal" id="26m-Ru-SMy">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Next Expected Weight" id="FIs-K6-fn1">
                                                 <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q9g-E0-jyT">
+                                            <rect key="frame" x="349" y="256" width="430" height="65"/>
+                                            <animations/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="PJF-72-u8G">
+                                                <font key="font" metaFont="system" size="27"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
