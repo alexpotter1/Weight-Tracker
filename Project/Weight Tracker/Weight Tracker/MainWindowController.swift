@@ -24,6 +24,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     @IBOutlet weak var WeightTable: NSTableView!
     @IBOutlet weak var WeightTableAddButton: NSButton!
     @IBOutlet weak var WeightGoalLabel: NSTextField!
+    @IBOutlet weak var ExpectedWeightLabel: NSTextField!
     
     let profileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
     var profileInfo: NSMutableDictionary? = nil
@@ -92,7 +93,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         
         // Getting weight unit to redisplay in table
         self.weightUnit = profileInfo?.objectForKey("weightUnit") as? String
-        NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
         
         if mode == 2 { // deleting row's value in array
             self.weightTableArray?.removeObjectAtIndex(rowIndex)
@@ -105,6 +105,8 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             NSUserDefaults.standardUserDefaults().synchronize()
             
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
         
         // debugging
         if devSettings.DebugPrintingEnabled == true {
@@ -160,6 +162,86 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         self.window?.close()
     }
     
+    func calculateWeightDelta(weight1: AnyObject, weight2: AnyObject) -> Double {
+        let dWeight1: Double = (weight1 as! NSString).doubleValue
+        let dWeight2: Double = (weight2 as! NSString).doubleValue
+        
+        // Percentage difference formula: (| V1 - V2 | / (V1 + V2)/2) * 100
+        
+        let difference = dWeight2 - dWeight1
+        let average = (dWeight1 + dWeight2)/2
+        
+        return (difference/average) * 100
+    }
+    
+    func expectedWeight() {
+        self.weightTableArray = (self.profileInfo?.valueForKey("weightValues")?.mutableCopy() as! NSMutableArray)
+        self.weightTableDateArray = (self.profileInfo?.valueForKey("weightValueDates")?.mutableCopy() as! NSMutableArray)
+        
+        var timeDelta = 0.0
+        var weightDelta = 0.0
+        
+        if self.weightTableDateArray!.count < 2 || self.weightTableArray!.count < 2 {
+            ExpectedWeightLabel.stringValue = "Not enough weight values yet..."
+            
+        } else if self.weightTableDateArray!.count % 2 == 0 {
+            for (var i = 0; i <= (self.weightTableDateArray!.count - 1)/2; i++) {
+                timeDelta += self.calculateTimeDelta(self.weightTableDateArray![i] as! String, date2: self.weightTableDateArray![i+1] as! String)
+            }
+            
+            for (var i = 0; i <= (self.weightTableArray!.count - 1)/2; i++) {
+                weightDelta += self.calculateWeightDelta(self.weightTableArray![i], weight2: self.weightTableArray![i+1])
+            }
+            
+        } else {
+            for (var i = 0; i <= (self.weightTableDateArray!.count - 2)/2; i++) {
+                timeDelta += self.calculateTimeDelta(self.weightTableDateArray![i] as! String, date2: self.weightTableDateArray![i+1] as! String)
+            }
+            
+            for (var i = 0; i <= (self.weightTableArray!.count - 2)/2; i++) {
+                weightDelta += self.calculateWeightDelta(self.weightTableArray![i], weight2: self.weightTableArray![i+1])
+            }
+            
+        }
+        
+        if self.weightTableArray!.count > 1 {
+            timeDelta /= Double(self.weightTableDateArray!.count - 1)
+            weightDelta /= Double(self.weightTableArray!.count - 1)
+            
+            let adjustedWeightDelta = weightDelta / 100 // because weightDelta is a percentage
+            let expectedWeight = ((self.weightTableArray?.lastObject)!.doubleValue * adjustedWeightDelta) + (self.weightTableArray?.lastObject)!.doubleValue
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "EEE, d MMM yyyy"
+            let date = dateFormatter.dateFromString(self.weightTableDateArray!.lastObject as! String)
+            
+            let expectedDate: NSDate = (date?.dateByAddingTimeInterval(timeDelta))!
+            let expectedDateString = dateFormatter.stringFromDate(expectedDate)
+            
+            // Display next expected weight, format to 2 decimal places
+            ExpectedWeightLabel.stringValue = String(format: "%.2f", expectedWeight) + self.weightUnit! + " by \(expectedDateString)"
+        } else {
+            ExpectedWeightLabel.stringValue = "Not enough weight values yet..."
+        }
+        
+    }
+    
+    // Use date format 'EEE, d MMM yyyy' otherwise this procedure returns garbage out
+    // date2 always > date1 (date2 is more recent than date1)
+    func calculateTimeDelta(date1: String, date2: String) -> NSTimeInterval {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEE, d MMM yyyy"
+        
+        // Converting human-readable date strings to NSDates
+        let dateTimestamp1: NSDate = dateFormatter.dateFromString(date1)!
+        let dateTimestamp2: NSDate = dateFormatter.dateFromString(date2)!
+        
+        // Getting absolute value of the time delta between the dates (in seconds)
+        let timeDelta: NSTimeInterval = fabs(dateTimestamp2.timeIntervalSinceDate(dateTimestamp1))
+        
+        return timeDelta
+    }
+    
     // Loads the user's information
     func setupUser(notification: NSNotification) {
         
@@ -178,22 +260,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             let weightGainOrLoss = self.profileInfo!.valueForKey("latestPredictedGain/Loss") as! Int
             var LatestWeightLabelValueSet: Bool = false
             var LatestWeightLabelString: String = ""
-            
-            // Display weight goal
-            let weightGoalArray: NSArray? = self.profileInfo!.valueForKey("weightGoal") as? NSArray
-            if weightGoalArray != nil {
-                
-                if weightUnitValue == "st lbs" {
-                    // Separating stone and pounds values by decimal point
-                    let values: [String] = (weightGoalArray![0]).componentsSeparatedByString(".")
-                    WeightGoalLabel.stringValue = "\(values[0])st \(values[1])lbs by \(weightGoalArray![1])"
-                } else {
-                    WeightGoalLabel.stringValue = "\(weightGoalArray![0])\(weightUnitValue) by \(weightGoalArray![1])"
-                }
-            } else {
-                // Just display something to tell the user the weight goal needs to be set
-                WeightGoalLabel.stringValue = "No weight goal set yet, set one in Settings"
-            }
             
             // Modifies sentence to correspond to user's weight unit
             switch weightUnitValue {
@@ -216,7 +282,25 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
                 }
             }
             
-
+            // Display weight goal
+            let weightGoalArray: NSArray? = self.profileInfo!.valueForKey("weightGoal") as? NSArray
+            if weightGoalArray != nil {
+                
+                if weightUnitValue == "st lbs" {
+                    // Separating stone and pounds values by decimal point
+                    let values: [String] = (weightGoalArray![0]).componentsSeparatedByString(".")
+                    WeightGoalLabel.stringValue = "\(values[0])st \(values[1])lbs by \(weightGoalArray![1])"
+                } else {
+                    WeightGoalLabel.stringValue = "\(weightGoalArray![0])\(weightUnitValue) by \(weightGoalArray![1])"
+                }
+            } else {
+                // Just display something to tell the user the weight goal needs to be set
+                WeightGoalLabel.stringValue = "No weight goal set yet, set one in Settings"
+            }
+            
+            // Calculate expected weight
+            self.expectedWeight()
+            
         }
         
     }
