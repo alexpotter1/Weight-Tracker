@@ -21,6 +21,7 @@
 		FA49ECBE1B8F73E80097AE8B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49ECBC1B8F73E80097AE8B /* MainWindowController.swift */; settings = {ASSET_TAGS = (); }; };
 		FA49ECBF1B8F73E80097AE8B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA49ECBD1B8F73E80097AE8B /* MainWindow.xib */; settings = {ASSET_TAGS = (); }; };
 		FA55B2071B9796A5006C4B0A /* InitialWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55B2051B9796A5006C4B0A /* InitialWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		FAAB72D01BE8D16E001F5978 /* StatisticalAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB72CF1BE8D16E001F5978 /* StatisticalAnalysis.swift */; settings = {ASSET_TAGS = (); }; };
 		FABBA4231B979AAE00206DCD /* InitialWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABBA4211B979AAE00206DCD /* InitialWindow.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		FA49ECBC1B8F73E80097AE8B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		FA49ECBD1B8F73E80097AE8B /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		FA55B2051B9796A5006C4B0A /* InitialWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialWindowController.swift; sourceTree = "<group>"; };
+		FAAB72CF1BE8D16E001F5978 /* StatisticalAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticalAnalysis.swift; sourceTree = "<group>"; };
 		FABBA4211B979AAE00206DCD /* InitialWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				FA49ECBC1B8F73E80097AE8B /* MainWindowController.swift */,
 				FA19FC551BC08A2400A9220A /* PopoverEntryViewController.swift */,
 				FA06D7FC1BADCD0C00754846 /* SettingsWindowController.swift */,
+				FAAB72CF1BE8D16E001F5978 /* StatisticalAnalysis.swift */,
 				FA49EC3E1B8F1FF10097AE8B /* Assets.xcassets */,
 				FA49EC401B8F1FF10097AE8B /* MainMenu.xib */,
 				FABBA4211B979AAE00206DCD /* InitialWindow.xib */,
@@ -283,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAAB72D01BE8D16E001F5978 /* StatisticalAnalysis.swift in Sources */,
 				FA49ECBA1B8F62020097AE8B /* NewUserWindowController.swift in Sources */,
 				FA49EC3D1B8F1FF10097AE8B /* AppDelegate.swift in Sources */,
 				FA19FC571BC08A2400A9220A /* PopoverEntryViewController.swift in Sources */,
