@@ -162,85 +162,31 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         self.window?.close()
     }
     
-    func calculateWeightDelta(weight1: AnyObject, weight2: AnyObject) -> Double {
-        let dWeight1: Double = (weight1 as! NSString).doubleValue
-        let dWeight2: Double = (weight2 as! NSString).doubleValue
-        
-        // Percentage difference formula: (| V1 - V2 | / (V1 + V2)/2) * 100
-        
-        let difference = dWeight2 - dWeight1
-        let average = (dWeight1 + dWeight2)/2
-        
-        return (difference/average) * 100
-    }
-    
     func expectedWeight() {
-        self.weightTableArray = (self.profileInfo?.valueForKey("weightValues")?.mutableCopy() as! NSMutableArray)
-        self.weightTableDateArray = (self.profileInfo?.valueForKey("weightValueDates")?.mutableCopy() as! NSMutableArray)
+        // Calculate expected weight
+        let stat = StatisticalAnalysis(dateArray: self.weightTableDateArray!, weightArray: self.weightTableArray!)
+        stat.RegressionAnalysis()
         
-        var timeDelta = 0.0
-        var weightDelta = 0.0
-        
-        if self.weightTableDateArray!.count < 2 || self.weightTableArray!.count < 2 {
-            ExpectedWeightLabel.stringValue = "Not enough weight values yet..."
-            
-        } else if self.weightTableDateArray!.count % 2 == 0 {
-            for (var i = 0; i <= (self.weightTableDateArray!.count - 1)/2; i++) {
-                timeDelta += self.calculateTimeDelta(self.weightTableDateArray![i] as! String, date2: self.weightTableDateArray![i+1] as! String)
-            }
-            
-            for (var i = 0; i <= (self.weightTableArray!.count - 1)/2; i++) {
-                weightDelta += self.calculateWeightDelta(self.weightTableArray![i], weight2: self.weightTableArray![i+1])
-            }
-            
-        } else {
-            for (var i = 0; i <= (self.weightTableDateArray!.count - 2)/2; i++) {
-                timeDelta += self.calculateTimeDelta(self.weightTableDateArray![i] as! String, date2: self.weightTableDateArray![i+1] as! String)
-            }
-            
-            for (var i = 0; i <= (self.weightTableArray!.count - 2)/2; i++) {
-                weightDelta += self.calculateWeightDelta(self.weightTableArray![i], weight2: self.weightTableArray![i+1])
-            }
-            
-        }
-        
-        if self.weightTableArray!.count > 1 {
-            timeDelta /= Double(self.weightTableDateArray!.count - 1)
-            weightDelta /= Double(self.weightTableArray!.count - 1)
-            
-            let adjustedWeightDelta = weightDelta / 100 // because weightDelta is a percentage
-            let expectedWeight = ((self.weightTableArray?.lastObject)!.doubleValue * adjustedWeightDelta) + (self.weightTableArray?.lastObject)!.doubleValue
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "EEE, d MMM yyyy"
-            let date = dateFormatter.dateFromString(self.weightTableDateArray!.lastObject as! String)
-            
-            let expectedDate: NSDate = (date?.dateByAddingTimeInterval(timeDelta))!
-            let expectedDateString = dateFormatter.stringFromDate(expectedDate)
-            
-            // Display next expected weight, format to 2 decimal places
-            ExpectedWeightLabel.stringValue = String(format: "%.2f", expectedWeight) + self.weightUnit! + " by \(expectedDateString)"
-        } else {
-            ExpectedWeightLabel.stringValue = "Not enough weight values yet..."
-        }
-        
-    }
-    
-    // Use date format 'EEE, d MMM yyyy' otherwise this procedure returns garbage out
-    // date2 always > date1 (date2 is more recent than date1)
-    func calculateTimeDelta(date1: String, date2: String) -> NSTimeInterval {
+        // Get last date from array
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE, d MMM yyyy"
         
-        // Converting human-readable date strings to NSDates
-        let dateTimestamp1: NSDate = dateFormatter.dateFromString(date1)!
-        let dateTimestamp2: NSDate = dateFormatter.dateFromString(date2)!
-        
-        // Getting absolute value of the time delta between the dates (in seconds)
-        let timeDelta: NSTimeInterval = fabs(dateTimestamp2.timeIntervalSinceDate(dateTimestamp1))
-        
-        return timeDelta
+        // Checking if there are any values in the array first (otherwise it doesn't compile)
+        if self.weightTableArray!.count != 0 {
+            let lastDate = dateFormatter.dateFromString(self.weightTableDateArray!.lastObject as! String)
+            let nextValue = stat.RegressionNextValue((lastDate!.timeIntervalSinceReferenceDate) + 604800) // 604800 seconds in one week
+            
+            if nextValue.isNaN {
+                ExpectedWeightLabel.stringValue = "More time is needed for prediction"
+            } else {
+                // Display expected weight value, round to 2 decimal places
+                ExpectedWeightLabel.stringValue = String(format: "%.2f", nextValue) + self.weightUnit!
+            }
+        } else {
+            ExpectedWeightLabel.stringValue = "No weight values yet..."
+        }
     }
+    
     
     // Loads the user's information
     func setupUser(notification: NSNotification) {
@@ -298,8 +244,8 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
                 WeightGoalLabel.stringValue = "No weight goal set yet, set one in Settings"
             }
             
-            // Calculate expected weight
             self.expectedWeight()
+            
             
         }
         

@@ -240,9 +240,9 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SUK-fi-J9g">
-                                            <rect key="frame" x="337" y="326" width="139" height="17"/>
+                                            <rect key="frame" x="337" y="326" width="225" height="17"/>
                                             <animations/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Next Expected Weight" id="FIs-K6-fn1">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Next Expected Weight in one week:" id="FIs-K6-fn1">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
