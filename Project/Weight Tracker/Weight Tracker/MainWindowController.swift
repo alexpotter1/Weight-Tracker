@@ -179,8 +179,18 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             if nextValue.isNaN {
                 ExpectedWeightLabel.stringValue = "More time is needed for prediction"
             } else {
-                // Display expected weight value, round to 2 decimal places
-                ExpectedWeightLabel.stringValue = String(format: "%.2f", nextValue) + self.weightUnit!
+                // Check weight unit so that weight value displays properly (for st lbs)
+                // In addition, format to one decimal place.
+                
+                if self.weightUnit! == "st lbs" {
+                    let separatedValueArray: [String] = String(format: "%.1f", nextValue).componentsSeparatedByString(".")
+                    ExpectedWeightLabel.stringValue = "\(separatedValueArray[0])st \(separatedValueArray[1])lbs"
+                    
+                } else {
+                    
+                    // Display expected weight value, round to 2 decimal places
+                    ExpectedWeightLabel.stringValue = String(format: "%.2f", nextValue) + self.weightUnit!
+                }
             }
         } else {
             ExpectedWeightLabel.stringValue = "No weight values yet..."
