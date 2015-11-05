@@ -152,10 +152,11 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
         
         // Load weight goal data (value and date)
         // Have to convert the stored date into the type NSDate
-        WeightGoalValue.stringValue = self.weightGoalArray[0] as! String
+        
+        WeightGoalValue.stringValue = String(self.weightGoalArray[0])
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE, d MMM yyyy"
-        let NSDatePickerDate: NSDate = dateFormatter.dateFromString(self.weightGoalArray[1] as! String)!
+        let NSDatePickerDate: NSDate! = dateFormatter.dateFromString(String(self.weightGoalArray[1]))
         WeightGoalDate.dateValue = NSDatePickerDate
         
         // Setting Weight Goal Value (label) based upon user's weight unit selection choice
