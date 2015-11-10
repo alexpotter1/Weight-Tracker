@@ -12,14 +12,22 @@ import Cocoa
 public class StatisticalAnalysis {
     private typealias ValueTuple = (date: NSTimeInterval, weight: Double)
     private var values: [ValueTuple] = []
+    private let dateFormatter = NSDateFormatter()
     private var m: Double = 0.0
     private var a: Double = 1.0
     private var b: Double = 2.0
     private var c: Double = 0.0
     
-    public init(dateArray: NSMutableArray, weightArray: NSMutableArray) {
+    private var dateArray: NSMutableArray
+    private var weightArray: NSMutableArray
+    
+    public init(_dateArray: NSMutableArray, _weightArray: NSMutableArray) {
+        
+        // Instantiate the date and weight arrays
+        dateArray = _dateArray
+        weightArray = _weightArray
+        
         // Creating NSDateFormatter object to convert the date strings to NSDate
-        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE, d MMM yyyy"
         
         // First, convert the dates to NSDate
@@ -59,6 +67,30 @@ public class StatisticalAnalysis {
     public func RegressionNextValue(date: Double) -> Double {
        // y = mx + c
         return (self.m * date) + self.c
+    }
+    
+    public func getRegressionLineValues() -> [Double] {
+        return [self.m, self.c]
+    }
+    
+    public func willMeetTarget(weightGoal: Double, weightGoalDate: NSDate) -> Bool {
+        
+        // Run the regression again to find the line of best fit
+        let st = StatisticalAnalysis(_dateArray: dateArray, _weightArray: weightArray)
+        st.RegressionAnalysis()
+        let lineValues = st.getRegressionLineValues()
+        
+        // Predict the weight at the goal date
+        let weightGoalTimeInterval: Double = weightGoalDate.timeIntervalSinceReferenceDate 
+        let predictedWeightAtGoal = (lineValues[0] * weightGoalTimeInterval) + lineValues[1]
+        
+        if predictedWeightAtGoal > weightGoal {
+            return false
+        } else {
+            return true
+        }
+        
+        
     }
     
 
