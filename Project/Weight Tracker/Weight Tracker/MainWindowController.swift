@@ -210,25 +210,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         } else {
             // Get values from user's dictionary
             let weightUnitValue = self.profileInfo!.valueForKey("weightUnit") as! String
-            let lastWeightValueArray: [String] = ((self.profileInfo!.valueForKey("latestPredictedWeightLoss") as! [String]).last?.componentsSeparatedByString(";"))!
-            
-            let stoneValue = lastWeightValueArray.last!.componentsSeparatedByString(".")
-            let weightGainOrLoss = self.profileInfo!.valueForKey("latestPredictedGain/Loss") as! Int
-            var LatestWeightLabelValueSet: Bool = false
-            var LatestWeightLabelString: String = ""
-            
-            /* Modifies sentence to correspond to user's weight unit
-            switch weightUnitValue {
-            case "kg":
-                LatestWeightLabelString = "You're on track for \(lastWeightValueArray[0])kg weight "
-            case "lbs":
-                LatestWeightLabelString = "You're on track for \(lastWeightValueArray[0])lbs weight "
-            case "st lbs":
-                LatestWeightLabelString = "You're on track for \(stoneValue[0])st \(lastWeightValueArray[1])lbs weight "
-            default:
-                LatestWeightLabel.stringValue = "You're on track for 0kg weight loss"
-                LatestWeightLabelValueSet = true
-            } */
             
             // Display weight goal
             let weightGoalArray: NSArray? = self.profileInfo!.valueForKey("weightGoal") as? NSArray
@@ -259,16 +240,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             } else {
                 LatestWeightLabel.stringValue = "You're not on target to obtain your weight goal"
             }
-            
-            /*if LatestWeightLabelValueSet == false {
-                if weightGainOrLoss == 0 { // 0 = loss, anything else = gain
-                    LatestWeightLabel.stringValue = LatestWeightLabelString + "loss"
-                } else {
-                    LatestWeightLabel.stringValue = LatestWeightLabelString + "gain"
-                }
-            }*/
-            
-            
+        
         self.expectedWeight(st)
             
             
