@@ -162,9 +162,9 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         self.window?.close()
     }
     
-    func expectedWeight() {
+    func expectedWeight(statClassReference: StatisticalAnalysis) {
         // Calculate expected weight
-        let stat = StatisticalAnalysis(dateArray: self.weightTableDateArray!, weightArray: self.weightTableArray!)
+        let stat = StatisticalAnalysis(_dateArray: self.weightTableDateArray!, _weightArray: self.weightTableArray!)
         stat.RegressionAnalysis()
         
         // Get last date from array
@@ -217,7 +217,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             var LatestWeightLabelValueSet: Bool = false
             var LatestWeightLabelString: String = ""
             
-            // Modifies sentence to correspond to user's weight unit
+            /* Modifies sentence to correspond to user's weight unit
             switch weightUnitValue {
             case "kg":
                 LatestWeightLabelString = "You're on track for \(lastWeightValueArray[0])kg weight "
@@ -228,15 +228,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             default:
                 LatestWeightLabel.stringValue = "You're on track for 0kg weight loss"
                 LatestWeightLabelValueSet = true
-            }
-            
-            if LatestWeightLabelValueSet == false {
-                if weightGainOrLoss == 0 { // 0 = loss, anything else = gain
-                    LatestWeightLabel.stringValue = LatestWeightLabelString + "loss"
-                } else {
-                    LatestWeightLabel.stringValue = LatestWeightLabelString + "gain"
-                }
-            }
+            } */
             
             // Display weight goal
             let weightGoalArray: NSArray? = self.profileInfo!.valueForKey("weightGoal") as? NSArray
@@ -254,7 +246,30 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
                 WeightGoalLabel.stringValue = "No weight goal set yet, set one in Settings"
             }
             
-            self.expectedWeight()
+            // Will the user reach their goal?
+            let st = StatisticalAnalysis(_dateArray: self.weightTableDateArray!, _weightArray: self.weightTableArray!)
+            
+            // Convert string to date first
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "EEE, d MMM yyyy"
+            let goalDate: NSDate! = dateFormatter.dateFromString(weightGoalArray?.objectAtIndex(1) as! String)
+            
+            if st.willMeetTarget((weightGoalArray?.objectAtIndex(0) as! NSString).doubleValue, weightGoalDate: goalDate) == true {
+                LatestWeightLabel.stringValue = "You're on target to obtain your weight goal"
+            } else {
+                LatestWeightLabel.stringValue = "You're not on target to obtain your weight goal"
+            }
+            
+            /*if LatestWeightLabelValueSet == false {
+                if weightGainOrLoss == 0 { // 0 = loss, anything else = gain
+                    LatestWeightLabel.stringValue = LatestWeightLabelString + "loss"
+                } else {
+                    LatestWeightLabel.stringValue = LatestWeightLabelString + "gain"
+                }
+            }*/
+            
+            
+        self.expectedWeight(st)
             
             
         }
