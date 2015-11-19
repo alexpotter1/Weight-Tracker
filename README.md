@@ -1,9 +1,9 @@
 # WeightTracker
-## Latest version: 0.1-wip
+## Latest version: 0.5-wip
 I present the **work-in progress** state of Weight Tracker for Mac.
 
 ### What is it?
-Weight Tracker is a simple application that is able to track a user's weight over a period of time, leading to an eventual goal. The program can display the progress via a graph.
+Weight Tracker is a simple application that is able to track and predict a user's weight over a period of time, leading to an eventual goal. The program can display the progress via a graph.
 
 The user can decide to input their weight in either pounds (lbs), kilograms (kg) or stones & pounds (st lb).
 
