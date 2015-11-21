@@ -235,7 +235,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             dateFormatter.dateFormat = "EEE, d MMM yyyy"
             let goalDate: NSDate! = dateFormatter.dateFromString(weightGoalArray?.objectAtIndex(1) as! String)
             
-            if st.willMeetTarget((weightGoalArray?.objectAtIndex(0) as! NSString).doubleValue, weightGoalDate: goalDate) == true {
+            if st.willMeetTarget(Double((weightGoalArray?.objectAtIndex(0).stringValue)!)!, weightGoalDate: goalDate) == true {
                 LatestWeightLabel.stringValue = "You're on target to obtain your weight goal"
             } else {
                 LatestWeightLabel.stringValue = "You're not on target to obtain your weight goal"

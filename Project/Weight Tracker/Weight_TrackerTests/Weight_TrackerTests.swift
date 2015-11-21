@@ -1,13 +1,12 @@
 //
 //  Weight_TrackerTests.swift
-//  Weight TrackerTests
+//  Weight_TrackerTests
 //
-//  Created by Alex Potter on 27/08/2015.
+//  Created by Alex Potter on 21/11/2015.
 //  Copyright © 2015 Alex Potter. All rights reserved.
 //
 
 import XCTest
-@testable import Weight_Tracker
 
 class Weight_TrackerTests: XCTestCase {
     
