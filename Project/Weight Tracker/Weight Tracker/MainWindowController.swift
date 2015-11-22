@@ -235,7 +235,11 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             dateFormatter.dateFormat = "EEE, d MMM yyyy"
             let goalDate: NSDate! = dateFormatter.dateFromString(weightGoalArray?.objectAtIndex(1) as! String)
             
-            if st.willMeetTarget((weightGoalArray?.objectAtIndex(0) as! NSString).doubleValue, weightGoalDate: goalDate) == true {
+            // The function in Statistical Analysis accepts a String, so convert whatever type of the weight goal value in the array to Swift's primitive type String
+            let goalStringValue: String = String(weightGoalArray?.objectAtIndex(0))
+            
+            // Let the user know if they're gonna meet their goal, and then calculate everything else that's needed (expected weight)
+            if st.willMeetTarget(goalStringValue, weightGoalDate: goalDate) == true {
                 LatestWeightLabel.stringValue = "You're on target to obtain your weight goal"
             } else {
                 LatestWeightLabel.stringValue = "You're not on target to obtain your weight goal"

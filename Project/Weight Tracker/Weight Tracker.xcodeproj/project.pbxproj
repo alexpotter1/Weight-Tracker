@@ -23,6 +23,13 @@
 		FA55B2071B9796A5006C4B0A /* InitialWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55B2051B9796A5006C4B0A /* InitialWindowController.swift */; settings = {ASSET_TAGS = (); }; };
 		FAAB72D01BE8D16E001F5978 /* StatisticalAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB72CF1BE8D16E001F5978 /* StatisticalAnalysis.swift */; settings = {ASSET_TAGS = (); }; };
 		FABBA4231B979AAE00206DCD /* InitialWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABBA4211B979AAE00206DCD /* InitialWindow.xib */; settings = {ASSET_TAGS = (); }; };
+		FAC731051C0230ED008E1BC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49EC3C1B8F1FF10097AE8B /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		FAC731061C0230F5008E1BC8 /* InitialWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55B2051B9796A5006C4B0A /* InitialWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		FAC731071C0230F7008E1BC8 /* NewUserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49ECB81B8F62020097AE8B /* NewUserWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		FAC731081C0230FB008E1BC8 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49ECBC1B8F73E80097AE8B /* MainWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		FAC731091C023102008E1BC8 /* PopoverEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA19FC551BC08A2400A9220A /* PopoverEntryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		FAC7310A1C023105008E1BC8 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06D7FC1BADCD0C00754846 /* SettingsWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		FAC7310B1C023106008E1BC8 /* StatisticalAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB72CF1BE8D16E001F5978 /* StatisticalAnalysis.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,7 +307,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC731061C0230F5008E1BC8 /* InitialWindowController.swift in Sources */,
+				FAC7310A1C023105008E1BC8 /* SettingsWindowController.swift in Sources */,
+				FAC731071C0230F7008E1BC8 /* NewUserWindowController.swift in Sources */,
+				FAC731091C023102008E1BC8 /* PopoverEntryViewController.swift in Sources */,
+				FAC731051C0230ED008E1BC8 /* AppDelegate.swift in Sources */,
+				FAC7310B1C023106008E1BC8 /* StatisticalAnalysis.swift in Sources */,
 				FA49EC4D1B8F1FF10097AE8B /* Weight_TrackerTests.swift in Sources */,
+				FAC731081C0230FB008E1BC8 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +378,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",

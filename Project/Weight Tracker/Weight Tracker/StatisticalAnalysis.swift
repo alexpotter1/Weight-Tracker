@@ -73,7 +73,10 @@ public class StatisticalAnalysis {
         return [self.m, self.c]
     }
     
-    public func willMeetTarget(weightGoal: Double, weightGoalDate: NSDate) -> Bool {
+    public func willMeetTarget(weightGoalString: String, weightGoalDate: NSDate) -> Bool {
+        
+        // First, convert weightGoal to Double
+        let weightGoal = Double(weightGoalString)
         
         // Run the regression again to find the line of best fit
         let st = StatisticalAnalysis(_dateArray: dateArray, _weightArray: weightArray)

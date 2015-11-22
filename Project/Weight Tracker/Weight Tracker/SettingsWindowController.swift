@@ -44,7 +44,7 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
            This helps to prevent a runtime crash if the user doesn't type anything in the weight goal box.
            If the user didn't type anything, then just exit the window. */
         
-        if !(self.weightGoalArray[0] as! String == "0.0") {
+        if (self.weightGoalArray[0].stringValue != "0.0") {
             // Obtaining NSDate value in weight goal date box (time in seconds since January 1, 2001)
             let date: NSDate = WeightGoalDate.dateValue
             // Making date value look nice (formatted e.g. Fri, 15 Jan 2016)
