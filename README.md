@@ -1,4 +1,4 @@
-# WeightTracker
+# WeightTracker [![Build Status](https://travis-ci.org/alexpotter1/WeightTracker.svg?branch=master)](https://travis-ci.org/alexpotter1/WeightTracker)
 ## Latest version: 0.5-wip
 I present the **work-in progress** state of Weight Tracker for Mac.
 
