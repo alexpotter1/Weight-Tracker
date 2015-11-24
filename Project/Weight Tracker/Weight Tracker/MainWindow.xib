@@ -58,6 +58,15 @@
                             <action selector="SettingsButtonClicked:" target="-2" id="U7x-Cs-WZN"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bD0-4g-E8E">
+                        <rect key="frame" x="186" y="528" width="428" height="22"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="You're on track for () weight (gain/loss)" id="2Pc-7c-u12">
+                            <font key="font" metaFont="system" size="18"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <tabView fixedFrame="YES" initialItem="NmS-Gj-3Zt" translatesAutoresizingMaskIntoConstraints="NO" id="ecG-zz-eZZ">
                         <rect key="frame" x="-1" y="-5" width="803" height="524"/>
                         <animations/>
@@ -76,7 +85,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1T6-cB-7eR">
-                                            <rect key="frame" x="303" y="23" width="20" height="21"/>
+                                            <rect key="frame" x="339" y="23" width="20" height="21"/>
                                             <animations/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NSZ-CV-kNF">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -90,7 +99,7 @@ DQ
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AcQ-Ry-xcS">
-                                            <rect key="frame" x="275" y="23" width="20" height="21"/>
+                                            <rect key="frame" x="311" y="23" width="20" height="21"/>
                                             <animations/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bbz-eQ-t4S">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -104,7 +113,7 @@ CA
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y7U-La-WyV">
-                                            <rect key="frame" x="341" y="419" width="78" height="17"/>
+                                            <rect key="frame" x="384" y="419" width="78" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Weight Goal" id="26m-Ru-SMy">
                                                 <font key="font" metaFont="system"/>
@@ -113,16 +122,16 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpW-uW-T7t">
-                                            <rect key="frame" x="353" y="360" width="430" height="56"/>
+                                            <rect key="frame" x="389" y="355" width="430" height="56"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="fPt-VC-B2A">
-                                                <font key="font" metaFont="system" size="27"/>
+                                                <font key="font" metaFont="system" size="24"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SUK-fi-J9g">
-                                            <rect key="frame" x="341" y="326" width="225" height="17"/>
+                                            <rect key="frame" x="384" y="329" width="225" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Next Expected Weight in one week:" id="FIs-K6-fn1">
                                                 <font key="font" metaFont="system"/>
@@ -131,29 +140,29 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q9g-E0-jyT">
-                                            <rect key="frame" x="353" y="256" width="430" height="65"/>
+                                            <rect key="frame" x="389" y="256" width="430" height="65"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="PJF-72-u8G">
-                                                <font key="font" metaFont="system" size="27"/>
+                                                <font key="font" metaFont="system" size="24"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t77-8O-UGM">
-                                            <rect key="frame" x="37" y="47" width="287" height="399"/>
+                                        <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t77-8O-UGM">
+                                            <rect key="frame" x="37" y="47" width="322" height="399"/>
                                             <clipView key="contentView" ambiguous="YES" id="cgS-Iy-Sd4">
-                                                <rect key="frame" x="1" y="0.0" width="285" height="398"/>
+                                                <rect key="frame" x="1" y="0.0" width="320" height="398"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Xsm-5g-441" viewBased="YES" id="2Bz-LD-h8G">
-                                                        <rect key="frame" x="0.0" y="0.0" width="285" height="375"/>
+                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="automatic" headerView="Xsm-5g-441" viewBased="YES" id="2Bz-LD-h8G">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="375"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <animations/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="weightDates" width="190.3515625" minWidth="40" maxWidth="1000" id="kxe-lo-5k3">
+                                                            <tableColumn identifier="weightDates" width="235.85546875" minWidth="40" maxWidth="1000" id="kxe-lo-5k3">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Date">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -167,11 +176,11 @@ CA
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView id="Igi-Za-mFS">
-                                                                        <rect key="frame" x="1" y="1" width="190" height="17"/>
+                                                                        <rect key="frame" x="1" y="1" width="236" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1EX-9k-cpK">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="174" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="215" height="17"/>
                                                                                 <animations/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="zNh-AZ-3ze">
                                                                                     <font key="font" metaFont="system"/>
@@ -187,8 +196,8 @@ CA
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
-                                                            <tableColumn identifier="weightValues" width="89" minWidth="40" maxWidth="1000" id="rrY-1y-hE1">
-                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Weight">
+                                                            <tableColumn identifier="weightValues" width="78" minWidth="40" maxWidth="1000" id="rrY-1y-hE1">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="justified" title="Weight">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -201,11 +210,11 @@ CA
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView id="11H-8w-3df">
-                                                                        <rect key="frame" x="194" y="1" width="89" height="17"/>
+                                                                        <rect key="frame" x="240" y="1" width="78" height="20"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LQ9-qk-KnP">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="3" width="100" height="17"/>
                                                                                 <animations/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="T1F-6L-QK9">
                                                                                     <font key="font" metaFont="system"/>
@@ -243,7 +252,7 @@ CA
                                                 <animations/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="Xsm-5g-441">
-                                                <rect key="frame" x="0.0" y="0.0" width="285" height="23"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="23"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
                                             </tableHeaderView>
@@ -257,15 +266,6 @@ CA
                             <outlet property="delegate" destination="-2" id="Ld2-8P-dc8"/>
                         </connections>
                     </tabView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bD0-4g-E8E">
-                        <rect key="frame" x="186" y="528" width="428" height="22"/>
-                        <animations/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="You're on track for () weight (gain/loss)" id="2Pc-7c-u12">
-                            <font key="font" metaFont="system" size="18"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
                 <animations/>
             </view>

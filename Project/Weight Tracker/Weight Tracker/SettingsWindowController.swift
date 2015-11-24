@@ -8,6 +8,14 @@
 
 import Cocoa
 
+// Extension to add a rounding to decimal places method to the Double class
+extension Double {
+    func roundToDecimalPlaces(places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return round(self * divisor) / divisor
+    }
+}
+
 class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
     
     var InitialWC: InitialWindowController? = nil
@@ -16,8 +24,10 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
     
     // Connecting IB objects to code
     @IBOutlet weak var WeightUnitBox: NSPopUpButton!
-    @IBOutlet weak var WeightGoalUnit: NSTextField!
-    @IBOutlet weak var WeightGoalValue: NSTextField!
+    @IBOutlet weak var WeightGoalUnitMajor: NSTextField!
+    @IBOutlet weak var WeightGoalUnitMinor: NSTextField!
+    @IBOutlet weak var WeightGoalValueMajor: NSTextField!
+    @IBOutlet weak var WeightGoalValueMinor: NSTextField!
     @IBOutlet weak var WeightGoalDate: NSDatePicker!
     
     var currentUser: String!
@@ -98,7 +108,11 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
     // Detects if the user typed anything in the Weight Goal box; overriding from NSTextFieldDelegate protocol
     override func controlTextDidChange(obj: NSNotification) {
         // Set first object at index of weight goal array to whatever the user types
-        self.weightGoalArray.replaceObjectAtIndex(0, withObject: WeightGoalValue.stringValue)
+        // In addition, round the second value to make sure that the precision cannot be greater than 100g, and truncate to Integer (don't care about .0)
+        // Concatenate the two text box values with a decimal point to form the stored weight value
+        let roundedMinorWeightValue = Int(WeightGoalValueMinor.doubleValue.roundToDecimalPlaces(1))
+        let formatted: String = "\(WeightGoalValueMajor.stringValue).\(roundedMinorWeightValue)"
+        self.weightGoalArray.replaceObjectAtIndex(0, withObject: formatted)
     }
     
     func weightUnitSelectionDidChange(notification: NSNotification) {
@@ -111,21 +125,24 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
             if devSettings.DebugPrintingEnabled == true {
                 print(selectedItem!) // debug
             }
-            // Saving shortened value to NSUserDefaults
+            // Saving shortened value to NSUserDefaults, and also update the labels by the weight goal boxes to reflect the change
             profileInfoDictionary!.removeObjectForKey("weightUnit")
             switch selectedItem! {
                 case "Kilograms (kg)":
                     self.profileInfoDictionary!.setValue("kg", forKey: "weightUnit")
+                    WeightGoalUnitMajor.stringValue = "kg"
+                    WeightGoalUnitMinor.stringValue = "100g by"
                 case "Pounds (lbs)":
                     self.profileInfoDictionary!.setValue("lbs", forKey: "weightUnit")
+                    WeightGoalUnitMajor.stringValue = "lbs"
+                    WeightGoalUnitMinor.stringValue = "oz by"
                 case "Stone & Pounds (st lbs)":
                     self.profileInfoDictionary!.setValue("st lbs", forKey: "weightUnit")
+                    WeightGoalUnitMajor.stringValue = "st"
+                    WeightGoalUnitMinor.stringValue = "lbs by"
                 default: break
             }
             
-            // Updating weight goal unit value
-            WeightGoalUnit.stringValue = self.profileInfoDictionary!.valueForKey("weightUnit") as! String + " by"
-            print(WeightGoalUnit.stringValue)
             
             NSUserDefaults.standardUserDefaults().setObject(self.profileInfoDictionary, forKey: "profileInfo\(currentUser)")
             NSUserDefaults.standardUserDefaults().synchronize()
@@ -152,24 +169,30 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
         
         // Load weight goal data (value and date)
         // Have to convert the stored date into the type NSDate
+        // Separate the string value in the weight goal array by the decimal point (e.g. 12.6kg is 12 kg and 600 grams), and display in weight value boxes
+        let weightValueArray = String(self.weightGoalArray.objectAtIndex(0).doubleValue!).componentsSeparatedByString(".")
+        WeightGoalValueMajor.stringValue = weightValueArray[0]
+        WeightGoalValueMinor.stringValue = weightValueArray[1]
         
-        WeightGoalValue.stringValue = String(self.weightGoalArray[0])
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE, d MMM yyyy"
         let NSDatePickerDate: NSDate! = dateFormatter.dateFromString(String(self.weightGoalArray[1]))
         WeightGoalDate.dateValue = NSDatePickerDate
         
-        // Setting Weight Goal Value (label) based upon user's weight unit selection choice
-        WeightGoalUnit.stringValue = self.profileInfoDictionary?.valueForKey("weightUnit") as! String + " by"
-        
+        // Set default setting values based upon weight unit choice (formatting of labels and combo box default choice)
         switch profileInfoDictionary?.valueForKey("weightUnit") as! String {
-            // Selecting default menu item based on string in profile info
             case "kg":
                 WeightUnitBox.selectItemAtIndex(0)
+                WeightGoalUnitMajor.stringValue = "kg"
+                WeightGoalUnitMinor.stringValue = "100g by"
             case "lbs":
                 WeightUnitBox.selectItemAtIndex(1)
+                WeightGoalUnitMajor.stringValue = "lbs"
+                WeightGoalUnitMinor.stringValue = "oz by"
             case "st lbs":
                 WeightUnitBox.selectItemAtIndex(2)
+                WeightGoalUnitMajor.stringValue = "st"
+                WeightGoalUnitMinor.stringValue = "lbs by"
             default: break
         }
     }

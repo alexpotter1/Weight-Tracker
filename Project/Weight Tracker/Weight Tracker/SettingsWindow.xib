@@ -8,8 +8,10 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsWindowController" customModule="Weight_Tracker" customModuleProvider="target">
             <connections>
                 <outlet property="WeightGoalDate" destination="Sev-cQ-mbD" id="QnH-Xk-y89"/>
-                <outlet property="WeightGoalUnit" destination="TW1-dR-IEt" id="Xcr-QR-cZz"/>
-                <outlet property="WeightGoalValue" destination="4nz-61-Lsf" id="hkA-T5-Zw7"/>
+                <outlet property="WeightGoalUnitMajor" destination="TW1-dR-IEt" id="P06-8m-OMF"/>
+                <outlet property="WeightGoalUnitMinor" destination="iJW-VM-xUC" id="M20-Us-3TL"/>
+                <outlet property="WeightGoalValueMajor" destination="4nz-61-Lsf" id="Cgx-IB-o0b"/>
+                <outlet property="WeightGoalValueMinor" destination="Qvf-Ga-UiM" id="Yuo-Tz-fs4"/>
                 <outlet property="WeightUnitBox" destination="ZjV-ph-M0W" id="7n3-si-ihM"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -96,7 +98,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nz-61-Lsf">
-                        <rect key="frame" x="109" y="61" width="145" height="22"/>
+                        <rect key="frame" x="109" y="61" width="58" height="22"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="4Ab-pU-BzS">
                             <font key="font" metaFont="system"/>
@@ -107,17 +109,38 @@
                             <outlet property="delegate" destination="-2" id="1rk-sy-1XT"/>
                         </connections>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TW1-dR-IEt">
-                        <rect key="frame" x="260" y="64" width="60" height="17"/>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qvf-Ga-UiM">
+                        <rect key="frame" x="210" y="61" width="58" height="22"/>
                         <animations/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u by" id="GoD-Tg-ayZ">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="A9E-dN-zuF">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="Ank-eU-KCO"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TW1-dR-IEt">
+                        <rect key="frame" x="169" y="64" width="41" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="GoD-Tg-ayZ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJW-VM-xUC">
+                        <rect key="frame" x="272" y="64" width="54" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u by" id="iQn-OI-bcL">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sev-cQ-mbD">
-                        <rect key="frame" x="319" y="61" width="139" height="27"/>
+                        <rect key="frame" x="332" y="61" width="139" height="27"/>
                         <animations/>
                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="S0A-3V-xGa">
                             <font key="font" metaFont="system"/>

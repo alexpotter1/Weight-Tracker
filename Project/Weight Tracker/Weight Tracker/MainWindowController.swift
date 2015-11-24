@@ -222,14 +222,17 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
                 
                 if weightUnitValue == "st lbs" {
                     // Separating stone and pounds values by decimal point
-                    let values: [String] = (weightGoalArray![0]).componentsSeparatedByString(".")
+                    let values: [String] = String(weightGoalArray!.objectAtIndex(0).doubleValue!).componentsSeparatedByString(".")
                     WeightGoalLabel.stringValue = "\(values[0])st \(values[1])lbs by \(weightGoalArray![1])"
                 } else {
                     WeightGoalLabel.stringValue = "\(weightGoalArray![0])\(weightUnitValue) by \(weightGoalArray![1])"
                 }
-            } else {
+            }
+            
+            // If the weight goal date is the default date (Unix timestamp)
+            if (weightGoalArray?.objectAtIndex(1))! as! String == "Thu, 1 Jan 1970" {
                 // Just display something to tell the user the weight goal needs to be set
-                WeightGoalLabel.stringValue = "No weight goal set yet, set one in Settings"
+                WeightGoalLabel.stringValue = "Set a weight goal in Settings"
             }
             
             // Will the user reach their goal?
