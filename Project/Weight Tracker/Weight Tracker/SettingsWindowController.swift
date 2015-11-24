@@ -176,8 +176,16 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE, d MMM yyyy"
-        let NSDatePickerDate: NSDate! = dateFormatter.dateFromString(String(self.weightGoalArray[1]))
-        WeightGoalDate.dateValue = NSDatePickerDate
+        
+        // Check if the default weight goal date is present - if it is, replace it with the current date
+        if (self.weightGoalArray.objectAtIndex(1) as! String) == "Thu, 1 Jan 1970" {
+            // Have to use NSDate to get the current date
+            WeightGoalDate.dateValue = NSDate()
+        } else {
+            
+            let NSDatePickerDate: NSDate! = dateFormatter.dateFromString(String(self.weightGoalArray[1]))
+            WeightGoalDate.dateValue = NSDatePickerDate
+        }
         
         // Set default setting values based upon weight unit choice (formatting of labels and combo box default choice)
         switch profileInfoDictionary?.valueForKey("weightUnit") as! String {
