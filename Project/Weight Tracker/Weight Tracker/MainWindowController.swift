@@ -52,6 +52,9 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         WeightEntryPopover = NSPopover()
         WeightEntryPopover?.contentViewController = PopoverEntryViewController(nibName: "PopoverEntryView", bundle: nil)
         WeightEntryPopover?.showRelativeToRect(WeightTableAddButton.bounds, ofView: WeightTableAddButton, preferredEdge: NSRectEdge.MaxY)
+        
+        // This sets the popover window to close when the user interacts with anything else
+        WeightEntryPopover?.behavior = NSPopoverBehavior.Semitransient
 
     }
     

@@ -12,6 +12,8 @@ class PopoverEntryViewController: NSViewController {
     
     // Connecting IB objects
     @IBOutlet weak var EntryField: NSTextField!
+    @IBOutlet weak var DatePicker: NSDatePicker!
+    
     @IBAction func DoneButtonPressed(sender: NSButton) {
         if !(EntryField.stringValue.isEmpty) {
             let currentProfileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
@@ -20,16 +22,16 @@ class PopoverEntryViewController: NSViewController {
             let weightValueArray = profileInfoDictionary.objectForKey("weightValues")!.mutableCopy() as! NSMutableArray
             let weightDateArray = profileInfoDictionary.objectForKey("weightValueDates")!.mutableCopy() as! NSMutableArray
             
-            // Get current system date
-            let date = NSDate()
             /* NSDateFormatter outputs the time from NSDate (in seconds since January 1 2000) as a human readable format */
             let dateFormatter = NSDateFormatter()
             
             /* FullStyle formats this in the form 'Name of Day, Date, Month, Year' - e.g. "Sunday, 4 October 2015" */
             dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-            let localDateRightNow: String = dateFormatter.stringFromDate(date) 
             
-            weightDateArray.addObject(localDateRightNow)
+            // Save the date that the user entered, or the default date value (of the current date)
+            let formattedDate: String = dateFormatter.stringFromDate(DatePicker.dateValue)
+            
+            weightDateArray.addObject(formattedDate)
             weightValueArray.addObject(EntryField.stringValue)
             
             // Saving the user's entered weight value and current date back to NSUserDefaults
@@ -65,6 +67,9 @@ class PopoverEntryViewController: NSViewController {
             // Fallback on earlier versions
         }
         // Do view setup here.
+        
+        // When view loads, set the date value in the date box to the current date
+        DatePicker.dateValue = NSDate()
     }
     
 }
