@@ -25,6 +25,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     @IBOutlet weak var WeightTableAddButton: NSButton!
     @IBOutlet weak var WeightGoalLabel: NSTextField!
     @IBOutlet weak var ExpectedWeightLabel: NSTextField!
+    @IBOutlet weak var WeightTableDeleteAllButton: NSButton!
     
     let profileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
     var profileInfo: NSMutableDictionary? = nil
@@ -49,17 +50,24 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     }
     
     @IBAction func WeightTableAddButtonClicked(sender: NSButton) {
+        // Initialise popover, and display inside the main window bounds
         WeightEntryPopover = NSPopover()
         WeightEntryPopover?.contentViewController = PopoverEntryViewController(nibName: "PopoverEntryView", bundle: nil)
         WeightEntryPopover?.showRelativeToRect(WeightTableAddButton.bounds, ofView: WeightTableAddButton, preferredEdge: NSRectEdge.MaxY)
         
-        // This sets the popover window to close when the user interacts with anything else
+        // This sets the popover window to close when the user interacts with anything that isn't the popover
         WeightEntryPopover?.behavior = NSPopoverBehavior.Semitransient
 
     }
     
     @IBAction func WeightTableDeleteButtonClicked(sender: NSButton) {
+        // Mode 2 of updating the table (delete selected row)
         self.updateUserWeightData(2)
+    }
+    
+    @IBAction func WeightTableDeleteAllButtonClicked(sender: NSButton) {
+        // Mode 3 of updating the table (delete all rows)
+        self.updateUserWeightData(3)
     }
     
     func updateWeightTable() {
@@ -87,16 +95,36 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     func updateUserWeightData(mode: Int) {
         var rowIndex = 0
         
+        /* Modes:
+        1 = Reload Data only, don't delete anything
+        2 = Delete item at selected row 
+        3 = Delete all rows */
+        
         if mode == 1 {
             WeightTable.reloadData()
-        } else if mode == 2 { // delete selected row in table
+        } else if mode == 2 {
             
             if WeightTable.numberOfSelectedRows == 0 {
                 return
             }
             
             rowIndex = WeightTable.selectedRow
-            WeightTable.removeRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
+            
+            // Fade out the deleted rows
+            WeightTable.removeRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectFade)
+            
+        } else if mode == 3 {
+            
+            // There's nothing to delete if there isn't anything in the table...
+            if WeightTable.numberOfRows == 0 {
+                return
+            } else {
+                // Fade out all rows from table
+                    WeightTable.removeRowsAtIndexes(NSIndexSet(indexesInRange: NSMakeRange(0, WeightTable.numberOfRows)), withAnimation: NSTableViewAnimationOptions.EffectFade)
+                
+            }
+            
+            
         }
 
         self.getProfileData()
@@ -105,14 +133,20 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             self.weightTableArray?.removeObjectAtIndex(rowIndex)
             self.weightTableDateArray?.removeObjectAtIndex(rowIndex)
             
-            // Saving back to persistent storage
-            self.profileInfo?.setObject(weightTableArray!, forKey: "weightValues")
-            self.profileInfo?.setObject(weightTableDateArray!, forKey: "weightValueDates")
-            NSUserDefaults.standardUserDefaults().setObject(self.profileInfo, forKey: "profileInfo\(self.profileName)")
-            NSUserDefaults.standardUserDefaults().synchronize()
+        } else if mode == 3 {
+            // Remove all objects from the weight and weight date arrays
+            self.weightTableArray?.removeAllObjects()
+            self.weightTableDateArray?.removeAllObjects()
             
         }
         
+        // Saving back to persistent storage
+        self.profileInfo?.setObject(weightTableArray!, forKey: "weightValues")
+        self.profileInfo?.setObject(weightTableDateArray!, forKey: "weightValueDates")
+        NSUserDefaults.standardUserDefaults().setObject(self.profileInfo, forKey: "profileInfo\(self.profileName)")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        // Finally, post notification to update the labels on screen (expected weight, on track to meet goal, etc...)
         NSNotificationCenter.defaultCenter().postNotificationName("MainWindowSetupUserNotification", object: nil)
         
         // debugging
@@ -247,7 +281,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             let goalDate: NSDate! = dateFormatter.dateFromString(weightGoalArray?.objectAtIndex(1) as! String)
             
             // The function in Statistical Analysis accepts a String, so convert whatever type of the weight goal value in the array to Swift's primitive type String
-            let goalStringValue: String = String(weightGoalArray?.objectAtIndex(0))
+            let goalStringValue: String = String(weightGoalArray!.objectAtIndex(0))
             
             // Let the user know if they're gonna meet their goal, and then calculate everything else that's needed (expected weight)
             if st.willMeetTarget(goalStringValue, weightGoalDate: goalDate) == true {

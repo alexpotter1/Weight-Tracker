@@ -14,6 +14,7 @@
                 <outlet property="WeightGoalLabel" destination="mpW-uW-T7t" id="a8c-qP-BAi"/>
                 <outlet property="WeightTable" destination="2Bz-LD-h8G" id="ycd-GL-fyt"/>
                 <outlet property="WeightTableAddButton" destination="1T6-cB-7eR" id="SV5-3y-LbX"/>
+                <outlet property="WeightTableDeleteAllButton" destination="adZ-LX-SYh" id="wHw-LU-mkp"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -73,14 +74,14 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Graph" identifier="1" id="uWj-eR-FLf">
-                                <view key="view" ambiguous="YES" id="bH9-17-VgR">
+                                <view key="view" id="bH9-17-VgR">
                                     <rect key="frame" x="10" y="33" width="131" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Information" identifier="2" id="NmS-Gj-3Zt">
-                                <view key="view" id="qqg-8d-y7O">
+                                <view key="view" ambiguous="YES" id="qqg-8d-y7O">
                                     <rect key="frame" x="10" y="33" width="783" height="478"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -257,6 +258,20 @@ CA
                                                 <animations/>
                                             </tableHeaderView>
                                         </scrollView>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adZ-LX-SYh">
+                                            <rect key="frame" x="38" y="22" width="64" height="23"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="smallSquare" title="Delete All" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zNN-L3-4ht">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="WeightTableDeleteAllButtonClicked:" target="-2" id="9Lk-gX-ZbE"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                 </view>
