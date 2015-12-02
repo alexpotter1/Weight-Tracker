@@ -231,7 +231,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
                 } else {
                     
                     // Display expected weight value, round to 2 decimal places
-                    ExpectedWeightLabel.stringValue = String(format: "%.2f", nextValue) + self.weightUnit!
+                    ExpectedWeightLabel.stringValue = String(format: "%.1f", nextValue) + self.weightUnit!
                 }
             }
         } else {

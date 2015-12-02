@@ -21,6 +21,7 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
     var InitialWC: InitialWindowController? = nil
     
     let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
+    let fontManager = NSFontManager.sharedFontManager()
     
     // Connecting IB objects to code
     @IBOutlet weak var WeightUnitBox: NSPopUpButton!
@@ -127,17 +128,22 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
             }
             // Saving shortened value to NSUserDefaults, and also update the labels by the weight goal boxes to reflect the change
             profileInfoDictionary!.removeObjectForKey("weightUnit")
+            
+
             switch selectedItem! {
                 case "Kilograms (kg)":
                     self.profileInfoDictionary!.setValue("kg", forKey: "weightUnit")
-                    WeightGoalUnitMajor.stringValue = "kg"
-                    WeightGoalUnitMinor.stringValue = "100g by"
+                    WeightGoalUnitMajor.stringValue = " . "
+                    WeightGoalUnitMajor.font = fontManager.convertFont(WeightGoalUnitMajor.font!, toSize: 18)
+                    WeightGoalUnitMinor.stringValue = "kg by"
                 case "Pounds (lbs)":
                     self.profileInfoDictionary!.setValue("lbs", forKey: "weightUnit")
-                    WeightGoalUnitMajor.stringValue = "lbs"
-                    WeightGoalUnitMinor.stringValue = "oz by"
+                    WeightGoalUnitMajor.stringValue = " . "
+                    WeightGoalUnitMajor.font = fontManager.convertFont(WeightGoalUnitMajor.font!, toSize: 18)
+                    WeightGoalUnitMinor.stringValue = "lbs by"
                 case "Stone & Pounds (st lbs)":
                     self.profileInfoDictionary!.setValue("st lbs", forKey: "weightUnit")
+                    WeightGoalUnitMajor.font = fontManager.convertFont(WeightGoalUnitMajor.font!, toSize: 13)
                     WeightGoalUnitMajor.stringValue = "st"
                     WeightGoalUnitMinor.stringValue = "lbs by"
                 default: break
@@ -191,12 +197,14 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
         switch profileInfoDictionary?.valueForKey("weightUnit") as! String {
             case "kg":
                 WeightUnitBox.selectItemAtIndex(0)
-                WeightGoalUnitMajor.stringValue = "kg"
-                WeightGoalUnitMinor.stringValue = "100g by"
+                WeightGoalUnitMajor.stringValue = " . "
+                WeightGoalUnitMajor.font = fontManager.convertFont(WeightGoalUnitMajor.font!, toSize: 18)
+                WeightGoalUnitMinor.stringValue = "kg by"
             case "lbs":
                 WeightUnitBox.selectItemAtIndex(1)
-                WeightGoalUnitMajor.stringValue = "lbs"
-                WeightGoalUnitMinor.stringValue = "oz by"
+                WeightGoalUnitMajor.stringValue = " . "
+                WeightGoalUnitMajor.font = fontManager.convertFont(WeightGoalUnitMajor.font!, toSize: 18)
+                WeightGoalUnitMinor.stringValue = "lbs by"
             case "st lbs":
                 WeightUnitBox.selectItemAtIndex(2)
                 WeightGoalUnitMajor.stringValue = "st"

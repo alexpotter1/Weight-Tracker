@@ -74,14 +74,14 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Graph" identifier="1" id="uWj-eR-FLf">
-                                <view key="view" id="bH9-17-VgR">
+                                <view key="view" ambiguous="YES" id="bH9-17-VgR">
                                     <rect key="frame" x="10" y="33" width="131" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Information" identifier="2" id="NmS-Gj-3Zt">
-                                <view key="view" ambiguous="YES" id="qqg-8d-y7O">
+                                <view key="view" id="qqg-8d-y7O">
                                     <rect key="frame" x="10" y="33" width="783" height="478"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>

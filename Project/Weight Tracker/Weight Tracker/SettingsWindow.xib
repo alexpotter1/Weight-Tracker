@@ -110,7 +110,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qvf-Ga-UiM">
-                        <rect key="frame" x="210" y="61" width="58" height="22"/>
+                        <rect key="frame" x="189" y="61" width="58" height="22"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="A9E-dN-zuF">
                             <font key="font" metaFont="system"/>
@@ -122,7 +122,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TW1-dR-IEt">
-                        <rect key="frame" x="169" y="64" width="41" height="17"/>
+                        <rect key="frame" x="170" y="61" width="41" height="20"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="GoD-Tg-ayZ">
                             <font key="font" metaFont="system"/>
@@ -131,7 +131,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJW-VM-xUC">
-                        <rect key="frame" x="272" y="64" width="54" height="17"/>
+                        <rect key="frame" x="250" y="64" width="54" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u by" id="iQn-OI-bcL">
                             <font key="font" metaFont="system"/>
@@ -140,7 +140,7 @@
                         </textFieldCell>
                     </textField>
                     <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sev-cQ-mbD">
-                        <rect key="frame" x="332" y="61" width="139" height="27"/>
+                        <rect key="frame" x="303" y="61" width="139" height="27"/>
                         <animations/>
                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="S0A-3V-xGa">
                             <font key="font" metaFont="system"/>
