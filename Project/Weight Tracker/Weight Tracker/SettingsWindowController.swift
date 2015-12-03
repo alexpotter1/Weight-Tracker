@@ -134,6 +134,7 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
                 case "Kilograms (kg)":
                     self.profileInfoDictionary!.setValue("kg", forKey: "weightUnit")
                     WeightGoalUnitMajor.stringValue = " . "
+                    // Adjust the size of the font so it doesn't look weird (for every weight value)
                     WeightGoalUnitMajor.font = fontManager.convertFont(WeightGoalUnitMajor.font!, toSize: 18)
                     WeightGoalUnitMinor.stringValue = "kg by"
                 case "Pounds (lbs)":

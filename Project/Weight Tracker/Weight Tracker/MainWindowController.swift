@@ -73,7 +73,9 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     func updateWeightTable() {
         self.updateUserWeightData(0)
         let rowIndex = self.weightTableArray!.count - 1
+        self.WeightTable.beginUpdates()
         self.WeightTable.insertRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
+        self.WeightTable.endUpdates()
         
     }
     
@@ -126,7 +128,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             
             
         }
-
+        
         self.getProfileData()
         
         if mode == 2 { // deleting row's value in array

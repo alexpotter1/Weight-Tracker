@@ -8,7 +8,11 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PopoverEntryViewController" customModule="Weight_Tracker" customModuleProvider="target">
             <connections>
                 <outlet property="DatePicker" destination="uyb-To-bMA" id="vC1-P7-1gH"/>
-                <outlet property="EntryField" destination="0gj-aU-g2T" id="GUj-qK-JKj"/>
+                <outlet property="DecimalButton" destination="cgI-cb-MPM" id="xEA-HN-dP8"/>
+                <outlet property="WeightMajorEntryField" destination="0gj-aU-g2T" id="hEd-42-C70"/>
+                <outlet property="WeightMinorEntryField" destination="0Zq-QO-ODu" id="dc4-ZZ-QXc"/>
+                <outlet property="WeightUnitMajor" destination="3GA-OG-5B0" id="gk7-6Q-mEM"/>
+                <outlet property="WeightUnitMinor" destination="Aiz-SC-e9i" id="FRm-PT-D2K"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -33,7 +37,7 @@
                     <rect key="frame" x="6" y="255" width="37" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date" id="ycd-LO-mcl">
-                        <font key="font" metaFont="systemBold" size="11"/>
+                        <font key="font" metaFont="smallSystemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -186,7 +190,7 @@
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0pL-vB-glI">
                     <rect key="frame" x="0.0" y="-1" width="61" height="45"/>
                     <animations/>
-                    <buttonCell key="cell" type="smallSquare" title="C" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ThC-9m-7BI">
+                    <buttonCell key="cell" type="smallSquare" title="AC" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ThC-9m-7BI">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                         <string key="keyEquivalent" base64-UTF8="YES">
@@ -198,12 +202,39 @@ CA
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0gj-aU-g2T">
-                    <rect key="frame" x="0.0" y="176" width="183" height="48"/>
+                    <rect key="frame" x="0.0" y="176" width="61" height="48"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="DLN-DQ-m8X">
                         <font key="font" metaFont="system" size="25"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Zq-QO-ODu">
+                    <rect key="frame" x="95" y="176" width="61" height="48"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="NUv-QJ-XDC">
+                        <font key="font" metaFont="system" size="25"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3GA-OG-5B0">
+                    <rect key="frame" x="63" y="176" width="34" height="26"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="72E-mY-Juh">
+                        <font key="font" metaFont="systemHeavy" size="12"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aiz-SC-e9i">
+                    <rect key="frame" x="157" y="176" width="28" height="26"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="\u" id="ZPb-kt-6xM">
+                        <font key="font" metaFont="systemHeavy" size="12"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
