@@ -584,7 +584,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/alex/Documents/Computing Coursework F454/Project/Weight Tracker/Weight Tracker/Weight_Tracker_Bridging_Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Weight Tracker/Weight_Tracker_Bridging_Header.h";
 			};
 			name = Debug;
 		};
@@ -602,7 +602,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/alex/Documents/Computing Coursework F454/Project/Weight Tracker/Weight Tracker/Weight_Tracker_Bridging_Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Weight Tracker/Weight_Tracker_Bridging_Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
@@ -616,7 +616,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-TrackerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/alex/Documents/Computing Coursework F454/Project/Weight Tracker/Weight Tracker/Weight_Tracker_Bridging_Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Weight Tracker/Weight_Tracker_Bridging_Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weight Tracker.app/Contents/MacOS/Weight Tracker";
 			};
 			name = Debug;
@@ -630,7 +630,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-TrackerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/alex/Documents/Computing Coursework F454/Project/Weight Tracker/Weight Tracker/Weight_Tracker_Bridging_Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Weight Tracker/Weight_Tracker_Bridging_Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weight Tracker.app/Contents/MacOS/Weight Tracker";
 			};
 			name = Release;
@@ -643,6 +643,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Weight Tracker/Weight_Tracker_Bridging_Header.h";
 				TEST_TARGET_NAME = "Weight Tracker";
 				USES_XCTRUNNER = YES;
 			};
@@ -656,6 +657,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AlexPotter.Weight-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Weight Tracker/Weight_Tracker_Bridging_Header.h";
 				TEST_TARGET_NAME = "Weight Tracker";
 				USES_XCTRUNNER = YES;
 			};
