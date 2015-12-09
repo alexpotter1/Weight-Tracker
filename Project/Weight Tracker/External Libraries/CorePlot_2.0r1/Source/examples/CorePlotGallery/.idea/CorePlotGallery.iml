@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CIDR_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../../License.txt">
+      <sourceFolder url="file://$MODULE_DIR$/../../License.txt" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../documentation/doxygen/DoxygenLayout.xml">
+      <sourceFolder url="file://$MODULE_DIR$/../../documentation/doxygen/DoxygenLayout.xml" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../documentation/doxygen/doxygen touch.config">
+      <sourceFolder url="file://$MODULE_DIR$/../../documentation/doxygen/doxygen touch.config" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../documentation/doxygen/doxygen-cocoa-touch-tags.xml">
+      <sourceFolder url="file://$MODULE_DIR$/../../documentation/doxygen/doxygen-cocoa-touch-tags.xml" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$/../iOS Rotation Utilities/UINavigationController+LegacyRotation.h">
+      <sourceFolder url="file://$MODULE_DIR$/../iOS Rotation Utilities/UINavigationController+LegacyRotation.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../iOS Rotation Utilities/UINavigationController+LegacyRotation.m">
+      <sourceFolder url="file://$MODULE_DIR$/../iOS Rotation Utilities/UINavigationController+LegacyRotation.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../iOS Rotation Utilities/UIViewController+LegacyRotation.h">
+      <sourceFolder url="file://$MODULE_DIR$/../iOS Rotation Utilities/UIViewController+LegacyRotation.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../iOS Rotation Utilities/UIViewController+LegacyRotation.m">
+      <sourceFolder url="file://$MODULE_DIR$/../iOS Rotation Utilities/UIViewController+LegacyRotation.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../framework">
+      <sourceFolder url="file://$MODULE_DIR$/../../framework" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
+
