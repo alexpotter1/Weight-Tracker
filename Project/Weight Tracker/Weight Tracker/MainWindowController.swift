@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableViewDataSource {
+class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableViewDataSource, NSTabViewDelegate {
     
     // Keep an optional reference to window controllers
     var initVC: InitialWindowController? = nil
@@ -26,11 +26,17 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     @IBOutlet weak var WeightGoalLabel: NSTextField!
     @IBOutlet weak var ExpectedWeightLabel: NSTextField!
     @IBOutlet weak var WeightTableDeleteAllButton: NSButton!
+    @IBOutlet weak var WindowTabView: NSTabView!
+    
+    // From the Graph tab
+    @IBOutlet weak var WindowGraphTab: NSTabViewItem!
+    @IBOutlet weak var GraphView: CPTGraphHostingView!
     
     let profileName = NSUserDefaults.standardUserDefaults().objectForKey("currentUser") as! String
     var profileInfo: NSMutableDictionary? = nil
     var weightTableArray: NSMutableArray? = nil
     var weightTableDateArray: NSMutableArray? = nil
+    let dateFormatter = NSDateFormatter()
     
     var weightUnit: String? = nil
     
@@ -68,6 +74,111 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     @IBAction func WeightTableDeleteAllButtonClicked(sender: NSButton) {
         // Mode 3 of updating the table (delete all rows)
         self.updateUserWeightData(3)
+    }
+    
+    func updateGraph() {
+        // Initialise graph and data source
+        let graph = CPTXYGraph(frame: self.GraphView.bounds)
+        graph.plotAreaFrame?.masksToBorder = true
+        self.GraphView.hostedGraph = graph
+        self.GraphView.allowPinchScaling = true
+        
+        let graphSource = GraphDataSource(_dateArray: self.weightTableDateArray!, _weightArray: self.weightTableArray!)
+        
+        // Configure graph
+        graph.applyTheme(CPTTheme(named: kCPTPlainWhiteTheme))
+        graph.paddingBottom = 0.0
+        graph.paddingTop = 0.0
+        graph.paddingLeft = 0.0
+        graph.paddingRight = 0.0
+        
+        // Set text, axis styles and configure graph's axis
+        let titleStyle: CPTMutableTextStyle = CPTMutableTextStyle()
+        titleStyle.color = CPTColor.blackColor()
+        titleStyle.fontName = "HelveticaNeue-Light"
+        titleStyle.fontSize = 14.0
+        
+        let axisTitleStyle: CPTMutableTextStyle = CPTMutableTextStyle()
+        axisTitleStyle.color = CPTColor.blackColor()
+        axisTitleStyle.fontName = "HelveticaNeue-Bold"
+        axisTitleStyle.fontSize = 12.0
+        
+        let axisSet = self.GraphView.hostedGraph?.axisSet!
+        
+        let xAxis: CPTXYAxis = (axisSet!.axes! as! [CPTXYAxis])[0]
+        xAxis.title = "ln(time interval)"
+        xAxis.titleTextStyle = axisTitleStyle
+        xAxis.titleOffset = 6.0
+        xAxis.labelingPolicy = CPTAxisLabelingPolicy.None
+        xAxis.orthogonalPosition = 0.0
+        //xAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(30.0)
+        
+        let yAxis: CPTXYAxis = (axisSet!.axes! as! [CPTXYAxis])[1]
+        yAxis.title = "weight"
+        yAxis.titleTextStyle = axisTitleStyle
+        yAxis.titleOffset = 6.0
+        yAxis.labelingPolicy = CPTAxisLabelingPolicy.None
+        yAxis.orthogonalPosition = 0.0
+        //yAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(30.0)
+        
+        // Set title of graph
+        let title = "Weight Graph"
+        graph.title = title
+        graph.titleTextStyle = titleStyle
+        graph.titlePlotAreaFrameAnchor = CPTRectAnchor.Top
+        graph.titleDisplacement = CGPointMake(0.0, -8.0)
+        
+        // Create plot and set line style
+        let lineStyle = CPTMutableLineStyle()
+        lineStyle.lineColor = CPTColor.blueColor()
+        lineStyle.lineWidth = 1.8
+        
+        let scatter = CPTScatterPlot(frame: self.GraphView.bounds)
+        scatter.dataSource = graphSource
+        scatter.identifier = "actual"
+        scatter.dataLineStyle = lineStyle
+        
+        graph.addPlot(scatter)
+        
+        // Set plot space
+        /*let doubleWeights: [Double] = (self.weightTableArray?.map( {$0.doubleValue!} ))! // Convert string weights to doubles
+        let xMin: NSNumber = 0.0
+        let xMax: NSNumber = NSNumber(integer: (self.weightTableArray?.count)!)
+        let yMin: NSNumber = 0.0
+        let yMax: NSNumber = 0.0
+        
+        if doubleWeights.maxElement() != nil {
+            let yMax: NSNumber = NSNumber(double: doubleWeights.maxElement()!) // Get max double value from weight array
+        } */
+        
+        let plotSpace: CPTXYPlotSpace = graph.defaultPlotSpace! as! CPTXYPlotSpace
+        
+        // Allow user to scroll through the graph, and decelerate the scrolling nicely
+        plotSpace.allowsUserInteraction = true
+        plotSpace.allowsMomentum = true
+        
+        /*let xRange = plotSpace.xRange.mutableCopy() as! CPTMutablePlotRange
+        let yRange = plotSpace.xRange.mutableCopy() as! CPTMutablePlotRange
+        
+        xRange.expandRangeByFactor(1.5)
+        yRange.expandRangeByFactor(1.5)
+        
+        plotSpace.xRange = xRange
+        plotSpace.yRange = yRange*/
+        
+        plotSpace.scaleToFitPlots(graph.allPlots())
+        
+        //plotSpace.xRange = CPTPlotRange(location: 0.0, length: 5.0)
+        //plotSpace.yRange = CPTPlotRange(location: 1.0, length: 5.0)
+    }
+    
+    // This function is called whenever a tab is clicked.
+    /* This runs a function to update the graph whenever the user clicks on the 'Graph' tab.
+    The graph is only initialised when the user clicks the tab, so potentially this is more efficient? */
+    func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
+        if ((tabViewItem?.isEqualTo(WindowGraphTab)) != nil) {
+            self.updateGraph()
+        }
     }
     
     func updateWeightTable() {
@@ -212,7 +323,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         stat.RegressionAnalysis()
         
         // Get last date from array
-        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE, d MMM yyyy"
         
         // Checking if there are any values in the array first (otherwise it doesn't compile)
@@ -278,7 +388,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             let st = StatisticalAnalysis(_dateArray: self.weightTableDateArray!, _weightArray: self.weightTableArray!)
             
             // Convert string to date first
-            let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "EEE, d MMM yyyy"
             let goalDate: NSDate! = dateFormatter.dateFromString(weightGoalArray?.objectAtIndex(1) as! String)
             
