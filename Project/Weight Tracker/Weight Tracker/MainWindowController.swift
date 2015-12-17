@@ -78,6 +78,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     
     func updateGraph() {
         // Initialise graph and data source
+        self.getProfileData()
         let graph = CPTXYGraph(frame: self.GraphView.bounds)
         graph.plotAreaFrame?.masksToBorder = true
         self.GraphView.hostedGraph = graph
@@ -91,6 +92,8 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         graph.paddingTop = 0.0
         graph.paddingLeft = 0.0
         graph.paddingRight = 0.0
+        
+        graph.plotAreaFrame?.paddingLeft = -45.0
         
         // Set text, axis styles and configure graph's axis
         let titleStyle: CPTMutableTextStyle = CPTMutableTextStyle()
@@ -106,20 +109,19 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         let axisSet = self.GraphView.hostedGraph?.axisSet!
         
         let xAxis: CPTXYAxis = (axisSet!.axes! as! [CPTXYAxis])[0]
-        xAxis.title = "ln(time interval)"
+        xAxis.title = "date"
         xAxis.titleTextStyle = axisTitleStyle
-        xAxis.titleOffset = 6.0
-        xAxis.labelingPolicy = CPTAxisLabelingPolicy.None
-        xAxis.orthogonalPosition = 0.0
-        //xAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(30.0)
+        xAxis.titleOffset = 22.0
+        xAxis.labelingPolicy = CPTAxisLabelingPolicy.Automatic
+        xAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(45.0)
         
         let yAxis: CPTXYAxis = (axisSet!.axes! as! [CPTXYAxis])[1]
         yAxis.title = "weight"
         yAxis.titleTextStyle = axisTitleStyle
-        yAxis.titleOffset = 6.0
-        yAxis.labelingPolicy = CPTAxisLabelingPolicy.None
+        yAxis.titleOffset = 30.0
+        yAxis.labelingPolicy = CPTAxisLabelingPolicy.Automatic
         yAxis.orthogonalPosition = 0.0
-        //yAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(30.0)
+        //yAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(40.0)
         
         // Set title of graph
         let title = "Weight Graph"
@@ -141,35 +143,22 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         graph.addPlot(scatter)
         
         // Set plot space
-        /*let doubleWeights: [Double] = (self.weightTableArray?.map( {$0.doubleValue!} ))! // Convert string weights to doubles
-        let xMin: NSNumber = 0.0
-        let xMax: NSNumber = NSNumber(integer: (self.weightTableArray?.count)!)
-        let yMin: NSNumber = 0.0
-        let yMax: NSNumber = 0.0
-        
-        if doubleWeights.maxElement() != nil {
-            let yMax: NSNumber = NSNumber(double: doubleWeights.maxElement()!) // Get max double value from weight array
-        } */
-        
         let plotSpace: CPTXYPlotSpace = graph.defaultPlotSpace! as! CPTXYPlotSpace
         
-        // Allow user to scroll through the graph, and decelerate the scrolling nicely
-        plotSpace.allowsUserInteraction = true
-        plotSpace.allowsMomentum = true
-        
-        /*let xRange = plotSpace.xRange.mutableCopy() as! CPTMutablePlotRange
-        let yRange = plotSpace.xRange.mutableCopy() as! CPTMutablePlotRange
-        
-        xRange.expandRangeByFactor(1.5)
-        yRange.expandRangeByFactor(1.5)
-        
-        plotSpace.xRange = xRange
-        plotSpace.yRange = yRange*/
+        // Explicitly not allowing the user to scroll through the graph
+        plotSpace.allowsUserInteraction = false
         
         plotSpace.scaleToFitPlots(graph.allPlots())
         
-        //plotSpace.xRange = CPTPlotRange(location: 0.0, length: 5.0)
-        //plotSpace.yRange = CPTPlotRange(location: 1.0, length: 5.0)
+        let xRange = plotSpace.xRange.mutableCopy() as! CPTMutablePlotRange
+        let yRange = plotSpace.yRange.mutableCopy() as! CPTMutablePlotRange
+        
+        xRange.expandRangeByFactor(1.4)
+        yRange.expandRangeByFactor(1.4)
+        
+        plotSpace.xRange = xRange
+        plotSpace.yRange = yRange
+        
     }
     
     // This function is called whenever a tab is clicked.

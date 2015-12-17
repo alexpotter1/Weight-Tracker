@@ -87,8 +87,10 @@ public class StatisticalAnalysis {
         let weightGoalTimeInterval: Double = weightGoalDate.timeIntervalSinceReferenceDate 
         let predictedWeightAtGoal = (lineValues[0] * weightGoalTimeInterval) + lineValues[1]
         
-        if predictedWeightAtGoal > weightGoal {
+        if predictedWeightAtGoal >= weightGoal {
             return false
+        } else if predictedWeightAtGoal == weightGoal {
+            return true
         } else {
             return true
         }
