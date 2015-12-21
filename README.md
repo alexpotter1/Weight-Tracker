@@ -25,6 +25,8 @@ The Apache License is located in the LICENSE folder at the root of this reposito
 
 #### Core Plot license notice
 The external library 'Core Plot' is used in this project, so credit is given where applicable.
+
+Their source can be found at:
 https://github.com/core-plot/core-plot
 > Copyright (c) 2015, Drew McCormack, Brad Larson, Eric Skroch, Barry Wark, Dirkjan Krijnders, Rick Maddy, Vijay Kalusani, Caleb Cannon, Jeff Buck, Thomas Elstner, Jeroen Leenarts, Craig Hockenberry, Hartwig Wiesmann, Koen van der Drift, Nino Ag, Mike Lischke, Trevor Harmon, Travis Fischer, Graham Mueller, Rafał Wójcik, Mike Rossetti, Michael Merickel, Lane Roathe, Ingmar Stein, Sean Holbert, Victor Martin Garcia, Jérôme Morissard, and Demitri Muna.
 All rights reserved.
