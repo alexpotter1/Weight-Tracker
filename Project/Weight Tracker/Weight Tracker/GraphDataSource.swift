@@ -10,6 +10,7 @@
 import Cocoa
 
 class GraphDataSource: NSObject, CPTPlotDataSource {
+    private var shortDateArray: NSArray
     private var dateArray:  NSArray
     private var dateArrayIntervals: NSArray = []
     private var weightArray: NSMutableArray
@@ -23,6 +24,9 @@ class GraphDataSource: NSObject, CPTPlotDataSource {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEE, d MMM yyyy"
         dateArray = NSArray(array: _dateArray.map( {formatter.dateFromString($0 as! String)!} ))
+        
+        formatter.dateFormat = "dd/MM/yyyy"
+        shortDateArray = NSArray(array: dateArray.map( {formatter.stringFromDate($0 as! NSDate)} ))
         
         // For some reason, superclass init has to go here, I don't know why
         super.init()
@@ -51,7 +55,6 @@ class GraphDataSource: NSObject, CPTPlotDataSource {
             
             x = dateArrayIntervals.objectAtIndex(Int(idx)).doubleValue.roundToDecimalPlaces(3) as NSNumber
             y = weightArray.objectAtIndex(Int(idx)).doubleValue.roundToDecimalPlaces(3) as NSNumber
-            print("\(x), \(y)")
             
             return (fieldEnum == UInt(CPTScatterPlotField.X.rawValue) ? x : y)
             
@@ -59,6 +62,27 @@ class GraphDataSource: NSObject, CPTPlotDataSource {
             return 0
         }
             
+    }
+    
+    @objc func dataLabelForPlot(plot: CPTPlot, recordIndex idx: UInt) -> CPTLayer? {
+        var x: AnyObject = idx
+        var y: Double = 0.0
+        
+        if plot.identifier?.description == "actual" {
+            if dateArray.count == 0 {
+                return nil
+            }
+            
+            x = shortDateArray.objectAtIndex(Int(idx)) as! String
+            y = weightArray.objectAtIndex(Int(idx)).doubleValue
+            
+            let layer = CPTLayer(frame: CGRectMake(0, 0, 200, 25))
+            let textLayer = CPTTextLayer(text: "\(x), \(y)")
+            layer.addSublayer(textLayer)
+            return layer
+        } else {
+            return nil
         }
     }
+}
 
