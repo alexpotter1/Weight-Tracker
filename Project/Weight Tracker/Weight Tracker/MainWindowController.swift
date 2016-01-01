@@ -137,15 +137,15 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         let xAxis: CPTXYAxis = (axisSet!.axes! as! [CPTXYAxis])[0]
         xAxis.title = "date"
         xAxis.titleTextStyle = axisTitleStyle
-        xAxis.titleOffset = 22.0
-        xAxis.labelingPolicy = CPTAxisLabelingPolicy.Automatic
-        xAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(45.0)
+        xAxis.titleOffset = 8.0
+        xAxis.labelingPolicy = CPTAxisLabelingPolicy.None
+        xAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(30.0)
         
         let yAxis: CPTXYAxis = (axisSet!.axes! as! [CPTXYAxis])[1]
         yAxis.title = "weight"
         yAxis.titleTextStyle = axisTitleStyle
         yAxis.titleOffset = 30.0
-        yAxis.labelingPolicy = CPTAxisLabelingPolicy.Automatic
+        yAxis.labelingPolicy = CPTAxisLabelingPolicy.None
         yAxis.orthogonalPosition = 0.0
         //yAxis.axisConstraints = CPTConstraints.constraintWithLowerOffset(40.0)
         
@@ -161,6 +161,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         lineStyle.lineColor = CPTColor.blueColor()
         lineStyle.lineWidth = 1.8
         
+        // Create scatter graph and set data source
         let scatter = CPTScatterPlot(frame: self.GraphView.bounds)
         scatter.dataSource = graphSource
         scatter.identifier = "actual"
