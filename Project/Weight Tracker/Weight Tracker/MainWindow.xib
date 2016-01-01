@@ -16,6 +16,7 @@
                 <outlet property="WeightTable" destination="2Bz-LD-h8G" id="ycd-GL-fyt"/>
                 <outlet property="WeightTableAddButton" destination="1T6-cB-7eR" id="SV5-3y-LbX"/>
                 <outlet property="WeightTableDeleteAllButton" destination="adZ-LX-SYh" id="wHw-LU-mkp"/>
+                <outlet property="WeightTableEditButton" destination="xcZ-c6-qNs" id="ecg-5n-6TB"/>
                 <outlet property="WindowGraphTab" destination="uWj-eR-FLf" id="Tpi-Qs-eE5"/>
                 <outlet property="WindowTabView" destination="ecG-zz-eZZ" id="43m-qq-opr"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -255,6 +256,19 @@ CA
                                             </buttonCell>
                                             <connections>
                                                 <action selector="WeightTableDeleteAllButtonClicked:" target="-2" id="9Lk-gX-ZbE"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xcZ-c6-qNs">
+                                            <rect key="frame" x="272" y="23" width="30" height="21"/>
+                                            <buttonCell key="cell" type="smallSquare" title="Edit" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D5b-J8-tcX">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="WeightTableEditButtonClicked:" target="-2" id="XOX-BN-L1g"/>
                                             </connections>
                                         </button>
                                     </subviews>

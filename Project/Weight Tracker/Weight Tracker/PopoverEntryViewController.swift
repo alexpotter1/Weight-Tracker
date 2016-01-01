@@ -28,6 +28,11 @@ class PopoverEntryViewController: NSViewController {
     private var MinorEntryFieldLocked: Bool?
     private var MajorEntryFieldLocked: Bool?
     
+    /* This is a boolean to let the class know if the record selected is editable (that the user wants to edit it), otherwise we can just
+    add/remove the record as normal.
+    Initially, set this to false so that adding/deleting record code is minimally affected. */
+    private var EditableRecord: Bool = false
+    
     @IBAction func DoneButtonPressed(sender: NSButton) {
         if !(WeightMajorEntryField.stringValue.isEmpty) || !(WeightMinorEntryField.stringValue.isEmpty) {
         
@@ -55,9 +60,15 @@ class PopoverEntryViewController: NSViewController {
             NSUserDefaults.standardUserDefaults().setObject(profileInfoDictionary!, forKey: "profileInfo\(profileName!)")
             NSUserDefaults.standardUserDefaults().synchronize()
             
-            // Sends a notification through the first responder chain to the first class that implements a method that matches the selector ("updateWeightTable")
-            // In this case, it should be MainWindowController
-            NSApplication.sharedApplication().sendAction("updateWeightTable", to: nil, from: nil)
+            if EditableRecord == false {
+                // Sends a notification through the first responder chain to the first class that implements a method that matches the selector ("updateWeightTable")
+                // In this case, it should be MainWindowController
+                NSApplication.sharedApplication().sendAction("updateWeightTable", to: nil, from: nil)
+            } else {
+                // Post a notification to reload the data of the table view (in MainWindowController)
+                NSNotificationCenter.defaultCenter().postNotificationName("UpdateUserData", object: nil, userInfo: ["mode": 2])
+                NSApplication.sharedApplication().sendAction("updateWeightTable", to: nil, from: nil)
+            }
             
         }
         // We want to return to the main window after pressing 'Done'
@@ -92,6 +103,25 @@ class PopoverEntryViewController: NSViewController {
         // Also, reset locking mechanism to default state (major field is editable, minor field isn't)
         MajorEntryFieldLocked = false
         MinorEntryFieldLocked = true
+    }
+    
+    func setupEditableRecord(editableWeight: Double?, editableDate: NSDate?) {
+        // Check that function parameters aren't nil to prevent crashing
+        if let weight = editableWeight {
+            // Set weight values in boxes to record's weight
+            let weightComponentArray = String(weight).componentsSeparatedByString(".")
+            WeightMajorEntryField.stringValue = weightComponentArray[0]
+            WeightMinorEntryField.stringValue = weightComponentArray[1]
+        }
+        
+        if let date = editableDate {
+            // Set date picker to record's date
+            DatePicker.dateValue = date
+        }
+        
+        // Mark the record as editable (so update record rather than add/remove)
+        EditableRecord = true
+        
     }
     
 

@@ -14,6 +14,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     var initVC: InitialWindowController? = nil
     var SettingsController: SettingsWindowController? = nil
     var WeightEntryPopover: NSPopover? = nil
+    var PopoverEntryController: PopoverEntryViewController? = nil
     
     let devSettings = DeveloperSettings(DebugPrintingEnabled: false, DebugDeleteDBEnabled: false)
     
@@ -26,6 +27,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     @IBOutlet weak var WeightGoalLabel: NSTextField!
     @IBOutlet weak var ExpectedWeightLabel: NSTextField!
     @IBOutlet weak var WeightTableDeleteAllButton: NSButton!
+    @IBOutlet weak var WeightTableEditButton: NSButton!
     @IBOutlet weak var WindowTabView: NSTabView!
     
     // From the Graph tab
@@ -74,6 +76,30 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     @IBAction func WeightTableDeleteAllButtonClicked(sender: NSButton) {
         // Mode 3 of updating the table (delete all rows)
         self.updateUserWeightData(3)
+    }
+    
+    @IBAction func WeightTableEditButtonClicked(sender: NSButton) {
+        // First, update data and set date format for date formatter
+        self.getProfileData()
+        dateFormatter.dateFormat = "EEE, d MMM yyyy"
+        
+        // Get selected index of record
+        let selectedRecordIndex: Int = WeightTable.selectedRow
+        
+        // The record index *shouldn't* be larger than the array, but check if it is anyway
+        if (selectedRecordIndex < self.weightTableArray?.count) || (selectedRecordIndex < self.weightTableDateArray?.count) {
+            // Grab weight/date values from persistent storage corresponding to that selected record
+            let recordWeight = self.weightTableArray?.objectAtIndex(selectedRecordIndex)
+            let recordDate: NSDate! = dateFormatter.dateFromString((self.weightTableDateArray?.objectAtIndex(selectedRecordIndex))! as! String)
+            
+            // Initialise popover for weight entry; mark record as editable (setup fields accordingly)
+            WeightEntryPopover = NSPopover()
+            PopoverEntryController = PopoverEntryViewController(nibName: "PopoverEntryView", bundle: nil)
+            WeightEntryPopover?.contentViewController = PopoverEntryController
+            WeightEntryPopover?.showRelativeToRect(WeightTableEditButton.bounds, ofView: WeightTableEditButton, preferredEdge: NSRectEdge.MaxY)
+            
+            PopoverEntryController?.setupEditableRecord(recordWeight as? Double, editableDate: recordDate)
+        }
     }
     
     func updateGraph() {
@@ -179,8 +205,13 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         
     }
     
+    // Publicly accessible notification function (to modify the table view)
     func updateUserNotification(notification: NSNotification) {
-        self.updateUserWeightData(1)
+        if let userInfo = notification.userInfo {
+            self.updateUserWeightData((userInfo as NSDictionary).objectForKey("mode") as! Int)
+        } else {
+            self.updateUserWeightData(1)
+        }
     }
     
     func getProfileData() {
@@ -197,14 +228,17 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
     func updateUserWeightData(mode: Int) {
         var rowIndex = 0
         
+        self.getProfileData()
+        
         /* Modes:
         1 = Reload Data only, don't delete anything
         2 = Delete item at selected row 
         3 = Delete all rows */
         
         if mode == 1 {
-            WeightTable.reloadData()
+            self.WeightTable.reloadData()
         } else if mode == 2 {
+            print("hi")
             
             if WeightTable.numberOfSelectedRows == 0 {
                 return
@@ -228,8 +262,6 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             
             
         }
-        
-        self.getProfileData()
         
         if mode == 2 { // deleting row's value in array
             self.weightTableArray?.removeObjectAtIndex(rowIndex)
