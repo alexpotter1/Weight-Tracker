@@ -32,6 +32,8 @@ class PopoverEntryViewController: NSViewController {
     add/remove the record as normal.
     Initially, set this to false so that adding/deleting record code is minimally affected. */
     private var EditableRecord: Bool = false
+    private var EditableWeight: Double = 0.0
+    private var EditableIndex: Int = 0
     
     @IBAction func DoneButtonPressed(sender: NSButton) {
         if !(WeightMajorEntryField.stringValue.isEmpty) || !(WeightMinorEntryField.stringValue.isEmpty) {
@@ -48,8 +50,6 @@ class PopoverEntryViewController: NSViewController {
             // Save the date that the user entered, or the default date value (of the current date)
             let formattedDate: String = dateFormatter.stringFromDate(DatePicker.dateValue)
             
-            weightDateArray.addObject(formattedDate)
-            
             // Is the second weight box (minor box) empty? If it is, add a zero (to stop garbage values in calculations).
             if WeightMinorEntryField.stringValue.isEmpty {
                 WeightMinorEntryField.stringValue = "0"
@@ -57,7 +57,19 @@ class PopoverEntryViewController: NSViewController {
         
             // Concatenating the values of both boxes
             let joinedWeightValue = WeightMajorEntryField.stringValue + "." + WeightMinorEntryField.stringValue
-            weightValueArray.addObject(joinedWeightValue)
+            
+            // Replace the record if we are editing, otherwise just add to the end
+            if EditableRecord == false {
+                weightDateArray.addObject(formattedDate)
+                weightValueArray.addObject(joinedWeightValue)
+            } else {
+                // Get index of record that we are replacing
+                EditableIndex = weightValueArray.indexOfObject(String(EditableWeight))
+                
+                // Replace the record's data in both arrays at the same index (since both arrays should contain the same amount of data)
+                weightValueArray.replaceObjectAtIndex(EditableIndex, withObject: joinedWeightValue)
+                weightDateArray.replaceObjectAtIndex(EditableIndex, withObject: formattedDate)
+            }
         
             // Saving the user's entered weight value and current date back to NSUserDefaults
             profileInfoDictionary!.setObject(weightDateArray, forKey: "weightValueDates")
@@ -66,13 +78,12 @@ class PopoverEntryViewController: NSViewController {
             NSUserDefaults.standardUserDefaults().synchronize()
             
             if EditableRecord == false {
-                // Sends a notification through the first responder chain to the first class that implements a method that matches the selector ("updateWeightTable")
+                // Sends a notification to reload the table
                 // In this case, it should be MainWindowController
-                NSApplication.sharedApplication().sendAction("updateWeightTable", to: nil, from: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName("UpdateUserData", object: nil)
             } else {
                 // Post a notification to reload the data of the table view (in MainWindowController)
-                NSNotificationCenter.defaultCenter().postNotificationName("UpdateUserData", object: nil, userInfo: ["mode": 2])
-                NSApplication.sharedApplication().sendAction("updateWeightTable", to: nil, from: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName("UpdateUserData", object: nil)
             }
             
         }
@@ -114,6 +125,7 @@ class PopoverEntryViewController: NSViewController {
         // Check that function parameters aren't nil to prevent crashing
         if let weight = editableWeight {
             // Set weight values in boxes to record's weight
+            EditableWeight = weight
             let weightComponentArray = String(weight).componentsSeparatedByString(".")
             WeightMajorEntryField.stringValue = weightComponentArray[0]
             WeightMinorEntryField.stringValue = weightComponentArray[1]

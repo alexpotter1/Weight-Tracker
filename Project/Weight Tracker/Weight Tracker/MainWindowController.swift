@@ -98,7 +98,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             WeightEntryPopover?.contentViewController = PopoverEntryController
             WeightEntryPopover?.showRelativeToRect(WeightTableEditButton.bounds, ofView: WeightTableEditButton, preferredEdge: NSRectEdge.MaxY)
             
-            PopoverEntryController?.setupEditableRecord(recordWeight as? Double, editableDate: recordDate)
+            PopoverEntryController?.setupEditableRecord(recordWeight!.doubleValue, editableDate: recordDate)
         }
     }
     
@@ -196,22 +196,11 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         }
     }
     
-    func updateWeightTable() {
-        self.updateUserWeightData(0)
-        let rowIndex = self.weightTableArray!.count - 1
-        self.WeightTable.beginUpdates()
-        self.WeightTable.insertRowsAtIndexes(NSIndexSet(index: rowIndex), withAnimation: NSTableViewAnimationOptions.EffectGap)
-        self.WeightTable.endUpdates()
-        
-    }
-    
     // Publicly accessible notification function (to modify the table view)
     func updateUserNotification(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            self.updateUserWeightData((userInfo as NSDictionary).objectForKey("mode") as! Int)
-        } else {
-            self.updateUserWeightData(1)
-        }
+        // Reload data in table
+        self.updateUserWeightData(0)
+        self.updateUserWeightData(1)
     }
     
     func getProfileData() {
@@ -233,7 +222,8 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
         /* Modes:
         1 = Reload Data only, don't delete anything
         2 = Delete item at selected row 
-        3 = Delete all rows */
+        3 = Delete all rows 
+        */
         
         if mode == 1 {
             self.WeightTable.reloadData()
