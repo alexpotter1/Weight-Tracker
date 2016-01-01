@@ -49,6 +49,11 @@ class PopoverEntryViewController: NSViewController {
             let formattedDate: String = dateFormatter.stringFromDate(DatePicker.dateValue)
             
             weightDateArray.addObject(formattedDate)
+            
+            // Is the second weight box (minor box) empty? If it is, add a zero (to stop garbage values in calculations).
+            if WeightMinorEntryField.stringValue.isEmpty {
+                WeightMinorEntryField.stringValue = "0"
+            }
         
             // Concatenating the values of both boxes
             let joinedWeightValue = WeightMajorEntryField.stringValue + "." + WeightMinorEntryField.stringValue
