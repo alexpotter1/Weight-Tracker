@@ -24,6 +24,7 @@
 		FA55B2071B9796A5006C4B0A /* InitialWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55B2051B9796A5006C4B0A /* InitialWindowController.swift */; };
 		FA6AC6391C19AD8A0003DC8D /* GraphDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC6381C19AD8A0003DC8D /* GraphDataSource.swift */; };
 		FA6AC63A1C19AD8A0003DC8D /* GraphDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AC6381C19AD8A0003DC8D /* GraphDataSource.swift */; };
+		FA9B2B411C4E4D760009D9FA /* CorePlot.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FAF03EFD1C182EA700D81656 /* CorePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAAB27EB1C1834F6003898B8 /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF03EFD1C182EA700D81656 /* CorePlot.framework */; };
 		FAAB72D01BE8D16E001F5978 /* StatisticalAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB72CF1BE8D16E001F5978 /* StatisticalAnalysis.swift */; };
 		FABBA4231B979AAE00206DCD /* InitialWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABBA4211B979AAE00206DCD /* InitialWindow.xib */; };
@@ -101,6 +102,19 @@
 			remoteInfo = "CorePlot Mac";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA9B2B401C4E4D6D0009D9FA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FA9B2B411C4E4D760009D9FA /* CorePlot.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FA06D7FC1BADCD0C00754846 /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
@@ -253,6 +267,7 @@
 				FA49EC351B8F1FF10097AE8B /* Sources */,
 				FA49EC361B8F1FF10097AE8B /* Frameworks */,
 				FA49EC371B8F1FF10097AE8B /* Resources */,
+				FA9B2B401C4E4D6D0009D9FA /* CopyFiles */,
 			);
 			buildRules = (
 			);
