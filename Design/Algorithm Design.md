@@ -533,6 +533,7 @@ Therefore, the following algorithms will be implemented in this cycle:
 * Delete all weight table records
 * Edit selected weight table record
 * Initialise and display graph
+* Validation of weight goal value
 
 The UML diagram at this stage is shown, with the ```GraphDataSource``` class the only new class to be implemented:
 ![UML Stage 4](UML/Class_Diagram_4.png)
@@ -676,10 +677,39 @@ VOID FUNCTION updateGraph() {
   scatterPlot = new CorePlotScatterPlot(frame=graph view bounds);
   scatterPlot setDataSource = SELF
 
-  graph.addPlot(scatterPlot)
+  graph addPlot(scatterPlot)
 
   graph disable user interaction = TRUE
 
 }
 
+```
+
+#### Validation of weight goal value
+This would need to be implemented to prevent non-alphanumeric characters forming the weight goal value - as this can cause garbage values to be output for some of the calculations.
+
+This algorithm attempts to cast each weight value for each box to an integer from a string - if this fails (by the casted values being a NULL value), then present the error message. If not, save the value to the array as normal.
+
+The way that this would be accomplished would be to display an alert or error message when the user enters any character that isn't a number.
+
+This involves modifying *Algorithm 5*, so that each character when typed in can be checked individually.
+*Algorithm 5 - modified*
+
+Pseudo-code:
+```
+VOID FUNCTION weightGoalTextDidChange() {
+  majorWeightValue = CONVERT Weight goal major box value from String to Int;
+  minorWeightValue = CONVERT Weight goal minor box value from String to Int;
+
+  IF (majorWeightValue == nil) || (minorWeightValue == nil) {
+    alert = new Alert();
+    alert title = "Data validation error"
+    alert message = "You've probably typed a non-numeric character in one of the boxes. Please remove it."
+    alert addButton("OK")
+    DISPLAY alert;
+  } ELSE {
+    concatenatedWeightGoal = (CONVERT majorWeightValue to String) + (CONVERT minorWeightValue to String);
+    SAVE concatenatedWeightGoal to weight goal array;
+  }
+}
 ```
