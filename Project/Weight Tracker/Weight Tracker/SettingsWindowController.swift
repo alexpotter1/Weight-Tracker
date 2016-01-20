@@ -111,9 +111,23 @@ class SettingsWindowController: NSWindowController, NSTextFieldDelegate {
         // Set first object at index of weight goal array to whatever the user types
         // In addition, round the second value to make sure that the precision cannot be greater than 100g, and truncate to Integer (don't care about .0)
         // Concatenate the two text box values with a decimal point to form the stored weight value
-        let roundedMinorWeightValue = Int(WeightGoalValueMinor.doubleValue.roundToDecimalPlaces(1))
-        let formatted: String = "\(WeightGoalValueMajor.stringValue).\(roundedMinorWeightValue)"
-        self.weightGoalArray.replaceObjectAtIndex(0, withObject: formatted)
+        let majorWeightValue: Int? = Int(WeightGoalValueMajor.stringValue)
+        let minorWeightValue: Int? = Int(WeightGoalValueMinor.stringValue)
+        
+        // Present an alert if the user doesn't type integer values, comparison to nil because of 'Int?'.
+        if (WeightGoalValueMajor.stringValue.isEmpty == false) && (WeightGoalValueMinor.stringValue.isEmpty == false) {
+            if (majorWeightValue == nil) || (minorWeightValue == nil) {
+                let alert = NSAlert()
+                alert.messageText = "Data validation error"
+                alert.informativeText = "There are non-numeric values in one of these weight goal boxes. Please remove it."
+                alert.addButtonWithTitle("OK")
+                alert.beginSheetModalForWindow(self.window!, completionHandler: nil)
+            } else {
+                let roundedMinorWeightValue = Int(WeightGoalValueMinor.doubleValue.roundToDecimalPlaces(1))
+                let formatted: String = "\(majorWeightValue!).\(roundedMinorWeightValue)"
+                self.weightGoalArray.replaceObjectAtIndex(0, withObject: formatted)
+            }
+        }
     }
     
     func weightUnitSelectionDidChange(notification: NSNotification) {
