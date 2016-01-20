@@ -97,6 +97,7 @@ class MainWindowController: NSWindowController, NSTableViewDelegate, NSTableView
             PopoverEntryController = PopoverEntryViewController(nibName: "PopoverEntryView", bundle: nil)
             WeightEntryPopover?.contentViewController = PopoverEntryController
             WeightEntryPopover?.showRelativeToRect(WeightTableEditButton.bounds, ofView: WeightTableEditButton, preferredEdge: NSRectEdge.MaxY)
+            WeightEntryPopover?.behavior = NSPopoverBehavior.Semitransient
             
             PopoverEntryController?.setupEditableRecord(recordWeight!.doubleValue, editableDate: recordDate)
         }
