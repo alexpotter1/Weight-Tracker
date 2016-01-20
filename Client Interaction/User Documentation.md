@@ -236,3 +236,12 @@ In this section, here are some common questions and answers to problems that you
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/OS_X_10.11_Beta_Beach_Ball.jpg" width="80">
 
   You can attempt to press Cmd-Q to quit the application. If that doesn't work, click the Apple menu in the top left of the screen, click 'Force Quit' (or press the keyboard shortcut Cmd-Option-Esc) and then quit Weight Tracker that way.
+
+6. **I have a Non-numeric weight goal error?**
+
+	If you see this screen when you type a value into the weight goal box in Settings:
+	![Weight goal validation](../Development/Screenshots/fourth_wg-validation.png)
+
+	You have probably entered a letter instead of a number in one, or both, of the weight goal boxes. Because letters are not convertible to numbers, this would cause problems with the weight calculations so only numeric values are allowed. 												    		
+
+	To solve this, just remove any letters/other characters that exist here.
