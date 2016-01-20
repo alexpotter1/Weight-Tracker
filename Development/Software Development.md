@@ -1354,8 +1354,11 @@ The console confirmed that the error was due to the weight goal value for the "s
 
 <div class="page-break"></div>
 
-I decided to make it easier for the user by adding two boxes to put the weight value in, so even if they didn't enter a value in the second box, the program can just fill it with a zero.
+I decided to make it easier for the user by adding two boxes to put the weight value in. Also, validation was added at this stage so that if they tried to enter a non-numeric value then the application would display a message and the weight goal would not be saved.
+
 ![Screenshot 33](Screenshots/fourth_weightGoalUI.png "New weight goal UI")
+
+The error message would be created programmatically, in a style similar to the 'Duplicate user name' alert shown earlier.
 
 Firstly, the outlets were added:
 ```swift
@@ -1365,16 +1368,32 @@ Firstly, the outlets were added:
 @IBOutlet weak var WeightGoalValueMinor: NSTextField!
 ```
 
-And I replaced the ```controlTextDidChange``` function to get the values from both boxes, and round the value in the "minor" box.
+And I replaced the ```controlTextDidChange``` function. Now, this attempts to convert the string values entered into the weight goal boxes into optional integers - if this fails (because the string is something like "abc" which is non-numeric), then the values of ```majorWeightValue``` and ```minorWeightValue``` would be ```nil```.
+Then, the program checks to see whether there are non-numeric characters by checking if either one of these values are ```nil```, and it presents the error - otherwise, it saves the weight goal information back to the array.
+
 ```swift
 // Detects if the user typed anything in the Weight Goal box; overriding from NSTextFieldDelegate protocol
 override func controlTextDidChange(obj: NSNotification) {
-    // Set first object at index of weight goal array to whatever the user types
-    // In addition, round the second value to make sure that the precision cannot be greater than 100g, and truncate to Integer (don't care about .0)
-    // Concatenate the two text box values with a decimal point to form the stored weight value
-    let roundedMinorWeightValue = Int(WeightGoalValueMinor.doubleValue.roundToDecimalPlaces(1))
-    let formatted: String = "\(WeightGoalValueMajor.stringValue).\(roundedMinorWeightValue)"
-    self.weightGoalArray.replaceObjectAtIndex(0, withObject: formatted)
+  // Set first object at index of weight goal array to whatever the user types
+// In addition, round the second value to make sure that the precision cannot be greater than 100g, and truncate to Integer (don't care about .0)
+// Concatenate the two text box values with a decimal point to form the stored weight value
+let majorWeightValue: Int? = Int(WeightGoalValueMajor.stringValue)
+let minorWeightValue: Int? = Int(WeightGoalValueMinor.stringValue)
+
+// Present an alert if the user doesn't type integer values, comparison to nil because of 'Int?'.
+if (WeightGoalValueMajor.stringValue.isEmpty == false) && (WeightGoalValueMinor.stringValue.isEmpty == false) {
+    if (majorWeightValue == nil) || (minorWeightValue == nil) {
+        let alert = NSAlert()
+        alert.messageText = "Data validation error"
+        alert.informativeText = "There are non-numeric values in one of these weight goal boxes. Please remove it."
+        alert.addButtonWithTitle("OK")
+        alert.beginSheetModalForWindow(self.window!, completionHandler: nil)
+    } else {
+        let roundedMinorWeightValue = Int(WeightGoalValueMinor.doubleValue.roundToDecimalPlaces(1))
+        let formatted: String = "\(majorWeightValue!).\(roundedMinorWeightValue)"
+        self.weightGoalArray.replaceObjectAtIndex(0, withObject: formatted)
+    }
+}
 }
 ```
 
@@ -1388,6 +1407,10 @@ extension Double {
     }
 }
 ```
+
+Testing the validation and the weight goal boxes worked, with this message being displayed if the user enters a non-numeric value:
+
+![Weight goal integer validation](Screenshots/fourth_wg-validation.png)
 
 <div class="page-break"></div>
 
