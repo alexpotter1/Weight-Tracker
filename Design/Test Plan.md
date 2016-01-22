@@ -7,9 +7,9 @@ parts of the program to make sure that:
 * The program functions correctly in the scope of the design, and requirement specifications.
 
 ### Initial design of Test Plan
-| Aspect to be tested | Module being tested | Input | Output |
-|-----------|----------|---------|-----|------|
-| Length of user name | NewUserWindowController.swift | *Valid* String data | Should create the user correctly
+| Aspect to be tested | Module being tested | Input | Output | Pass/Fail
+|-----------|----------|---------|-----|-----|
+| Length of user name | NewUserWindowController.swift | *Valid* String data | Should create the user correctly|
 | | | *Invalid* String data (long string) | Shouldn't work |
 | | | *Extreme* Unicode string (this is technically a string but it is unicode, and a lot of languages don't support it) | Unknown - Swift does technically support Unicode strings, but it is unknown how the persistent storage database will handle it.
 | Creating a profile that already exists | NewUserWindowController.swift | *Valid* String ( a profile that does not already exist) | Should create the user with no issues
@@ -58,3 +58,26 @@ After refining the application in accordance with client feedback, I have modifi
 | Entering weight value | PopoverEntryViewController.swift | "85.2" (String) | As expected - displays correctly with "85.2kg" shown (weight unit is kg) | Pass |
 |  |  | "85..2" (String) | *Now impossible to input this value after changes* | Pass |
 |  |  | "10" (String) with weight unit as Stones and Pounds ("st lbs") | *As expected - displays in weight table as "10 st 0 lbs"* | Pass |
+
+
+### Alpha testing
+For this test, I pretend to be the user and input values with dummy data.
+
+| Module being tested | Action    | Pass/Fail |
+| :------------- | :------------- | :-------- |
+| New User window | Creating a new user "abc123" | Pass |
+| User selection screen | Selecting and loading new user "abc123" | Pass |
+| Main window | Press 'Users' button | Pass
+| Main window | Press 'Settings' button | Pass
+| Settings window | Set weight unit "kg" | Pass
+| Settings window | Set weight unit "st lbs" | Pass
+| Settings window | Set weight goal value 70.6kg | Pass
+| Settings window | Set weight goal date ["Oct 26 1985"](https://omnireboot.com/wp-content/uploads/2013/08/futurelatecapitalism.010.jpg) | Pass
+| Settings window | Press 'Delete user' button | Pass
+| Main window | Test weight goal display label | Pass
+| Main window | Press 'Add record' button | Pass
+| Weight entry window | Set weight value 71.2kg | Pass
+| Weight entry window | Set weight date "Oct 10 1985" | Pass
+| Weight entry window | Press 'AC' button | Pass
+| Weight entry window | Press 'Done' button | Pass
+| Graph | Test if displaying | Pass
