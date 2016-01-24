@@ -101,7 +101,7 @@ There is an alert displayed when the 'Clear All' button is pressed to warn the u
 ### Application algorithm diagram
 Based on what I have seen from this application, I've attempted to reconstruct the main processes involved with weight data collection in order to use this for my app to help it to meet the system requirements.
 
-<img src="Images/Apple Health Actions Flowchart.svg" width="600">
+<img src="Images/Apple Health Actions Flowchart.png" width="600">
 
 <div class="page-break"></div>
 
