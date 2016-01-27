@@ -6,34 +6,63 @@ parts of the program to make sure that:
 * There are as few bugs as possible in the final versions of the program
 * The program functions correctly in the scope of the design, and requirement specifications.
 
+The test plan will contain all of the tests that will be run after each cycle, as well as whether each test passes in the debug environment (my computer, OS X 10.11 El Capitan) and the target environment (client's computer, OS X 10.9 Mavericks).
+
+## Cycle 1
 ### Initial design of Test Plan
-| Aspect to be tested | Module being tested | Input | Output | Pass/Fail
-|-----------|----------|---------|-----|-----|
-| Length of user name | NewUserWindowController.swift | *Valid* String data | Should create the user correctly|
-| | | *Invalid* String data (long string) | Shouldn't work |
-| | | *Extreme* Unicode string (this is technically a string but it is unicode, and a lot of languages don't support it) | Unknown - Swift does technically support Unicode strings, but it is unknown how the persistent storage database will handle it.
-| Creating a profile that already exists | NewUserWindowController.swift | *Valid* String ( a profile that does not already exist) | Should create the user with no issues
-| | | *Invalid* String (a user that does exist) | Should return an error saying that the user already exists.
-| Setting Weight Goal | SettingsWindowController.swift | *Valid* String (normal, properly formatted decimal) | Should work properly
-|||*Valid* String (normal integer) | Should work properly
-|||*Invalid* String (improperly formatted decimal, e.g. "19;67") | This will be displayed, but any calculation done with this value should return garbage values (or crash upon casting to Double/floating point)
-| Entering weight value | PopoverEntryViewController.swift | *Valid* String (properly formatted decimal) | Should work
-| | | *Invalid* String (improperly formatted decimal) | Will probably still be displayed in the table (as the table will accept Strings), but any calculation should return garbage values.
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------------- | :------------- | :----------- | :------- | :-------- |
+| Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | N/A | N/A |
+| Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | N/A | N/A |
+| User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | N/A | N/A |
+| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile | N/A | N/A |
+| User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | N/A | N/A |
+| Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | N/A | N/A |
 
-### Actual results in test phase 1
-| Aspect to be tested | Module being tested | Input | Output | Pass/Fail |
-| ------------------- | ----------- | --------- | ----- |
-| Length of user name | NewUserWindowController.swift | "Alex" (String) | As expected - creates profile, no error, name "Alex" | Pass |
-|  |  |"a" character repeated 100 times | The profile is created with the name, but it doesn't display properly in the main window (probably clipping, too long) | Pass |
-|  |  | Unicode character U+1F603 "😃" (Unicode string) | Works, creates profile with name "😃" | Pass |
-| Creating a profile that already exists | NewUserWindowController.swift | "😃" (Unicode string) | As expected - pop-up displays saying that a profile already exists with the same name | Pass |
-| Setting weight goal value | SettingsWindowController.swift | "11,6" (String) | The setting of the weight goal works, but it breaks the expected weight calculations | Fail |
-|  |  | "10" (String) with weight unit selected as Stones and Pounds ("st lbs") | **Unexpected App crash** - lldb reports EXC_BAD_INSTRUCTION (Array index out of bounds) | Fail |
-| Entering weight value | PopoverEntryViewController.swift | "85.2" (String) | As expected - displays correctly with "85.2kg" shown (weight unit is kg) | Pass |
-|  |  | "85..2" (String) | Unexpected - displays correctly, probably because the weight table displays values as Strings not Doubles (breaks the expected weight though) | Fail |
-|  |  | "10" (String) with weight unit as Stones and Pounds ("st lbs") | **Unexpected App crash** - lldb reports EXC_BAD_INSTRUCTION (Array index out of bounds) | Fail |
+## Alpha test
+**Note: If a test fails that is integral to the program's execution flow, the remaining tests in the plan are skipped.**
 
-* The first application crash:
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------------- | :------------- | :----------- | :------- | :-------- |
+| Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | Pass | **Fail** |
+| Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | Pass | -- |
+| User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | **Fail** | -- |
+| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile | -- | -- |
+| User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | -- | -- |
+| Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | -- | -- |
+
+In this testing phase, all the tests in the plan failed on the target because I had decided (provisionally) to use a 'storyboard' for creating the interface - OS X Mavericks does not support 'storyboard'-based UI design and the application simply crashes when launching. I had to resort to the legacy 'XIB'-based UI design method, which would now work perfectly.
+
+#### Alpha test 1 (re-run)
+After changing the application, I re-ran Alpha test 1:
+
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------------- | :------------- | :----------- | :------- | :-------- |
+| Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | Pass | Pass |
+| Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | Pass | Pass |
+| User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | Pass | Pass |
+| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile | Pass | Pass |
+| User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | Pass | Pass |
+| Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | Pass | Pass |
+
+## Cycle 2
+### Test Plan Extension
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------- | :------- | :------- | :------ | :--------|
+| Setting a weight goal | SettingsWindowController | This test checks whether the weight goal value and date can be entered properly and are stored properly. | N/A | N/A |
+| Setting weight unit | SettingsWindowController | This test checks if the user can select all three weight units without any problems. | N/A | N/A |
+| Deleting user | SettingsWindowController | This test checks if the user can delete their profile without errors. | N/A | N/A |
+
+### Alpha test 2
+
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------- | :------- | :------- | :------ | :--------|
+| Setting a weight goal | SettingsWindowController | This test checks whether the weight goal value and date can be entered properly and are stored properly. | Pass | **Fail** |
+| Setting weight unit | SettingsWindowController | This test checks if the user can select all three weight units without any problems. | Pass | Pass |
+| Deleting user | SettingsWindowController | This test checks if the user can delete their profile without errors. | Pass | Pass |
+
+### App crash 1
+* The first application crash was when setting the weight goal:
 ![App Crash 1](https://raw.githubusercontent.com/alexpotter1/WeightTracker/master/Development/Screenshots/exc_bad_inst_crash1.png?raw=true App Crash 1)
 This is due to the program determining the weight value (when stones and pounds weight unit is selected) by using the decimal point to break the weight value down into the "stones" and "pounds" values respectively by using an array.
 If the user doesn't enter a decimal point, then there is only one value in this array, not two, and the code runs into an out-of-bounds error. In addition, this also makes the profile permanently inaccessible to the user.
@@ -42,42 +71,52 @@ If the user doesn't enter a decimal point, then there is only one value in this 
   * Either create an alternative interface when the "st lbs" unit is selected
   * To perform some data validation on the text field to only allow values containing a decimal point to be entered.
 
-* The second application crash is very similar to the first, except that it occurs when the user enters a weight value to be stored, and don't put a decimal point into their value (and the weight unit is "st lbs"). The same error is reported, albeit in another place.
+## Cycle 3
+### Test Plan Extension 2
 
-### Actual results in test phase 2
-After refining the application in accordance with client feedback, I have modified the way that the user enters weight data. This is shown in the software development log.
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------- | :------- | :------- | :------- | :------- |
+| Add weight value | MainWindowController/PopoverEntryViewController | This test checks if the 'add weight value' button works and that the value and date are displayed properly in the table. | N/A | N/A |
+| Remove selected weight value | MainWindowController | This test checks if the table can handle a random selected record being removed without error. | N/A | N/A |
+| Expected weight | MainWindowController/StatisticalAnalysis | This test checks whether the expected weight calculation functions and displays correctly | N/A | N/A |
 
-| Aspect to be tested | Module being tested | Input | Output | Pass/Fail
-| ------------------- | ----------- | --------- | ----- |
-| Length of user name | NewUserWindowController.swift | "Alex" (String) | As expected - creates profile, no error, name "Alex" | Pass |
-|  |  |"a" character repeated 100 times | The profile is created with the name, but it doesn't display properly in the main window (probably clipping, too long) | Pass |
-|  |  | Unicode character U+1F603 "😃" (Unicode string) | Works, creates profile with name "😃" | Pass |
-| Creating a profile that already exists | NewUserWindowController.swift | "😃" (Unicode string) | As expected - pop-up displays saying that a profile already exists with the same name | Pass |
-| Setting weight goal value | SettingsWindowController.swift | "11,6" (String) | *Now impossible to input after changes* | Pass |
-|  |  | "10" (String) with weight unit selected as Stones and Pounds ("st lbs") | *As expected - weight goal displays as "10 st 0 lbs"* | Pass |
-| Entering weight value | PopoverEntryViewController.swift | "85.2" (String) | As expected - displays correctly with "85.2kg" shown (weight unit is kg) | Pass |
-|  |  | "85..2" (String) | *Now impossible to input this value after changes* | Pass |
-|  |  | "10" (String) with weight unit as Stones and Pounds ("st lbs") | *As expected - displays in weight table as "10 st 0 lbs"* | Pass |
+### Alpha test 3
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------- | :------- | :------- | :------- | :------- |
+| Add weight value | MainWindowController/PopoverEntryViewController | This test checks if the 'add weight value' button works and that the value and date are displayed properly in the table. | Pass | Pass |
+| Remove selected weight value | MainWindowController | This test checks if the table can handle a random selected record being removed without error. | Pass | Pass |
+| Expected weight | MainWindowController/StatisticalAnalysis | This test checks whether the expected weight calculation functions and displays correctly | Pass | Pass |
 
+#### Alpha test 2 (re-run)
+After running alpha test 3, I went back and re-ran Alpha test 2 once I had fixed the weight goal input:
 
-### Alpha testing
-For this test, I pretend to be the user and input values with dummy data.
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------- | :------- | :------- | :------ | :--------|
+| Setting a weight goal | SettingsWindowController | This test checks whether the weight goal value and date can be entered properly and are stored properly. | Pass | Pass |
+| Setting weight unit | SettingsWindowController | This test checks if the user can select all three weight units without any problems. | Pass | Pass |
+| Deleting user | SettingsWindowController | This test checks if the user can delete their profile without errors. | Pass | Pass |
 
-| Module being tested | Action    | Pass/Fail |
-| :------------- | :------------- | :-------- |
-| New User window | Creating a new user "abc123" | Pass |
-| User selection screen | Selecting and loading new user "abc123" | Pass |
-| Main window | Press 'Users' button | Pass
-| Main window | Press 'Settings' button | Pass
-| Settings window | Set weight unit "kg" | Pass
-| Settings window | Set weight unit "st lbs" | Pass
-| Settings window | Set weight goal value 70.6kg | Pass
-| Settings window | Set weight goal date ["Oct 26 1985"](https://omnireboot.com/wp-content/uploads/2013/08/futurelatecapitalism.010.jpg) | Pass
-| Settings window | Press 'Delete user' button | Pass
-| Main window | Test weight goal display label | Pass
-| Main window | Press 'Add record' button | Pass
-| Weight entry window | Set weight value 71.2kg | Pass
-| Weight entry window | Set weight date "Oct 10 1985" | Pass
-| Weight entry window | Press 'AC' button | Pass
-| Weight entry window | Press 'Done' button | Pass
-| Graph | Test if displaying | Pass
+## Cycle 4
+### Test Plan Extension 3
+
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------- | :------- | :------- | :------- | :------- |
+| Delete All records | MainWindowController | This test checks if all of the weight table records are removed when pressing this button. | N/A | N/A |
+| CorePlot framework integration | CorePlot.framework | This tests whether the CorePlot framework (drawing graphs) is properly added to Xcode. | N/A | N/A |
+| Graph initialisation | MainWindowController/GraphDataSource | This tests whether the graph initialises properly on the 'Graph' tab | N/A | N/A |
+| Graph display values | GraphDataSource | This tests whether the graph can get data points from the weight table and display them properly. | N/A | N/A |
+| Edit a weight value | MainWindowController/PopoverEntryViewController | This tests whether a random selected record can be edited without error. | N/A | N/A |
+| Weight goal validation - Normal | SettingsWindowController | This tests whether "12.7" can be input as a weight goal value | N/A | N/A |
+| Weight goal validation - Invalid | SettingsWindowController | This tests whether "abc" can be input as a weight goal value | N/A | N/A |
+
+### Alpha test 4
+
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------- | :------- | :------- | :------- | :------- |
+| Delete All records | MainWindowController | This test checks if all of the weight table records are removed when pressing this button. | Pass | Pass |
+| CorePlot framework integration | CorePlot.framework | This tests whether the CorePlot framework (drawing graphs) is properly added to Xcode. | Pass | Pass |
+| Graph initialisation | MainWindowController/GraphDataSource | This tests whether the graph initialises properly on the 'Graph' tab | Pass | Pass |
+| Graph display values | GraphDataSource | This tests whether the graph can get data points from the weight table and display them properly. | Pass | Pass |
+| Edit a weight value | MainWindowController/PopoverEntryViewController | This tests whether a random selected record can be edited without error. | Pass | Pass |
+| Weight goal validation - Normal | SettingsWindowController | This tests whether "12.7" can be input as a weight goal value | Pass | Pass |
+| Weight goal validation - Invalid | SettingsWindowController | This tests whether "abc" can be input as a weight goal value | Pass | Pass |
