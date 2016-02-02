@@ -9,6 +9,9 @@ In reality, the pseudo-code won't be implemented in exact form as user interface
 * Select user from list
 * Load the main window
 
+The UML diagram for the planned implementations at this stage is:
+![UML Stage 1](UML/Class_Diagram_0.png "UML ")
+
 #### Initialising a new user
 *Algorithm 1*
 Pseudo-code:
@@ -282,6 +285,9 @@ The following algorithms would be implemented in this cycle:
 * Weight table code (add record, delete record, update table data)
 * Calculate expected weight and display expected weight
 
+The UML diagram for the planned implementations at this stage is:
+![UML Stage 3](UML/Class_Diagram_2.png "UML")
+
 #### Weight table - display table data
 These following algorithms contained in the class of the main window will instruct and give data to the table view so that it can be displayed in an effective way to the user.
 The first one calculates the number of data records that the table will have to display, by returning the number of items in the profile's weight value array; the second one gives the actual data to the table depending on whether the table is displaying for the *date* column or the *weight* column.
@@ -491,7 +497,8 @@ The weight and date values are stored in an array of tuples known as ```values``
 
 This function uses linear regression to predict the next weight value - the expression to find the gradient for the regression line is shown below.
 In this expression, x is defined as the dates and y is defined as the weight information.
-![Linear regression formula](LinearRegressionFormula.png)
+![Linear regression formula](Screenshots/LinearRegressionFormula.png)
+
 
 *dateMean*, *weightMean*, *gradient* and *intercept* are all class variables here.
 
