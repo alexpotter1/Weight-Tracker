@@ -30,12 +30,14 @@ You can find help and information on how to use it here.
 ## System Requirements
 #### Hardware Requirements
 The *minimum* hardware requirements for this application are:
+
 * **Intel**-based CPU
 * At least **2GB** of RAM
 * PCI Express-based Graphics device capable of 2D video acceleration (Quartz Extreme) such as the Intel GMA 950
 * Display with at least 1024x768 resolution
 
 The *recommended* hardware requirements are:
+
 * Dual-core Intel Core 2 Duo 2.0GHz CPU or later
 * 4GB of RAM
 * ATI Radeon HD 2600 PRO graphics card (with 256MB of VRAM) or newer
@@ -43,6 +45,7 @@ The *recommended* hardware requirements are:
 
 #### Software Requirements
 The only software requirement for this application is:
+
 * **Mac OS X Mavericks 10.9.2** or later
 
 ## Getting started and installation
@@ -59,6 +62,7 @@ Double-click the application to launch it.
 
 ## Creating a profile
 On the first screen that is shown, you can do the following:
+
 * Select a profile from the dropdown list
 * Create a new profile
 
@@ -148,6 +152,7 @@ This application manages data through a built-in Apple data handling interface, 
 You can read from, and write to, any application's data using this interface.
 
 The data that this program backs up includes:
+
 * List of profiles
 * Profile names
 * Profile weight units
@@ -195,11 +200,11 @@ If you want to delete all the saved profiles and their respective data, then you
 ## Troubleshooting
 In this section, here are some common questions and answers to problems that you may have when running the application.
 
-1. **The app keeps crashing for no reason.**
+* **The app keeps crashing for no reason.**
 
 	You may be using the prototype build of this application. It is highly recommended not to use any version of this application below 1.0 as there are aspects that not only frequently change without warning, but there are also changes that could break existing functionality when moving between different prototype builds.
 
-2. **The application is not letting me create a new user.**
+* **The application is not letting me create a new user.**
 
 	If the application displays a message like this:
 
@@ -209,11 +214,11 @@ In this section, here are some common questions and answers to problems that you
 
   If you're adamant that no other user exists with the same name, then you can delete all of the data associated with the app as described in [Delete all data](#delete-all-data).
 
-3. **The application doesn't launch at all.**
+* **The application doesn't launch at all.**
 
 	If you are running on a version of OS X that is earlier than 10.9 Mavericks, then this application will not function. To solve this, you will have to upgrade to at least OS X 10.9 Mavericks.
 
-4. **The application is really slow.**
+* **The application is really slow.**
 
 	This may have resulted from the system being low on RAM in general, or if the system is under high CPU load. To check this, launch Finder and navigate to Applications/Utilities and open Activity Monitor.
 
@@ -229,7 +234,7 @@ In this section, here are some common questions and answers to problems that you
 
   At the very least, **2GB** of RAM is sufficient for this application, with **4GB** being the recommended amount.
 
-5. **The application has stopped responding.**
+* **The application has stopped responding.**
 
 	If the application seems to hang or you see this instead of the mouse pointer:
 
@@ -237,7 +242,7 @@ In this section, here are some common questions and answers to problems that you
 
   You can attempt to press Cmd-Q to quit the application. If that doesn't work, click the Apple menu in the top left of the screen, click 'Force Quit' (or press the keyboard shortcut Cmd-Option-Esc) and then quit Weight Tracker that way.
 
-6. **I have a Non-numeric weight goal error?**
+* **I have a Non-numeric weight goal error?**
 
 	If you see this screen when you type a value into the weight goal box in Settings:
 	![Weight goal validation](../Development/Screenshots/fourth_wg-validation.png)

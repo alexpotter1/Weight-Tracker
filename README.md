@@ -1,4 +1,4 @@
-# Weight Tracker ![Build Status](https://travis-ci.org/alexpotter1/Weight-Tracker.svg?branch=master) ![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg) ![Language](https://img.shields.io/badge/language-Swift%202.1-orange.svg)
+# Weight Tracker [![Build Status](https://travis-ci.org/alexpotter1/Weight-Tracker.svg?branch=master)](https://travis-ci.org/alexpotter1/Weight-Tracker) ![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg) ![Language](https://img.shields.io/badge/language-Swift%202.1-orange.svg)
 ## Latest version: 0.5-wip
 I present the **work-in progress** state of Weight Tracker for Mac.
 
@@ -22,6 +22,8 @@ For the Macintosh platform, it is free to develop an application that is distrib
 You can of course fork this project, as per GitHub's Terms of Service, but be careful to honour the Apache 2.0 License, and any subsequent copyright notices.
 
 The Apache License is located in the LICENSE folder at the root of this repository.
+
+**Core Plot, which is used in this application, is licensed under the BSD license.**
 
 #### Core Plot license notice
 The external library 'Core Plot' is used in this project, so credit is given where applicable.
