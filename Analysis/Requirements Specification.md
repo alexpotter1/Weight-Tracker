@@ -4,31 +4,31 @@ Based upon the initial problem definition and interaction with the client, the p
 
 1. The system must have a method of inputting weight data over a specified period of time;
 
-  *This requirement is needed as this ability is the main function of the application*
+    *This requirement is needed as this ability is the main function of the application*
 
 2. The system must be able to function with weight in measurement units of pounds, kilograms, as well as stones and pounds;
 
-  *This was the main problem that the client expressed to me with other applications*
+    *This was the main problem that the client expressed to me with other applications*
 
 3. The system will have a means of providing visual feedback to the user via a graphical method;
 
-  *Again, this would be part of the main function of the application so this requirement is also arguably needed*
+    *Again, this would be part of the main function of the application so this requirement is also arguably needed*
 
 4. The system must be able to handle multiple users, display their own separate profiles and manage the data associated with those profiles to persist even when the application is closed;
 
-  *The client explicitly stated that this feature was wanted*
+    *The client explicitly stated that this feature was wanted*
 
 5. The system must launch and function effectively, without significant delays, hangs or crashes;
 
-  *This is a simple and fairly obvious requirement, but if the app does not run well then that can lead to a poor user experience*
+    *This is a simple and fairly obvious requirement, but if the app does not run well then that can lead to a poor user experience*
 
 6. The system should be able to predict the user's eventual weight after the time period specified.
 
-  *As before, the client explicitly stated in the initial discussion that they wanted this feature*
+    *As before, the client explicitly stated in the initial discussion that they wanted this feature*
 
 7. The system should be well designed, easy to use and simple in terms of navigation.
 
-*The user requested this so that the application can be used without significant mental effort, and such that anyone can use the application if they wish without having any prior knowledge at all.*
+    *The user requested this so that the application can be used without significant mental effort, and such that anyone can use the application if they wish without having any prior knowledge at all.*
 
 ## Hardware Requirements
 The hardware requirements for this application are based upon the client's computer.
