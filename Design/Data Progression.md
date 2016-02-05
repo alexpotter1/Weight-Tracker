@@ -1,19 +1,21 @@
-## Data Progression
-### Initial ideas
+# Data Progression
+## Initial ideas
 The initial design for the structure of the project was influenced by the design storyboard. Once the initial design was created, I started to map out how the structure would be like. The main part of the project
 
 Initially, the data storyboard looked like this:
 ![Data Storyboard 1](Diagrams/data_diagram_1.jpeg?raw=true "Data Storyboard 1")
 
-#### Swift code and Xcode files
+### Swift code and Xcode files
 The middle section of the storyboard denotes the Swift source code used in the project, as well as the files that were created by Xcode when the project was initialised.
 
 There are three Swift files:
+
 * AppDelegate.swift
 * ViewController.swift
 * GraphViewController.swift
 
 Also, there are 2 files created by Xcode:
+
 * Main.storyboard
 * Info.plist
 
@@ -23,7 +25,59 @@ The GraphViewController defines the methods used to process the graph shown in a
 
 Info.plist contains information for the building and compilation process, so my application doesn't modify this at all.
 
-### Second design
+### Persistent storage in first cycle
+In my project, there are two ways of persistently storing the user's data:
+
+* Core Data, an SQLite3 database that communicates with classes through a managed object;
+* NSUserDefaults, a simple database used for storing arrays, integers, strings, etc.
+
+I decided to use NSUserDefaults as it is easier for a small project such as mine where not much data will need to be saved. Even the weight data in the Weight Table can be stored as an array of Doubles, which NSUserDefaults can accept (and then the graph can plot this data).
+
+The use of NSUserDefaults to persistently store profile data thus meets the following requirements defined in the specification:
+
+* **4**: The system must be able to handle multiple users, display their own separate profiles and manage the data associated with those profiles to persist even when the application is closed;
+
+At the top of the design storyboard, the initial objects stored under NSUserDefaults are made. Each object must have a key, so that it can be accessed, and the object is an optional type that must be downcast to the type that is stored.
+For example, if a string is stored in an NSUserDefaults object:
+
+```swift
+import Cocoa
+var string = "Hello"
+NSUserDefaults.standardUserDefaults().setObject(string, forKey: "myString")
+NSUserDefaults.standardUserDefaults.synchronize()
+
+// sometime later...
+var stringObject = NSUserDefaults.standardUserDefaults().objectForKey("myString")
+print(stringObject as! String) // should print "Hello"
+```
+
+The object stored under the *NewUserNames* key is an array of strings that is created when the user creates a new profile; the profile name is appended to the end of the array.
+The dropdown box on the first screen retrieves the list of names in this array.
+
+Likewise, the object for key *profileInfo<user's name>* is also created when the user creates a new profile, and contains information used in the main window such as their weight goal, whether they are likely to lose or gain weight, and all the user's entered weights.
+
+The object for key *currentUser* is written to when the user changes the selection in the dropdown box.
+
+The data stored in the UserDefaults database subsequently can be summarised as follows:
+
+The first level of storage in the database:
+
+| Item to be stored | Data type | Storage key |
+| :------------- | :------------- | :--------- |
+| Profile names       | Array of strings | "NewUserNames" |
+| Current profile name in use | String | "currentUser" |
+| Profile information dictionary | NSMutableDictionary | "profileInfo$USER" *$USER = value of "currentUser"* |
+
+The second level of storage (profile information database):
+
+| Item to be stored | Data type | Storage key |
+| :------------- | :------------- | :--------- |
+| Selected weight unit | String | "weightUnit" |
+| Weight values | NSMutableArray (mixed data type) | "weights" |
+| Whether the user will gain weight or lose weight | UInt8 | "latestGainOrLoss" |
+
+
+## Second design
 As mentioned in *Design Progression*, upon creating the project I soon realised that this design would not function because of the *Storyboard* file being incompatible with the older OS that was installed on the client's computer.
 
 Thus, after refining the design for reasons again mentioned in *Design Progression*, I created this data storyboard:
@@ -38,6 +92,7 @@ This storyboard now includes the *"XIB"* files that define a user interface for 
 *"XIB"* files are used in this project to be linked with one controller class; the class is set as the *"File's Owner"*, meaning that it can fully manipulate and interact with the objects in the XIB file. This means that there are a lot more XIB files as the design has changed to have multiple windows, each with their own controller classes.
 
 Each controller is listed for a different element in the design storyboard that needs to be controlled, such as:
+
 * The initial screen
 * The New User pane
 * The Main window
@@ -73,36 +128,68 @@ These files are necessary to facilitate graph drawing to implement the following
 
 * **3**: Provide visual feedback to the user with a graphical method
 
-##### Objective-C to Swift Bridging header
+#### Objective-C to Swift Bridging header
 To access the methods and properties in Core Plot, the project must have a *Bridging Header*, so that the Swift code and the Objective-C code can work together. On the design storyboard, this is shown by a box that a line runs through from *CorePlot.m* to my graph view controller.
 
-#### Persistent storage
-In my project, there are two ways of persistently storing the user's data:
-* Core Data, an SQLite3 database that communicates with classes through a managed object;
-* NSUserDefaults, a simple database used for storing arrays, integers, strings, etc.
 
-I decided to use NSUserDefaults as it is easier for a small project such as mine where not much data will need to be saved. Even the weight data in the Weight Table can be stored as an array of Doubles, which NSUserDefaults can accept (and then the graph can plot this data).
+#### Persistent storage in second cycle
+There wasn't much changed in the second cycle, apart from storage key names and a new record in the *profile information dictionary* to hold the predicted weight values.
 
-The use of NSUserDefaults to persistently store profile data thus meets the following requirements defined in the specification:
-* **4**: The system must be able to handle multiple users, display their own separate profiles and manage the data associated with those profiles to persist even when the application is closed;
+The first level of storage in the database:
 
-At the top of the design storyboard, the initial objects stored under NSUserDefaults are made. Each object must have a key, so that it can be accessed, and the object is an optional type that must be downcast to the type that is stored.
-For example, if a string is stored in an NSUserDefaults object:
+| Item to be stored | Data type | Storage key |
+| :------------- | :------------- | :--------- |
+| Profile names       | Array of strings | "NewUserNames" |
+| Current profile name in use | String | "currentUser" |
+| Profile information dictionary | NSMutableDictionary (mixed data type) | "profileInfo$USER" *$USER = value of "currentUser"* |
 
-```swift
-import Cocoa
-var string = "Hello"
-NSUserDefaults.standardUserDefaults().setObject(string, forKey: "myString")
-NSUserDefaults.standardUserDefaults.synchronize()
+The second level of storage (profile information database):
 
-// sometime later...
-var stringObject = NSUserDefaults.standardUserDefaults().objectForKey("myString")
-print(stringObject as! String) // should print "Hello"
-```
+| Item to be stored | Data type | Storage key |
+| :------------- | :------------- | :--------- |
+| Selected weight unit | String | "weightUnit" |
+| Weight values | NSMutableArray (mixed data type) | "weightValues" |
+| Whether the user will gain weight or lose weight | UInt8 | "GainOrLoss" |
+| Predicted weight values | NSMutableArray (mixed data type) | "latestPredictedWeightLoss" |
 
-The object stored under the *NewUserNames* key is an array of strings that is created when the user creates a new profile; the profile name is appended to the end of the array.
-The dropdown box on the first screen retrieves the list of names in this array.
+## Third design
+![Data Progression 3](Diagrams/data_diagram_3.jpeg?raw=true)
 
-Likewise, the object for key *profileInfo<user's name>* is also created when the user creates a new profile, and contains information used in the main window such as their weight goal, whether they are likely to lose or gain weight, and all the user's entered weights.
+### Swift code and Xcode files
+This storyboard now contains a better representation of the classes of the application, as the 'StatisticalAnalysis' class has been added which is the class that handles the expected weight calculations.
 
-The object for key *currentUser* is written to when the user changes the selection in the dropdown box.
+There was no 'XIB' file added for 'StatisticalAnalysis' as it has no interface and is purely a 'back-end' class.
+
+This therefore meets the following requirement in the specification:
+
+* **6:** The system should be able to predict the user’s eventual weight after the time period specified.
+
+### Persistent storage in third cycle
+The following represents the changes that were made in this cycle to the data storage system:
+
+The first level of storage in the database:
+
+| Item to be stored | Data type | Storage key |
+| :------------- | :------------- | :--------- |
+| Profile names       | Array of strings | "NewUserNames" |
+| Current profile name in use | String | "currentUser" |
+| Profile information dictionary | NSMutableDictionary (mixed data type) | "profileInfo$USER" *$USER = value of "currentUser"* |
+
+The second level of storage (profile information dictionary):
+
+| Item to be stored | Data type | Storage key |
+| :------------- | :------------- | :--------- |
+| Selected weight unit | String | "weightUnit" |
+| Weight values | NSMutableArray (mixed data type) | "weightValues" |
+| Dates corresponding to weight values | NSMutableArray (mixed data type) | "weightValueDates"
+| Weight goal | NSMutableArray (mixed data type) | "weightGoal" |
+
+In the "weightGoal" array, there are only ever two indices:
+
+| Object         | Index          | Data type|
+| :------------- | :------------- | :------- |
+| Weight goal value | 0 | Double |
+| Weight goal date | 1 | String (will be converted to NSDate upon access) |
+
+## Fourth design
+![Data Progression 4](Diagrams/data_diagram_4.jpeg?raw=true)
