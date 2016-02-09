@@ -120,3 +120,29 @@ After running alpha test 3, I went back and re-ran Alpha test 2 once I had fixed
 | Edit a weight value | MainWindowController/PopoverEntryViewController | This tests whether a random selected record can be edited without error. | Pass | Pass |
 | Weight goal validation - Normal | SettingsWindowController | This tests whether "12.7" can be input as a weight goal value | Pass | Pass |
 | Weight goal validation - Invalid | SettingsWindowController | This tests whether "abc" can be input as a weight goal value | Pass | Pass |
+
+### Acceptance test
+
+| Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
+| :------------- | :------------- | :----------- | :------- | :-------- |
+| Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | Pass | **Fail** |
+| Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | Pass | -- |
+| User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | **Fail** | -- |
+| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile | -- | -- |
+| User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | -- | -- |
+| Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | -- | -- |
+| Setting a weight goal | SettingsWindowController | This test checks whether the weight goal value and date can be entered properly and are stored properly. | Pass | **Fail** |
+| Setting weight unit | SettingsWindowController | This test checks if the user can select all three weight units without any problems. | Pass | Pass |
+| Deleting user | SettingsWindowController | This test checks if the user can delete their profile without errors. | Pass | Pass |
+| Add weight value | MainWindowController/PopoverEntryViewController | This test checks if the 'add weight value' button works and that the value and date are displayed properly in the table. | Pass | Pass |
+| Remove selected weight value | MainWindowController | This test checks if the table can handle a random selected record being removed without error. | Pass | Pass |
+| Expected weight | MainWindowController/StatisticalAnalysis | This test checks whether the expected weight calculation functions and displays correctly | Pass | Pass |
+| Delete All records | MainWindowController | This test checks if all of the weight table records are removed when pressing this button. | Pass | Pass |
+| CorePlot framework integration | CorePlot.framework | This tests whether the CorePlot framework (drawing graphs) is properly added to Xcode. | Pass | Pass |
+| Graph initialisation | MainWindowController/GraphDataSource | This tests whether the graph initialises properly on the 'Graph' tab | Pass | Pass |
+| Graph display values | GraphDataSource | This tests whether the graph can get data points from the weight table and display them properly. | Pass | Pass |
+| Edit a weight value | MainWindowController/PopoverEntryViewController | This tests whether a random selected record can be edited without error. | Pass | Pass |
+| Weight goal validation - Normal | SettingsWindowController | This tests whether "12.7" can be input as a weight goal value | Pass | Pass |
+| Weight goal validation - Invalid | SettingsWindowController | This tests whether "abc" can be input as a weight goal value | Pass | Pass |
+
+**Feedback to the acceptance test is given in** *Evaluation*.

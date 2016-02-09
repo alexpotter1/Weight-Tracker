@@ -106,4 +106,70 @@ An example of an alert is shown below:
 <br></br>
 ![Modal Alert](https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Art/alert_example_2x.png "Modal Alert")
 
+### Third design and storyboard
+#### Changes from the second design
+
+After testing the application with the user, they responded with these comments:
+> * In the new user window, instead of going back to the previous window after clicking Done it should move to the main window
+> * The user selection screen needs validation to make sure that two users can not share the same name - otherwise there is no way of differentiating between them.
+
+I subsequently came up with the following revised design:
+![Design Storyboard 3](Diagrams/design_diagram_3.jpeg?raw-true)
+
+The major difference on this diagram is how the app transitions from the first screen to the next - when the 'Done' button is pressed in the New User window it now moves straight away to the main window as the arrow represents.
+
+Validation is also present at this stage, however it isn't on the diagram. This is because the validation function on the user name box does not have a design that I create - rather it is created by code only, and has only one visual style.
+
+Also in this stage, I plan to implement the designs present in the last two storyboards about the weight goal and prediction functions into the actual program.
+
+
+### Fourth design
+### Changes from third design
+Again, after testing, the client gave these design-oriented comments:
+> * On the weight table, it would be a good idea to have a 'Delete All' button and an 'Edit' button in addition to 'Add' and 'Remove'
+> * Allow the entry of another date when adding a new weight record (so that I can go back and add missing records)
+
+The new design now looks like this:
+![Design Storyboard 4](Diagrams/design_diagram_4.jpeg?raw=true)
+
+The major changes here are:
+
+* Edit button and Delete All buttons in the weight table on the main window
+* Weight entry window now has two boxes to prevent weight input errors with decimal points, etc.
+* Weight entry window now has custom date input
+* New validation screen on the weight goal input (presents error if user doesn't type a decimal value)
+* Weight goal input is split into two boxes (prevents errors with input)
+* Graph labels instead of crowded data points on axes
+
+##### Edit/Delete All button
+This was added at the client's request.
+This button is placed, as per the diagram, on the bottom row of the weight table.
+
+The Edit button opens the weight entry screen with the selected record's values already loaded. The idea is that the user can then delete what is there and type in a new value if they so wish.
+
+The Delete All button, as the name suggests, removes **all** the records in the table and from persistent storage.
+
+##### Weight entry window - two boxes
+The purpose of this is to prevent application crashes that existed within the testing phase of the third cycle when the user doesn't type a decimal point into their weight value, *or* if they type non-numeric values that produce garbage values with the expected weight calculations.
+
+The way that I intend for this to work is to have the user type the first part of their value into the box and then click the "NEXT" button to input their second part of the weight value. Then they can press Done when they are finished, or AC if they make a mistake.
+
+This ensures that the values in the table are both purely numeric and uniform, so the expected weight class and graph knows what to expect when taking these values as input parameters.
+
+##### Weight entry window - custom date input
+This was added at the client's request.
+This allows the user to add a weight value but without the date defaulting to the current system date. This is useful if, for example, the user wants to add values that they already have stored somewhere other than the program.
+
+The date format is the UK standard format of DD/MM/YYYY.
+
+##### Weight goal validation
+I think that this would be a good idea to implement if the user does not type a numeric value into the weight goal boxes - for example if they type "abc". The weight goal is intended to be stored as a Double, and "abc" is not convertible to a double so the application will crash. Thus, this validation box will not let the user save the value until they enter a numeric value.
+
+This validation screen is an *NSAlert*, and is created programmatically.
+Thus, the validation screens/alert dialog boxes in my application all follow one visual style, as discussed earlier.
+
+##### Weight goal input - two boxes
+As with the weight entry window, the weight goal 
+
+
 **All images used are from Apple's OS X Human Interface Guidelines. Copyright © Apple Inc. 2015** http://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/index.html

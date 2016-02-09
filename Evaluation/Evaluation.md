@@ -110,20 +110,33 @@ The top part of the window though is static and simply displays a message to the
 
 I would say that overall, the application is simple and very easy to use, so System Requirement 7 is satisfied.
 
+## Acceptance test - client feedback
+After the test, I sent an email to the client requesting a write-up of their feedback:
+![Acceptance 1](Screenshots/email_acceptance_1.png)
+
+I received the following response:
+![Acceptance 2](Screenshots/email_acceptance_2.png)
+
+The changes:
+
+* Graph scaling options
+* Auto-logon to last used profile
+* Application icon
+
+I subsequently identify that the client does wish there to be minor changes in the work, however it is likely that these changes will be made outside of the scope of this course due to a lack of time.
+
 ## Extensions
 Whilst both the client and myself think that the application is well-suited to its purpose, it could be improved.
 
 The client suggested that the profile selection screen should not appear every time but that the application should load the last profile that was loaded to both save time and mental effort.
 
-Also, the client echoed my comments on having more control over the graph, including a scaling option, perhaps having user interaction on the graph as well.
-However, they said that they preferred the use of the data point labels rather than axes, so I wouldn't change anything there.
-
 Overall then, here is a summary of the good and bad points of the application:
 
 | Positive aspects | Negative aspects |
 | :------------- | :------------- |
-| Easy to use    | Graph is limited in use |
-| Designed nicely, is consistent with OS X style | Could be more adventurous with OpenGL/custom interface? |
+| Application is relatively easy to use | Graph is limited in use - no scaling options |
+| Designed nicely, is consistent with OS X style | Needs an actual icon |
 | Stores data persistently, completely automatically and transparently | Cloud storage backup (e.g. iCloud, Dropbox, Google Drive) isn't present |
 | Weight entry is easy to do | Date has to be entered manually, no 'calendar' like interface which is common |
 | Application is small and runs well | Stored data is tied to machine, have to use Terminal to export data to another machine |
+| Profile selection box is the first thing the user sees | Need to select profile every time app loads
