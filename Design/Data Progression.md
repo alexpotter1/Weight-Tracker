@@ -193,3 +193,44 @@ In the "weightGoal" array, there are only ever two indices:
 
 ## Fourth design
 ![Data Progression 4](Diagrams/data_diagram_4.jpeg?raw=true)
+
+In this stage, there wasn't much change in the way that the project was structured and how the classes communicated with each other, but the implementation of the graph was better defined.
+
+Now, the MainWindowController handles the graph initialisation and update code as it is now a delegate of the *NSTabView*, which means that a separate class to handle the tab switching was no longer needed.
+
+However, to prevent MainWindowController from becoming too large in size and too complex, I decided to put the methods for manipulating the data shown on the graph into another class known as **GraphDataSource**.
+
+**GraphDataSource** loads the weight values and dates from persistent storage, then calls CorePlot functions to tell the graph the following:
+
+* How many values to plot for;
+* Data point values;
+* Labels for each data point indicating weight date and value
+
+Because of this, in MainWindowController, the initialised graph would need to have *GraphDataSource* set as its data source.
+
+### Persistent storage in fourth cycle
+There were no changes to the persistent storage database in this cycle.
+
+The first level of storage in the database:
+
+| Item to be stored | Data type | Storage key |
+| :------------- | :------------- | :--------- |
+| Profile names       | Array of strings | "NewUserNames" |
+| Current profile name in use | String | "currentUser" |
+| Profile information dictionary | NSMutableDictionary (mixed data type) | "profileInfo$USER" *$USER = value of "currentUser"* |
+
+The second level of storage (profile information dictionary):
+
+| Item to be stored | Data type | Storage key |
+| :------------- | :------------- | :--------- |
+| Selected weight unit | String | "weightUnit" |
+| Weight values | NSMutableArray (mixed data type) | "weightValues" |
+| Dates corresponding to weight values | NSMutableArray (mixed data type) | "weightValueDates"
+| Weight goal | NSMutableArray (mixed data type) | "weightGoal" |
+
+In the "weightGoal" array, there are only ever two indices:
+
+| Object         | Index          | Data type|
+| :------------- | :------------- | :------- |
+| Weight goal value | 0 | Double |
+| Weight goal date | 1 | String (will be converted to NSDate upon access) |
