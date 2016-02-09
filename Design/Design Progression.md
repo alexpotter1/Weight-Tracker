@@ -9,6 +9,7 @@ The first design storyboard looked like this:
 ![Design Storyboard 1](Diagrams/design_diagram_1.jpeg?raw=true "Design Storyboard 1")
 
 The initial design conforms to the following requirements defined in the specification:
+
 * **1**: Weight table in first screen
 * **3**: Graph in second screen, presents weight
 * **4**: User sidebar in both windows
@@ -35,9 +36,11 @@ Unfortunately, just after the project was created I realised that the first desi
 
 I physically attempted to run a prototype on the client's computer, and it loaded but it didn't show an interface.
 This would have not met the following requirement in the specification:
+
 * **5**: Application must load, function effectively and not hang or crash
 
 By default, a "Storyboard" is created to handle the UI design, and this only functions on a newer OS than the client is running. I had two solutions to this problem:
+
 * Advise the user to upgrade their operating system - I did not want to have to do this
 * Create a new application with legacy "XIB" user interface files that function on the target OS
 
@@ -139,7 +142,6 @@ The major changes here are:
 * Weight entry window now has custom date input
 * New validation screen on the weight goal input (presents error if user doesn't type a decimal value)
 * Weight goal input is split into two boxes (prevents errors with input)
-* Graph labels instead of crowded data points on axes
 
 ##### Edit/Delete All button
 This was added at the client's request.
@@ -169,7 +171,8 @@ This validation screen is an *NSAlert*, and is created programmatically.
 Thus, the validation screens/alert dialog boxes in my application all follow one visual style, as discussed earlier.
 
 ##### Weight goal input - two boxes
-As with the weight entry window, the weight goal 
+As with the weight entry window, the weight goal is split into two boxes to aid both with inputting the data but also to help prevent application crashes or data storage inconsistencies when values have no decimal point, or if they are not completely numeric for example.
 
+If the user doesn't enter a value into the second box, the second box value is zero.
 
 **All images used are from Apple's OS X Human Interface Guidelines. Copyright © Apple Inc. 2015** http://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/index.html

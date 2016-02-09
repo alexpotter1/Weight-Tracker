@@ -19,7 +19,7 @@ The test plan will contain all of the tests that will be run after each cycle, a
 | User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | N/A | N/A |
 | Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | N/A | N/A |
 
-## Alpha test
+## Alpha/Beta test
 **Note: If a test fails that is integral to the program's execution flow, the remaining tests in the plan are skipped.**
 
 | Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
@@ -33,7 +33,7 @@ The test plan will contain all of the tests that will be run after each cycle, a
 
 In this testing phase, all the tests in the plan failed on the target because I had decided (provisionally) to use a 'storyboard' for creating the interface - OS X Mavericks does not support 'storyboard'-based UI design and the application simply crashes when launching. I had to resort to the legacy 'XIB'-based UI design method, which would now work perfectly.
 
-#### Alpha test 1 (re-run)
+#### Alpha/Beta test 1 (re-run)
 After changing the application, I re-ran Alpha test 1:
 
 | Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
@@ -53,7 +53,7 @@ After changing the application, I re-ran Alpha test 1:
 | Setting weight unit | SettingsWindowController | This test checks if the user can select all three weight units without any problems. | N/A | N/A |
 | Deleting user | SettingsWindowController | This test checks if the user can delete their profile without errors. | N/A | N/A |
 
-### Alpha test 2
+### Alpha/Beta test 2
 
 | Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
 | :------- | :------- | :------- | :------ | :--------|
@@ -80,14 +80,14 @@ If the user doesn't enter a decimal point, then there is only one value in this 
 | Remove selected weight value | MainWindowController | This test checks if the table can handle a random selected record being removed without error. | N/A | N/A |
 | Expected weight | MainWindowController/StatisticalAnalysis | This test checks whether the expected weight calculation functions and displays correctly | N/A | N/A |
 
-### Alpha test 3
+### Alpha/Beta test 3
 | Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
 | :------- | :------- | :------- | :------- | :------- |
 | Add weight value | MainWindowController/PopoverEntryViewController | This test checks if the 'add weight value' button works and that the value and date are displayed properly in the table. | Pass | Pass |
 | Remove selected weight value | MainWindowController | This test checks if the table can handle a random selected record being removed without error. | Pass | Pass |
 | Expected weight | MainWindowController/StatisticalAnalysis | This test checks whether the expected weight calculation functions and displays correctly | Pass | Pass |
 
-#### Alpha test 2 (re-run)
+#### Alpha/Beta test 2 (re-run)
 After running alpha test 3, I went back and re-ran Alpha test 2 once I had fixed the weight goal input:
 
 | Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
@@ -109,7 +109,7 @@ After running alpha test 3, I went back and re-ran Alpha test 2 once I had fixed
 | Weight goal validation - Normal | SettingsWindowController | This tests whether "12.7" can be input as a weight goal value | N/A | N/A |
 | Weight goal validation - Invalid | SettingsWindowController | This tests whether "abc" can be input as a weight goal value | N/A | N/A |
 
-### Alpha test 4
+### Alpha/Beta test 4
 
 | Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
 | :------- | :------- | :------- | :------- | :------- |

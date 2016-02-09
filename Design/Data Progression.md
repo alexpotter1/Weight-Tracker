@@ -155,6 +155,8 @@ The second level of storage (profile information database):
 ## Third design
 ![Data Progression 3](Diagrams/data_diagram_3.jpeg?raw=true)
 
+**User response (feedback) is given in** *Design Progression*.
+
 ### Swift code and Xcode files
 This storyboard now contains a better representation of the classes of the application, as the 'StatisticalAnalysis' class has been added which is the class that handles the expected weight calculations.
 
@@ -193,6 +195,8 @@ In the "weightGoal" array, there are only ever two indices:
 
 ## Fourth design
 ![Data Progression 4](Diagrams/data_diagram_4.jpeg?raw=true)
+
+**User response (feedback) is given in** *Design Progression*.
 
 In this stage, there wasn't much change in the way that the project was structured and how the classes communicated with each other, but the implementation of the graph was better defined.
 

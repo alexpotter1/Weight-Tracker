@@ -112,9 +112,11 @@ I would say that overall, the application is simple and very easy to use, so Sys
 
 ## Acceptance test - client feedback
 After the test, I sent an email to the client requesting a write-up of their feedback:
+
 ![Acceptance 1](Screenshots/email_acceptance_1.png)
 
 I received the following response:
+
 ![Acceptance 2](Screenshots/email_acceptance_2.png)
 
 The changes:
