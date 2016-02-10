@@ -15,7 +15,7 @@ The test plan will contain all of the tests that will be run after each cycle, a
 | Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | N/A | N/A |
 | Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | N/A | N/A |
 | User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | N/A | N/A |
-| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile | N/A | N/A |
+| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile (Passes if validation works) | N/A | N/A |
 | User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | N/A | N/A |
 | Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | N/A | N/A |
 
@@ -27,7 +27,7 @@ The test plan will contain all of the tests that will be run after each cycle, a
 | Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | Pass | **Fail** |
 | Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | Pass | -- |
 | User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | **Fail** | -- |
-| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile | -- | -- |
+| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile (Passes if validation works) | -- | -- |
 | User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | -- | -- |
 | Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | -- | -- |
 
@@ -41,7 +41,7 @@ After changing the application, I re-ran Alpha test 1:
 | Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | Pass | Pass |
 | Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | Pass | Pass |
 | User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | Pass | Pass |
-| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile | Pass | Pass |
+| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile (Passes if validation works) | Pass | Pass |
 | User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | Pass | Pass |
 | Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | Pass | Pass |
 
@@ -125,13 +125,13 @@ After running alpha test 3, I went back and re-ran Alpha test 2 once I had fixed
 
 | Aspect to be tested | Module | Comments | Pass/Fail (debug) | Pass/Fail (target) |
 | :------------- | :------------- | :----------- | :------- | :-------- |
-| Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | Pass | **Fail** |
-| Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | Pass | -- |
-| User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | **Fail** | -- |
-| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile | -- | -- |
-| User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | -- | -- |
-| Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | -- | -- |
-| Setting a weight goal | SettingsWindowController | This test checks whether the weight goal value and date can be entered properly and are stored properly. | Pass | **Fail** |
+| Application launches and first window opens | AppDelegate/NSApplication (UNIX exec()) | This test checks that the application runs on the target machine | Pass | Pass |
+| Create new user button loads new user window | InitialWindowController/NewUserWindowController | This test checks that the 'Create new user' button loads the new user window | Pass | Pass |
+| User name validation - Normal | NewUserWindowController | This test checks that the user name is set as "Alex123". This test uses only alphanumeric characters. | Pass | Pass |
+| User name validation - Invalid | NewUserWindowController | This test checks if a new user will be created with the same name as another user/profile (Passes if validation works) | Pass | Pass |
+| User name validation - Extreme | NewUserWindowController | This test checks if these non-alphanumeric Unicode characters (U+26F1 ⛱, U+26F3 ⛳, U+26F5 ⛵) are accepted as a user name. | Pass | Pass |
+| Selection of user profiles | InitialWindowController/MainWindowController | This test checks whether the correct profile is loaded when selected. | Pass | Pass |
+| Setting a weight goal | SettingsWindowController | This test checks whether the weight goal value and date can be entered properly and are stored properly. | Pass | Pass |
 | Setting weight unit | SettingsWindowController | This test checks if the user can select all three weight units without any problems. | Pass | Pass |
 | Deleting user | SettingsWindowController | This test checks if the user can delete their profile without errors. | Pass | Pass |
 | Add weight value | MainWindowController/PopoverEntryViewController | This test checks if the 'add weight value' button works and that the value and date are displayed properly in the table. | Pass | Pass |
