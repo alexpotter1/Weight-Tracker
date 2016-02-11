@@ -1895,11 +1895,6 @@ Then the other function, ```numberForPlot```, which gives each data value to plo
 }
 ```
 
-Testing the graph with the following test data yielded the following result:
-![Screenshot 46](Screenshots/fourth_graphTestData.png "Graph test data")
-
-![Screenshot 47](Screenshots/fourth_graphTest.png "Graph Test")
-
 The only thing left with the graph was to add data labels to the data points - this was done by adding another delegate function to the ```GraphDataSource``` class.
 I added a shortened date array so that the dates can fit on the labels without clipping:
 ```swift
