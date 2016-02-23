@@ -1,5 +1,5 @@
 //
-//  LinearRegression.swift
+//  StatisticalAnalysis.swift
 //  Weight Tracker
 //
 //  Created by Alex Potter on 03/11/2015.

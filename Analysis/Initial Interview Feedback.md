@@ -2,7 +2,12 @@
 
 To begin discussions with the client, I used the questions in the [Initial Interview Plan](Initial Interview Plan.md), and here is the client's response:
 
-* You've already said that you want a application to track a user's weight, but are there any specific actions that you would want the application to enable you to do?
+* What would be the data that you want the application to accept as input and display as output?
+> I primarily want the application to record weight information, so the application will need a feature to allow for input of the weight value (decimal) as well as the date (e.g. DD/MM/YYYY) that corresponds to that weight. The data needs to be ideally stored in a table and displayed as such, so that I can edit the data and view it in a concise and easy-to-understand way. The application would also need to have an input for a user name (so that the program can store data in different, separate profiles) and a weight goal (value - decimal and date - DD/MM/YYYY).
+
+> The program also needs to output the weight values and dates that are stored in the table, as well as calculating and displaying an expected weight output. It should also display a graph, with the same weight values that are in the table, that shows the change over time.
+
+* Are there any specific actions or features that you would want the application to enable you to do or have?
 
 > Having tried some other weight applications, the main features that I see from them are features such as a graph to display the user's weight over time, and predictions of your weight after a period of time. If possible, I would want these features to be replicated in this application - another main feature that I would want is being able to input weight in more than one unit; many applications have units for kilograms and pounds but not the stones and pounds unit that we tend to use in this country and since there are, in my experience, no applications that do that, then this feature would be paramount for this application.
 
