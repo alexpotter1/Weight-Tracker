@@ -87,6 +87,49 @@ If the user doesn't enter a decimal point, then there is only one value in this 
 | Remove selected weight value | MainWindowController | This test checks if the table can handle a random selected record being removed without error. | Pass | Pass |
 | Expected weight | MainWindowController/StatisticalAnalysis | This test checks whether the expected weight calculation functions and displays correctly | Pass | Pass |
 
+##### Unit test of expected weight algorithm
+I decided to use a unit test to check that the expected weight algorithm (StatisticalAnalysis class) functions as expected.
+
+I was able to do this by checking that the output of the algorithm is the same as the output from a Casio FX-991ES Plus calculator, which is able to perform linear regression calculations and had the same data input into it.
+
+The test code was implemented into an *external* test class, known as 'Weight_TrackerTests.swift'.
+
+```swift
+func testExpectedWeight() {
+    // This is an example of a functional test case.
+    // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    // Setting up some test data...
+    let weightArray = NSMutableArray(array: ["72.6", "73.4", "73.5", "73.1", "71.9", "71.9", "71.7"])
+    let dateArray = NSMutableArray(array: ["Mon, 5 June 2015", "Mon, 12 June 2015", "Thu, 15 June 2015", "Sat, 17 June 2015", "Wed, 21 June 2015", "Thu, 22 June 2015", "Mon, 26 June 2015"])
+
+    // This code is essentially the same as in the main class...
+    let dateFormatter = NSDateFormatter()
+    let stat = StatisticalAnalysis(_dateArray: dateArray, _weightArray: weightArray)
+    stat.RegressionAnalysis()
+
+    dateFormatter.dateFormat = "EEE, d MMM yyyy"
+    let lastDate = dateFormatter.dateFromString(dateArray.lastObject as! String)
+
+    // Next value in one week...
+    let nextValue = stat.RegressionNextValue(lastDate!.timeIntervalSinceReferenceDate + 604800)
+
+    // Regression (a+Bx) done on a Casio FX-991ES Plus
+    let actualRegressionValue: Double = 71.47902132
+
+    // XCTAssertEqual checks if two expressions are exactly equal in type and value
+    // Rounding the value given by the code as the calculator is limited to 8 decimal places
+    // (roundToDecimalPlaces is an extension function that I made in another class)
+    XCTAssertEqual(nextValue.roundToDecimalPlaces(8), actualRegressionValue)
+
+}
+```
+
+The output of the test was this:
+![Unit Test](Screenshots/unit-test_ExpectedWeight.png)
+
+The green tick mark next to the testExpectedWeight() function implies that this test executed successfully.
+
 #### Alpha/Beta test 2 (re-run)
 After running alpha test 3, I went back and re-ran Alpha test 2 once I had fixed the weight goal input:
 
