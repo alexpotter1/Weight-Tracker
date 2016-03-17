@@ -33,6 +33,10 @@ The test plan will contain all of the tests that will be run after each cycle, a
 
 In this testing phase, all the tests in the plan failed on the target because I had decided (provisionally) to use a 'storyboard' for creating the interface - OS X Mavericks does not support 'storyboard'-based UI design and the application simply crashes when launching. I had to resort to the legacy 'XIB'-based UI design method, which would now work perfectly.
 
+A screenshot of the interface not loading on the client's computer is shown. Note that the application is loaded, as the rightmost icon (next to the gear icon) shows this, but no interface appears on screen.
+
+<img src=Screenshots/1st_prototype-notworking.png width=500>
+
 #### Alpha/Beta test 1 (re-run)
 After changing the application, I re-ran Alpha test 1:
 

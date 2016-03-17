@@ -533,6 +533,60 @@ DOUBLE FUNCTION RegressionNextValue(date) {
 }
 ```
 
+I decided to perform a dry run on Algorithms 18 and 19 to make sure that they would work.
+The data that I decided to use here are the following:
+(NB: The dates that would be used are integer values in seconds from January 1, 2001 to a particular date (NSDate), so I need to use a function to convert the string date values into NSDates when I code the algorithm.)
+
+```
+weights = [72.6, 73.4, 73.5, 73.1, 71.9, 71.9, 71.7]
+dates = [455151600.0, 455756400.0, 456015600.0, 456188400.0, 456534000.0, 456620400.0, 456966000.0]
+date argument used for RegressionNextValue = 457570800.0
+```
+
+Dry run on Algorithm 18:
+
+| Round          | Variable       | Value      |
+| :------------- | :------------- | :--------- |
+| -              | dateMean       | 338708914.3|
+| -              | weightMean     | 72.58571429|
+| -              | top            | 0          |
+| -              | bottom         | 0          |
+| 0              | (i, j)         | (72.6, 455151600.0) |
+| 0              | top            | -14635.1020408216 |
+| 0              | bottom         | 1049512437551.0 |
+| 1              | (i, j)         | (73.4, 455756400.0) |
+| 1              | top            | -356355.918367352 |
+| 1              | bottom         | 1225624555102.02 |
+| 2              | (i, j)         | (73.5, 456015600.0) |
+| 2              | top            | -503059.591836734 |
+| 2              | bottom         | 1251371049795.89 |
+| 3              | (i, j)         | (73.1, 456188400.0) |
+| 3              | top            | -496711.836734689 |
+| 3              | bottom         | 1251523395918.34 |
+| 4              | (i, j)         | (71.9, 456534000.0) |
+| 4              | top            | -742158.367346933 |
+| 4              | bottom         | 1379646484897.94 |
+| 5              | (i, j)         | (71.9, 456620400.0) |
+| 5              | top            | -1046850.61224489 |
+| 5              | bottom         | 1577087059591.82 |
+| 6              | (i, j)         | (71.7, 456966000.0) |
+| 6              | top            | -1746514.28571428 |
+| 7              | bottom         | 2201096777142.86 |
+| -              | gradient       | -7.93474554981333e-07 |
+| -              | intercept      | 434.549808220282 |
+
+Dry run of Algorithm 19, using gradient and intercept from Algorithm 18:
+
+| Round          | Variable       | Value      |
+| :------------- | :------------- | :--------- |
+| -              | -              | 71.4790213178 |
+
+The value given by a calculator with a linear regression function built-in is **71.47902132**.
+This value is equal to the calculator value up to a precision of 10 significant figures.
+This is because the calculator has a maximum precision that it can work with.
+
+In summary, these two algorithms produce an identical result, to ten significant figures, as the actual linear regression function.
+
 ### Cycle 4
 In this cycle, the graph is the last major function to be implemented. In addition, upon user feedback, there was a request for 'Delete All' and 'Edit' buttons on the weight table.
 
