@@ -31,9 +31,9 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>WTHelp.help</string>
+	<string>Weight Tracker.help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>userdoc</string>
+	<string>com.AlexPotter.Weight-Tracker.help</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

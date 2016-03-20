@@ -73,7 +73,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Graph" identifier="1" id="uWj-eR-FLf">
-                                <view key="view" id="bH9-17-VgR">
+                                <view key="view" ambiguous="YES" id="bH9-17-VgR">
                                     <rect key="frame" x="10" y="33" width="131" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -84,7 +84,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Information" identifier="2" id="NmS-Gj-3Zt">
-                                <view key="view" ambiguous="YES" id="qqg-8d-y7O">
+                                <view key="view" id="qqg-8d-y7O">
                                     <rect key="frame" x="10" y="33" width="783" height="478"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -279,13 +279,6 @@ CA
                             <outlet property="delegate" destination="-2" id="Ld2-8P-dc8"/>
                         </connections>
                     </tabView>
-                    <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHM-pE-JCY">
-                        <rect key="frame" x="757" y="17" width="25" height="25"/>
-                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a9e-Z7-0gB">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                 </subviews>
             </view>
             <connections>

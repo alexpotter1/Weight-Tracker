@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A262e" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15E56a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="InitialWindowController" customModule="Weight_Tracker" customModuleProvider="target">
@@ -24,7 +24,6 @@
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KgV-x7-OJ0">
                         <rect key="frame" x="48" y="85" width="297" height="35"/>
-                        <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Hi! Welcome back...." id="muq-yj-mhF">
                             <font key="font" metaFont="system" size="29"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -36,7 +35,6 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="185" id="SeT-BP-JJ5"/>
                         </constraints>
-                        <animations/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Select a user..." drawsBackground="YES" completes="NO" numberOfVisibleItems="100" id="Cw3-o1-fdK">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -45,7 +43,6 @@
                     </comboBox>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VSx-03-R8E">
                         <rect key="frame" x="44" y="13" width="150" height="32"/>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Create a new user" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qO6-Qk-gy3">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -59,7 +56,6 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="89" id="H7f-MW-Rje"/>
                         </constraints>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dhL-54-eYr">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -80,7 +76,6 @@
                     <constraint firstItem="VSx-03-R8E" firstAttribute="top" secondItem="KgV-x7-OJ0" secondAttribute="bottom" constant="44" id="oZR-y7-3qt"/>
                     <constraint firstItem="MEZ-Tk-YqI" firstAttribute="trailing" secondItem="MMS-0l-6YA" secondAttribute="trailing" id="sjr-u0-Vzr"/>
                 </constraints>
-                <animations/>
             </view>
             <point key="canvasLocation" x="730.5" y="474.5"/>
         </window>
