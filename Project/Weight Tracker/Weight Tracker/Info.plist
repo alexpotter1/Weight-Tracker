@@ -30,6 +30,10 @@
 	<string>Copyright © 2015 Alex Potter. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>WTHelp.help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>userdoc</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

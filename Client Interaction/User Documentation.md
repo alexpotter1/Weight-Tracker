@@ -4,28 +4,26 @@ You can find help and information on how to use it here.
 ### Table of Contents
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [System Requirements](#system-requirements)
-	- [Hardware Requirements](#hardware-requirements)
-	- [Software Requirements](#software-requirements)
-- [Getting started and installation](#getting-started-and-installation)
-- [Creating a profile](#creating-a-profile)
-- [Setting a weight goal](#setting-a-weight-goal)
-- [Weight table actions](#weight-table-actions)
-	- [Add a record](#add-a-record)
-	- [Delete a record](#delete-a-record)
-	- [Delete all records](#delete-all-records)
-	- [Edit a record](#edit-a-record)
-- [Graph](#graph)
-- [Managing application data](#managing-application-data)
-	- [Backup data](#backup-data)
-	- [Restore data](#restore-data)
-	- [Delete all data](#delete-all-data)
-- [Troubleshooting](#troubleshooting)
+- [System Requirements](#system-requirements) - page 2
+- [Getting started and installation](#getting-started-and-installation) - page 3
+- [Creating a profile](#creating-a-profile) - page 3
+- [Setting a weight goal](#setting-a-weight-goal) - page 4
+- [Weight table actions](#weight-table-actions) - page 5
+	- [Add a record](#add-a-record) - page 5
+	- [Delete a record](#delete-a-record) - page 6
+	- [Delete all records](#delete-all-records) - page 6
+	- [Edit a record](#edit-a-record) - page 6
+- [Graph](#graph) - page 7
+- [Managing application data](#managing-application-data) - page 7
+	- [Navigating to the Terminal](#navigating-to-the-terminal) - page 8
+	- [Backup data](#backup-data) - page 9
+	- [Restore data](#restore-data) - page 9
+	- [Delete all data](#delete-all-data) - page 9
+- [Troubleshooting](#troubleshooting) - page 10
 
 <!-- /TOC -->
 
-
-<div class="page-break"></div>
+<p style="page-break-after:always;"></p>
 
 ## System Requirements
 #### Hardware Requirements
@@ -48,6 +46,8 @@ The only software requirement for this application is:
 
 * **Mac OS X Mavericks 10.9.2** or later
 
+<p style="page-break-after:always;"></p>
+
 ## Getting started and installation
 To install 'Weight Tracker', you should [download it.](https://github.com/alexpotter1/Weight-Tracker/releases)
 It is best to download it here as the latest versions are uploaded to this page.
@@ -57,8 +57,6 @@ It is best to download it here as the latest versions are uploaded to this page.
 Next, download the file by clicking on the **Weight.Tracker.app.zip** link, and save it to somewhere like the Desktop. It is recommended to unzip this file and move the subsequent file to the **Applications** folder, although it will work if you run it anywhere.
 
 Double-click the application to launch it.
-
-<div class="page-break"></div>
 
 ## Creating a profile
 On the first screen that is shown, you can do the following:
@@ -71,8 +69,6 @@ To create a new profile, click the 'Create a new user' button to the bottom left
 A new window should open, allowing you to type a name for the new profile. Then press 'Done' to save the profile.
 
 The window will close, and you can now select the profile via the dropdown box.
-
-<div class="page-break"></div>
 
 ## Setting a weight goal
 When you first create a profile, there will be no weight goal set.
@@ -92,7 +88,7 @@ Type the value that you want to set into these two boxes, and then select the da
 
 Then, press Done and the weight goal will have been set.
 
-<div class="page-break"></div>
+<p style="page-break-after:always;"></p>
 
 ## Weight table actions
 <img src="user-manual-screenshots/weight-table.png" width="250">
@@ -138,6 +134,8 @@ Like the add record button, the weight entry window will pop-up again, except fo
 
 To replace these weight values, press 'AC' (bottom left) and you can type in a new value as the 'Add a record' section above shows.
 
+<p style="page-break-after:always;"></p>
+
 ## Graph
 To access the graph, simply click on the 'Graph' tab near the top of the window. This tab button will switch between the table and the graph, so if you wish to view the weight table again, just press 'Information' which is right next to the 'Graph' button.
 
@@ -145,11 +143,8 @@ To access the graph, simply click on the 'Graph' tab near the top of the window.
 
 The graph's features aren't currently customisable at this time.
 
-<div class="page-break"></div>
-
 ## Managing application data
 This application manages data through a built-in Apple data handling interface, known as ```defaults```.
-You can read from, and write to, any application's data using this interface.
 
 The data that this program backs up includes:
 
@@ -159,12 +154,27 @@ The data that this program backs up includes:
 * Profile weight goals (value and date components)
 * Profile weight values and dates
 
+An application known as Terminal allows you to accomplish these tasks.
+
+### Navigating to the Terminal
+1. Open the **Finder**, which is the leftmost application in the **Dock** to the bottom of the screen.
+![Finder](user-manual-screenshots/finder.png)
+
+2. Navigate to the Applications folder by clicking 'Applications' in the sidebar, and double click on the Utilities folder.
+<img src="user-manual-screenshots/applications.png" width=400>
+
+3. Double click on the Terminal application to open it.
+<img src="user-manual-screenshots/utilities.png" width=400>
+
+You can now carry out the following steps.
+
+<p style="page-break-after:always;"></p>
+
 #### Backup data
 To backup the application's stored profile data, follow these steps:
 
 1. Close Weight Tracker, if already open by pressing Cmd-Q.
-2. Open Terminal by opening the Finder, then going to Applications and then the subfolder of Utilities.
-3. Once in Terminal, type the following command to backup to a file on the Desktop:
+2. Type the following command to backup to a file on the Desktop:
 	```
 	defaults export AlexPotter.Weight-Tracker ~/Desktop/weight-tracker-backup.dat
 	```
@@ -175,8 +185,7 @@ To backup the application's stored profile data, follow these steps:
 To restore saved application data, follow these steps:
 
 1. Close Weight Tracker, if already open by pressing Cmd-Q.
-2. Open Terminal by opening the Finder, then going to Applications and then the subfolder of Utilities.
-3. Once in Terminal, type the following command to restore the file saved. Assuming the file is on the Desktop:
+2. Type the following command to restore the file saved. Assuming the file is on the Desktop:
 
 	```
 	defaults import AlexPotter.Weight-Tracker ~/Desktop/weight-tracker-backup.dat
@@ -189,14 +198,14 @@ To restore saved application data, follow these steps:
 If you want to delete all the saved profiles and their respective data, then you can do this:
 
 1. Close Weight Tracker, if already open by pressing Cmd-Q.
-2. Open Terminal by opening the Finder, then going to Applications and then the subfolder of Utilities.
-3. Once in Terminal, type the following command to remove all saved data associated with this program:
+2. Type the following command to remove all saved data associated with this program:
 	```
 	defaults delete AlexPotter.Weight-Tracker
 	```
 
 	**NB: You don't have to delete all the data to then restore data, as the import command will replace the saved data automatically.**
 
+<p style="page-break-after:always;"></p>
 ## Troubleshooting
 In this section, here are some common questions and answers to problems that you may have when running the application.
 
